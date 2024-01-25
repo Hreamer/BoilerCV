@@ -3,4 +3,5 @@ An online resume creation tool that allows you to produce beautiful looking LaTe
 
 ### Sprint 1
 1. List to be determined 
-2. Make sure to add a - [ ] before every feature and make it - [x] when done  
+2. Make sure to add a - [ ] before every feature and make it - [x] when done    
+- [ ]
