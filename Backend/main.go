@@ -12,15 +12,16 @@ func getRoot(writer http.ResponseWriter, request *http.Request) {
 
 	fmt.Println("Received \"/\" request")
 
+	//Write to the packet
 	io.WriteString(writer, "<h1> Hello World <h1>")
 
 	fmt.Println("Root request served")
 }
 
 func main() {
-	fmt.Println("Hello World")
-
+	//HTTP server handler functions
 	http.HandleFunc("/", getRoot)
 
+	//Start the server on the desired PORT
 	http.ListenAndServe(":3333", nil)
 }
