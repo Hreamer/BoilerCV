@@ -49,6 +49,16 @@ func checkLogin(writer http.ResponseWriter, request *http.Request) {
 	//Check the database response and return appropiatly
 }
 
+func createAcc(writer http.ResponseWriter, request *http.Request) {
+	var creds Credentials
+
+	err := json.NewDecoder(request.Body).Decode(&creds)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+}
+
 func template1(writer http.ResponseWriter, request *http.Request) {
 	//step 1 unmarshall the JSON into the template info struct
 
@@ -62,6 +72,7 @@ func main() {
 	http.HandleFunc("/", getRoot)
 	http.HandleFunc("/template1", template1)
 	http.HandleFunc("/login", checkLogin)
+	http.HandleFunc("/createacc", createAcc)
 
 	//Start the server on the desired PORT
 	http.ListenAndServe(":3333", nil)
