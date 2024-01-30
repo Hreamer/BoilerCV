@@ -7,11 +7,13 @@ import (
 	"net/http"
 )
 
+// Struct for storing login information
 type Credentials struct {
 	Username string
 	Password string
 }
 
+// Structure to store resume information for templating library
 type ResumeInfo struct {
 	//Personal Information
 	Name    string
