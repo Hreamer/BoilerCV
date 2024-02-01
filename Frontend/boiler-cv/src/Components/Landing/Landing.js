@@ -1,30 +1,53 @@
-import React from 'react';
+import React, { useState } from "react";
+import "./Landing.css";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 const Landing = () => {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+
+  const openLogin = () => {
+    setIsLoginOpen(true);
+    setIsRegisterOpen(false);
+  };
+
+  const closeLogin = () => {
+    setIsLoginOpen(false);
+  };
+
+  const openRegister = () => {
+    setIsRegisterOpen(true);
+    setIsLoginOpen(false);
+  };
+
+  const closeRegister = () => {
+    setIsRegisterOpen(false);
+  };
+
   return (
-    <div style={styles.container}>
-      <div style={styles.square}>
-        <p>Hello World!</p>
+    <div className="landing-page">
+      <div className="background-image"></div>
+      <div className="overlay">
+        <div className="panel">
+          <div className="title-container">
+            <div className="title">
+              <p>BoilerCV</p>
+            </div>
+          </div>
+          <div className="logo-container">
+            <div className="logo"></div>
+          </div>
+          <div className="button-container">
+            <button className="login-button" onClick={openLogin}>Login</button>
+            <button className="signup-button" onClick={openRegister}>Sign Up</button>
+          </div>
+        </div>
       </div>
+      {isLoginOpen && <Login onClose={closeLogin} />}
+      {isRegisterOpen && <Register onClose={closeRegister} />}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '200px',
-  },
-  square: {
-    width: '200px',
-    height: '200px',
-    backgroundColor: 'lightblue',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 };
 
 export default Landing;
