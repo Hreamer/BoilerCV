@@ -1,30 +1,28 @@
-import React from 'react';
+import React from "react";
+import "./Landing.css";
 
 const Landing = () => {
   return (
-    <div style={styles.container}>
-      <div style={styles.square}>
-        <p>Hello World!</p>
+    <div className="landing-page">
+      <div className="background-image"></div>
+      <div className="overlay">
+        <div className="panel">
+          <div className="title-container">
+            <div className="title">
+              <p>BoilerCV</p>
+            </div>
+          </div>
+          <div className="logo-container">
+            <div className="logo"></div>
+          </div>
+          <div className="button-container">
+            <button className="login-button">Login</button>
+            <button className="signup-button">Sign Up</button>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '200px',
-  },
-  square: {
-    width: '200px',
-    height: '200px',
-    backgroundColor: 'lightblue',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 };
 
 export default Landing;
