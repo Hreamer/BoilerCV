@@ -39,8 +39,12 @@ const Landing = () => {
             <div className="logo"></div>
           </div>
           <div className="button-container">
-            <button className="login-button" onClick={openLogin}>Login</button>
-            <button className="signup-button" onClick={openRegister}>Sign Up</button>
+            <button className="login-button" onClick={openLogin}>
+              Login
+            </button>
+            <button className="signup-button" onClick={openRegister}>
+              Sign Up
+            </button>
           </div>
         </div>
       </div>
