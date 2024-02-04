@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"path"
 )
@@ -58,7 +57,6 @@ func template1(writer http.ResponseWriter, request *http.Request) {
 func main() {
 	//HTTP server handler functions
 	buildPath := path.Clean("client/build")
-	fmt.Printf("/%s/", buildPath)
 	http.Handle("/", http.FileServer(http.Dir(buildPath)))
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("client/build/static"))))
 
