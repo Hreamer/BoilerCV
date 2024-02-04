@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
+	"path"
 )
 
 // Struct for storing login information
@@ -21,18 +21,6 @@ type ResumeInfo struct {
 	Address string
 	City    string
 	State   string
-}
-
-// Function takes in a ResponseWriter and the incoming request
-// Function is intended to be used to serve all "/" or root requests
-func getRoot(writer http.ResponseWriter, request *http.Request) {
-
-	fmt.Println("Received \"/\" request")
-
-	//Write to the response packet
-	io.WriteString(writer, "<h1> Hello World <h1>")
-
-	fmt.Println("Root request served")
 }
 
 func checkLogin(writer http.ResponseWriter, request *http.Request) {
@@ -69,7 +57,11 @@ func template1(writer http.ResponseWriter, request *http.Request) {
 
 func main() {
 	//HTTP server handler functions
-	http.HandleFunc("/", getRoot)
+	buildPath := path.Clean("client/build")
+	fmt.Printf("/%s/", buildPath)
+	http.Handle("/", http.FileServer(http.Dir(buildPath)))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("client/build/static"))))
+
 	http.HandleFunc("/template1", template1)
 	http.HandleFunc("/login", checkLogin)
 	http.HandleFunc("/createacc", createAcc)

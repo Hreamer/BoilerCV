@@ -14,4 +14,5 @@ An online resume creation tool that allows you to produce beautiful looking LaTe
 - [ ] As a user, I want to see updates to my resume through a preview window  
 
 ### How to test  
-To test the app simply `cd` into the Backend folder and run `go run main.go`. This will start the backend service on the port 3333(Port number could change but for now it works).
+To test the app simply `cd` into the Backend folder and run `go run main.go`. This will start the backend service on the port 3333(Port number could change but for now it works).  
+For the Frontend team. To develop your project just cd into the client folder and run `npm start`. If you want to test using the backend inside the client folder run 'npm run build'. This will bundle your work in a folder called build. From there `cd ..` back into the backend folder and run 'go run main.go'. This will start the server on local host port 3333.
