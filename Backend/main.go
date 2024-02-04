@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"path"
 )
@@ -55,6 +56,9 @@ func template1(writer http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
+
+	port := ":3333"
+
 	//HTTP server handler functions
 	buildPath := path.Clean("client/build")
 	http.Handle("/", http.FileServer(http.Dir(buildPath)))
@@ -65,5 +69,6 @@ func main() {
 	http.HandleFunc("/createacc", createAcc)
 
 	//Start the server on the desired PORT
-	http.ListenAndServe(":3333", nil)
+	fmt.Println("Sever has started on Port " + port)
+	http.ListenAndServe(port, nil)
 }
