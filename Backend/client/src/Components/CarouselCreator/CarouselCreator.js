@@ -1,91 +1,100 @@
 import React from "react";
-import "./MyResumes.css";
+import "./CarouselCreator.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
-const MyResumes = () => {
+const CarouselCreator = () => {
+  const responsive = {
+    standard: {
+      breakpoint: { max: 4000, min: 1200 },
+      items: 3,
+    },
+    small: {
+      breakpoint: { max: 1200, min: 0 },
+      items: 2,
+    },
+  };
   return (
-    <div className="my-resumes">
-      <h1>My Resumes</h1>
-      <div className="icon-grid">
+    <div className="carousel">
+      <h1>Resume Templates</h1>
+      <Carousel
+        responsive={responsive}
+        className="carousel-container"
+        partialVisible={false}
+        autoPlay={true}
+        swipeable={true}
+        draggable={true}
+        infinite={true}
+      >
         <div className="card">
           <img
             className="product-image"
             src="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-            alt="Resume 1"
+            alt="Template 1"
           />
-          <h4>Resume 1</h4>
+          <h3>Template 1</h3>
           <p>
-            <button>Open</button>
+            <button>Create</button>
           </p>
         </div>
         <div className="card">
           <img
             className="product-image"
             src="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-            alt="Resume 2"
+            alt="Template 2"
           />
-          <h4>Resume 2</h4>
+          <h3>Template 2</h3>
           <p>
-            <button>Open</button>
+            <button>Create</button>
           </p>
         </div>
         <div className="card">
           <img
             className="product-image"
             src="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-            alt="Resume 3"
+            alt="Template 3"
           />
-          <h4>Resume 3</h4>
+          <h3>Template 3</h3>
           <p>
-            <button>Open</button>
+            <button>Create</button>
           </p>
         </div>
         <div className="card">
           <img
             className="product-image"
             src="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-            alt="Resume 4"
+            alt="Template 4"
           />
-          <h4>Resume 4</h4>
+          <h3>Template 4</h3>
           <p>
-            <button>Open</button>
+            <button>Create</button>
           </p>
         </div>
         <div className="card">
           <img
             className="product-image"
             src="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-            alt="Resume 5"
+            alt="Template 5"
           />
-          <h4>Resume 5</h4>
+          <h3>Template 5</h3>
           <p>
-            <button>Open</button>
+            <button>Create</button>
           </p>
         </div>
         <div className="card">
           <img
             className="product-image"
             src="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-            alt="Resume 6"
+            alt="Template 6"
           />
-          <h4>Resume 6</h4>
+          <h3>Template 6</h3>
           <p>
-            <button>Open</button>
+            <button>Create</button>
           </p>
         </div>
-        <div className="card">
-          <img
-            className="product-image"
-            src="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-            alt="Resume 7"
-          />
-          <h4>Resume 7</h4>
-          <p>
-            <button>Open</button>
-          </p>
-        </div>
-      </div>
+      </Carousel>
     </div>
   );
 };
 
-export default MyResumes;
+export default CarouselCreator;
