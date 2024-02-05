@@ -3,8 +3,8 @@ import "./Register.css";
 
 const Register = ({ onClose }) => {
   const handleRegister = () => {
-    alert("Trying to register...");
-    // Add code here to register
+    const url = "userhub";
+    window.location = url; // Redirect
   };
 
   return (

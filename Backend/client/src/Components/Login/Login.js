@@ -3,8 +3,8 @@ import "./Login.css";
 
 const Login = ({ onClose }) => {
   const handleLogin = () => {
-    alert("Trying to log in...");
-    // Add code here to log in
+    const url = "userhub";
+    window.location = url; // Redirect
   };
 
   return (
