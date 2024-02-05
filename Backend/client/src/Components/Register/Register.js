@@ -3,7 +3,7 @@ import "./Register.css";
 
 const Register = ({ onClose }) => {
   const handleRegister = () => {
-    const url = "userhub";
+    const url = "/#/userhub";
     window.location = url; // Redirect
   };
 
