@@ -5,5 +5,21 @@
   margin-bottom: 20px;
   margin-left: 20px;
   text-align: center;
-  height: 60%;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); 
+  grid-gap: 10%; 
+  overflow-y: auto;
+  max-height: 300px;
+  box-sizing: border-box;
+}
+
+.icon {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
 }

@@ -1,0 +1,8 @@
+.carousel-container {
+    width: 100%;
+    display: flex;
+}
+
+.product-image {
+    width: 100px;
+}
