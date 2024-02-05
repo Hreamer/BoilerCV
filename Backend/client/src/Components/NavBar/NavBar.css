@@ -1,0 +1,28 @@
+.navbar {
+  background-color: #1d2731;
+  width: 12%;
+  text-align: center;
+  color: white;
+}
+
+.profilecontainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-text {
+  margin-top: 10%;
+  font-size: 2vw;
+}
+
+.profile {
+  margin-top: 5%;
+  background-image: url("https://img.freepik.com/premium-vector/social-media-user-profile-icon-video-call-screen_97886-10046.jpg");
+  background-size: cover;
+  width: 30%;
+  padding-bottom: 30%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px white;
+}

@@ -1,0 +1,52 @@
+.user-hub {
+  background-color: #aaaaaa;
+  display: flex;
+  height: 100vh;
+}
+
+.user-hub-content {
+  display: flex;
+  width: 88%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.preview-container {
+  width: 100%;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.navbar {
+  background-color: #1d2731;
+  width: 12%;
+}
+
+.create-resume,
+.my-resumes, .preview-container {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.create-resume {
+  height: 40%;
+}
+
+.my-resumes {
+  height: 60%;
+}
+
+.preview {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
