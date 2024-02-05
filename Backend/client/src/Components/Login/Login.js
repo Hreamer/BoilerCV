@@ -3,7 +3,7 @@ import "./Login.css";
 
 const Login = ({ onClose }) => {
   const handleLogin = () => {
-    const url = "userhub";
+    const url = "/#/userhub";
     window.location = url; // Redirect
   };
 
