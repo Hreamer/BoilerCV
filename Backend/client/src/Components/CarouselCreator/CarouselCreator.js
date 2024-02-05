@@ -27,12 +27,30 @@ const CarouselCreator = () => {
         draggable={true}
         infinite={true}
       >
-        <Template imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png" templateName="Template 1" />
-        <Template imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png" templateName="Template 2" />
-        <Template imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png" templateName="Template 3" />
-        <Template imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png" templateName="Template 4" />
-        <Template imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png" templateName="Template 5" />
-        <Template imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png" templateName="Template 6" />
+        <Template
+          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
+          templateName="Template 1"
+        />
+        <Template
+          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
+          templateName="Template 2"
+        />
+        <Template
+          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
+          templateName="Template 3"
+        />
+        <Template
+          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
+          templateName="Template 4"
+        />
+        <Template
+          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
+          templateName="Template 5"
+        />
+        <Template
+          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
+          templateName="Template 6"
+        />
       </Carousel>
     </div>
   );
