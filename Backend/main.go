@@ -64,8 +64,9 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir(buildPath)))
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("client/build/static"))))
 
+	//API endpoints
 	http.HandleFunc("/template1", template1)
-	http.HandleFunc("/login", checkLogin)
+	http.HandleFunc("/checklogin", checkLogin)
 	http.HandleFunc("/createacc", createAcc)
 
 	//Start the server on the desired PORT

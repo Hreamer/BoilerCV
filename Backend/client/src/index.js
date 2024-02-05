@@ -4,17 +4,17 @@ import './index.css';
 import Landing from './Components/Landing/Landing';
 import reportWebVitals from './reportWebVitals';
 import UserHub from './Components/UserHub/UserHub';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { HashRouter, Routes, Route} from 'react-router-dom';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route path="/" element={<Landing/>} />
       <Route path="/userhub" element={<UserHub/>} />
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
