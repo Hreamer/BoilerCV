@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os/exec"
 	"path"
 )
 
@@ -55,6 +56,13 @@ func template1(writer http.ResponseWriter, request *http.Request) {
 	//write the templated LaTeX to the response packet
 }
 
+func examplePDF(writer http.ResponseWriter, request *http.Request) {
+	//exec LaTeX to PDF
+	exec.Command("pandoc", "./templates/Example.Tex", "-s", "-o", "Example.pdf")
+
+	//transfer the file
+}
+
 func main() {
 
 	port := ":3333"
@@ -66,8 +74,9 @@ func main() {
 
 	//API endpoints
 	http.HandleFunc("/template1", template1)
-	http.HandleFunc("/checklogin", checkLogin)
-	http.HandleFunc("/createacc", createAcc)
+	http.HandleFunc("/checkLogin", checkLogin)
+	http.HandleFunc("/createAcc", createAcc)
+	http.HandleFunc("/examplePDF", examplePDF)
 
 	//Start the server on the desired PORT
 	fmt.Println("Sever has started on Port " + port)
