@@ -1,12 +1,23 @@
 package main
 
 import (
+	"context"
+	"database/sql"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"os/exec"
 	"path"
 )
+
+// DB Global Information
+var db *sql.DB
+var server = "boilercvdb.database.windows.net"
+var dbPort = 1433
+var dbUser = "CJ"
+var dbPassword = "Dunsmore@2024"
+var dbName = "BoilerCVdb"
 
 // Struct for storing login information
 type Credentials struct {
@@ -64,7 +75,25 @@ func examplePDF(writer http.ResponseWriter, request *http.Request) {
 }
 
 func main() {
+	//START DB CODE
+	// Build connection string
+	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s;",
+		server, dbUser, dbPassword, dbPort, dbName)
+	var err error
+	// Create connection pool
+	db, err = sql.Open("sqlserver", connString)
+	if err != nil {
+		log.Fatal("Error creating connection pool: ", err.Error())
+	}
+	ctx := context.Background()
+	err = db.PingContext(ctx)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	fmt.Printf("Connected to DB!")
+	//END DB CODE
 
+	//DB
 	port := ":3333"
 
 	//HTTP server handler functions
