@@ -90,7 +90,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	fmt.Printf("Connected to DB!")
+	fmt.Printf("Connected to DB!\n")
 	//END DB CODE
 
 	//DB
