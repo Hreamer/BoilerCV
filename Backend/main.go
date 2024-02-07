@@ -4,11 +4,14 @@ import (
 	"context"
 	"database/sql"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
 	"os/exec"
 	"path"
+
+	_ "github.com/microsoft/go-mssqldb"
 )
 
 // DB Global Information
@@ -36,6 +39,7 @@ type ResumeInfo struct {
 }
 
 func checkLogin(writer http.ResponseWriter, request *http.Request) {
+	//grabbing the credentials
 	var creds Credentials
 
 	err := json.NewDecoder(request.Body).Decode(&creds)
@@ -43,6 +47,8 @@ func checkLogin(writer http.ResponseWriter, request *http.Request) {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	//check that the credentials are valid
 
 	//now that we have the credentials we query the database
 
@@ -57,6 +63,14 @@ func createAcc(writer http.ResponseWriter, request *http.Request) {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	err2 := addUserToDB(creds)
+	if err2 != nil {
+		writer.WriteHeader(http.StatusUnauthorized)
+		return
+	}
+
+	writer.WriteHeader(http.StatusOK)
 }
 
 func template1(writer http.ResponseWriter, request *http.Request) {
@@ -72,6 +86,49 @@ func examplePDF(writer http.ResponseWriter, request *http.Request) {
 	exec.Command("pandoc", "./templates/Example.Tex", "-s", "-o", "Example.pdf")
 
 	//transfer the file
+}
+
+func addUserToDB(creds Credentials) error {
+	ctx := context.Background()
+	var err error
+
+	//check if database is initialized
+	if db == nil {
+		err = errors.New("addUserToDB: db is null")
+		return err
+	}
+
+	// Check if database is alive.
+	err = db.PingContext(ctx)
+	if err != nil {
+		return err
+	}
+
+	tsql := `
+		INSERT INTO BoilerCVdb.dbo.users (id, username, email, PIN, password) VALUES (NEWID(), @USERNAME, '', 0, @PASSWORD);
+		select isNull(SCOPE_IDENTITY(), -1);
+		`
+	//getting the query ready to be edited via the call
+	stmt, err := db.Prepare(tsql)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	//executing the call
+	row := stmt.QueryRowContext(
+		ctx,
+		sql.Named("USERNAME", creds.Username),
+		sql.Named("PASSWORD", creds.Password))
+
+	//Check the returned row for name
+	var test string
+	err = row.Scan(&test)
+	if err != nil {
+		return errors.New("AddUsertoDB failed")
+	}
+
+	return nil
 }
 
 func main() {
