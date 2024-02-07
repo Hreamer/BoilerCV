@@ -150,7 +150,7 @@ func main() {
 	fmt.Printf("Connected to DB!\n")
 	//END DB CODE
 
-	//DB
+	//Start Server Code
 	port := ":3333"
 
 	//HTTP server handler functions
