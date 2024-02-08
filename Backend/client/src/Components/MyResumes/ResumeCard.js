@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ResumeCard = ({ imageUrl, resumeName }) => {
+const ResumeCard = ({ imageUrl, resumeName, onOpen }) => {
   return (
     <div className="card">
       <img
@@ -10,7 +10,7 @@ const ResumeCard = ({ imageUrl, resumeName }) => {
       />
       <h4>{resumeName}</h4>
       <p>
-        <button>Open</button>
+        <button onClick={onOpen}>Open</button>
       </p>
     </div>
   );
