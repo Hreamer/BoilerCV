@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavBar.css";
-import SettingsButton from "../SettingsButton/SettingsButton";
-import ExportLatex from "../ExportLatex/ExportLatex";
+import AccountInfo from "../AccountInfo/AccountInfo";
 
 const NavBar = () => {
+  const [isAccountInfoOpen, setIsAccountInfoOpen] = useState(false);
+
+  const openAccountInfo = () => {
+    setIsAccountInfoOpen(true);
+  }
+  const closeAccountInfo = () => {
+    setIsAccountInfoOpen(false);
+  }
+
   return (
     <div className="navbar">
       <div className="title-text">BoilerCV</div>
       <div className="profilecontainer">
-        <div className="profile"></div>
+        <div className="profile" onClick={openAccountInfo}></div>
       </div>
-      <div className="settings">
-        <SettingsButton />
-      </div>
-      <div className="export-latex">
-        <ExportLatex />
-      </div>
+      {isAccountInfoOpen && <AccountInfo onClose={closeAccountInfo} currentUsername="JOHN DOE" />}
     </div>
   );
 };

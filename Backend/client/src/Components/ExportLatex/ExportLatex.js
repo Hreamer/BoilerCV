@@ -1,6 +1,7 @@
 import React from 'react';
+import "./ExportLatex.css";
 
-const LatexDownloadButton = ({ sugestedFilename, latexContent }) => {
+const ExportLatex = ({ sugestedFilename, latexContent }) => {
   const downloadLatexFile = (filename, content) => {
     const latexContent = `
       \\documentclass{article}
@@ -17,8 +18,8 @@ const LatexDownloadButton = ({ sugestedFilename, latexContent }) => {
   };
 
   return (
-    <button onClick={downloadLatexFile}>Download LaTeX File</button>
+    <button className="latex-button" onClick={downloadLatexFile}>Download LaTeX File</button>
   );
 };
 
-export default LatexDownloadButton;
+export default ExportLatex;
