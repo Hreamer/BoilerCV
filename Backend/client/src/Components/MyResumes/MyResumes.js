@@ -15,26 +15,6 @@ const MyResumes = () => {
           imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
           resumeName="Resume 2"
         />
-        <ResumeCard
-          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-          resumeName="Resume 3"
-        />
-        <ResumeCard
-          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-          resumeName="Resume 4"
-        />
-        <ResumeCard
-          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-          resumeName="Resume 5"
-        />
-        <ResumeCard
-          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-          resumeName="Resume 6"
-        />
-        <ResumeCard
-          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-          resumeName="Resume 7"
-        />
       </div>
     </div>
   );
