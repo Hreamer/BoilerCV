@@ -5,7 +5,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 const Login = ({ onClose }) => {
   const [error, setError] = useState(null);
 
-  const handleRegister = () => {
+  const handleLogin = () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
   
