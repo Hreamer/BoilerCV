@@ -12,3 +12,28 @@
   height: 100%;
   border-radius: 3%;
 }
+
+.top-button-box {
+  display: flex; 
+  gap: 1px; 
+}
+
+.export-latex {
+  padding: 2px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  background-color: #f2f2f2;
+}
+
+.export-docx {
+  padding: 2px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  background-color: #f2f2f2;
+}
