@@ -11,7 +11,7 @@ const Preview = ({ openedResume }) => {
   return (
     <div className="preview">
       <h1>Preview</h1>
-      <iframe src={targetPDF} className="previewWindow" title="PDF Viewer"/>
+      <iframe src={pdfFile} className="previewWindow" title="PDF Viewer" />
       <div className="top-button-box">
         <div className="export-latex">
           <ExportLatex />
@@ -24,7 +24,6 @@ const Preview = ({ openedResume }) => {
             }}/>
         </div>
       </div>
-      <iframe src={pdfFile} className="previewWindow" title="PDF Viewer" />\
     </div>
   );
 };
