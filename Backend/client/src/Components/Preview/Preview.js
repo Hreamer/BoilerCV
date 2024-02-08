@@ -3,10 +3,8 @@ import "./Preview.css";
 import dummyPDF from "./dummy.pdf";
 import dummy2PDF from "./dummy2.pdf";
 
-const Preview = () => {
-  const openedValue = localStorage.getItem("opened");
-
-  const pdfFile = openedValue === "1" ? dummyPDF : dummy2PDF;
+const Preview = ({ openedResume }) => {
+  const pdfFile = openedResume === "1" ? dummyPDF : dummy2PDF;
 
   return (
     <div className="preview">
