@@ -78,8 +78,8 @@ func checkLogin(writer http.ResponseWriter, request *http.Request) {
 
 	err := json.NewDecoder(request.Body).Decode(&creds)
 	if err != nil {
-		fmt.Println("Could not decode")
-		fmt.Println(err)
+		// fmt.Println("Could not decode")
+		// fmt.Println(err)
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
@@ -87,8 +87,8 @@ func checkLogin(writer http.ResponseWriter, request *http.Request) {
 	//check that the credentials are valid
 	err2 := dbCheckLogin(creds)
 	if err2 != nil {
-		fmt.Println("Could not login")
-		fmt.Println(err2)
+		// fmt.Println("Could not login")
+		// fmt.Println(err2)
 		writer.WriteHeader(http.StatusUnauthorized)
 		return
 	}
