@@ -48,7 +48,7 @@ func dbCheckLogin(creds Credentials) error {
 		return errors.New("dbCheckLogin: Could not ping db")
 	}
 
-	tsql := fmt.Sprintf("SELECT username, password FROM BoilerCVdb.dbo.users WHERE username='@USERNAME' AND password='@PASSWORD';")
+	tsql := fmt.Sprintf("SELECT username, password FROM BoilerCVdb.dbo.users WHERE username=@USERNAME AND password=@PASSWORD;")
 
 	//getting the query ready to be edited via the call
 	stmt, err := db.Prepare(tsql)
@@ -64,7 +64,9 @@ func dbCheckLogin(creds Credentials) error {
 		sql.Named("PASSWORD", creds.Password))
 
 	//depending on the result return all good or error
-	if row.Scan() == sql.ErrNoRows {
+	var check Credentials
+	err2 := row.Scan(&check.Username, &check.Password)
+	if err2 == sql.ErrNoRows {
 		return errors.New("No users with those credentials exist")
 	}
 	return nil
@@ -76,6 +78,8 @@ func checkLogin(writer http.ResponseWriter, request *http.Request) {
 
 	err := json.NewDecoder(request.Body).Decode(&creds)
 	if err != nil {
+		fmt.Println("Could not decode")
+		fmt.Println(err)
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
@@ -83,6 +87,8 @@ func checkLogin(writer http.ResponseWriter, request *http.Request) {
 	//check that the credentials are valid
 	err2 := dbCheckLogin(creds)
 	if err2 != nil {
+		fmt.Println("Could not login")
+		fmt.Println(err2)
 		writer.WriteHeader(http.StatusUnauthorized)
 		return
 	}
