@@ -83,7 +83,7 @@ func checkLogin(writer http.ResponseWriter, request *http.Request) {
 	//check that the credentials are valid
 	err2 := dbCheckLogin(creds)
 	if err2 != nil {
-		http.Error(writer, err.Error(), http.StatusUnauthorized)
+		writer.WriteHeader(http.StatusUnauthorized)
 		return
 	}
 
