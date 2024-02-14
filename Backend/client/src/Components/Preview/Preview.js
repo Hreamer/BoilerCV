@@ -24,6 +24,9 @@ const Preview = ({ openedResume }) => {
             }}/>
         </div>
       </div>
+      <div className="update-button-container">
+        <button className="update-button">Update Preview</button>
+      </div>
     </div>
   );
 };

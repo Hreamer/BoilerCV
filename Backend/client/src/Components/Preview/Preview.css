@@ -37,3 +37,14 @@
   color: white;
   background-color: #f2f2f2;
 }
+
+.update-button {
+  padding: 20px 20px;
+  background-color: #328CC1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  margin-top: 2%;
+}
