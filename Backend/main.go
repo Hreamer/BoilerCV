@@ -158,6 +158,50 @@ func addUserToDB(creds Credentials) error {
 	return nil
 }
 
+func changePass(writer http.ResponseWriter, request *http.Request) {
+	//Note that the creds struct will be the username and NEW password
+	var creds Credentials
+
+	err := json.NewDecoder(request.Body).Decode(&creds)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	err2 := changePassDB(creds)
+	if err2 != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	writer.WriteHeader(http.StatusOK)
+}
+
+func changePassDB(creds Credentials) error {
+	//database code to check login
+	ctx := context.Background()
+
+	// Check if database is alive.
+	err := db.PingContext(ctx)
+	if err != nil {
+		return errors.New("dbCheckLogin: Could not ping db")
+	}
+
+	tsql := fmt.Sprintf("UPDATE BoilerCVdb.dbo.users SET password = @PASSWORD WHERE username = @USERNAME")
+
+	// Execute non-query with named parameters
+	_, err2 := db.ExecContext(
+		ctx,
+		tsql,
+		sql.Named("PASSWORD", creds.Password),
+		sql.Named("USERNAME", "test12345"))
+	if err2 != nil {
+		return err2
+	}
+
+	return nil
+}
+
 func main() {
 	//START DB CODE
 	// Build connection string
