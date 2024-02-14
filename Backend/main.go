@@ -232,6 +232,7 @@ func main() {
 	//API endpoints
 	http.HandleFunc("/checkLogin", checkLogin)
 	http.HandleFunc("/createAcc", createAcc)
+	http.HandleFunc("/changePass", changePass)
 
 	//Start the server on the desired PORT
 	fmt.Println("Sever has started on Port " + port)
