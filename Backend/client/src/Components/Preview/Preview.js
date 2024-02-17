@@ -2,6 +2,7 @@ import React from "react";
 import "./Preview.css";
 import ExportLatex from "../ExportLatex/ExportLatex";
 import ExportDocx from "../ExportDocx/ExportDocx";
+import SendEmail from "../SendEmail/SendEmail"
 import dummyPDF from "./dummy.pdf";
 import dummy2PDF from "./dummy2.pdf";
 
@@ -24,9 +25,15 @@ const Preview = ({ openedResume }) => {
             }}/>
         </div>
       </div>
-      <div className="update-button-container">
-        <button className="update-button">Update Preview</button>
+      <div className="bottom-button-box">
+        <div className="send-email">
+          <SendEmail pdf={pdfFile}/>
+        </div>
+        <div className="update-button-container">
+          <button className="update-button">Update Preview</button>
+        </div>
       </div>
+      
     </div>
   );
 };
