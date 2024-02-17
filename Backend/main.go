@@ -11,6 +11,7 @@ import (
 	"path"
 
 	_ "github.com/microsoft/go-mssqldb"
+	"gopkg.in/gomail.v2"
 )
 
 // DB Global Information
@@ -25,6 +26,14 @@ var dbName = "BoilerCVdb"
 type Credentials struct {
 	Username string
 	Password string
+}
+
+// Struct for storing email sending information given by client
+type EmailInfo struct {
+	toEmail  string
+	subject  string
+	body     string
+	fileName string
 }
 
 // Structure to store resume information for templating library
@@ -158,6 +167,46 @@ func addUserToDB(creds Credentials) error {
 	return nil
 }
 
+func sendEmail(writer http.ResponseWriter, request *http.Request) {
+	var info EmailInfo
+
+	err := json.NewDecoder(request.Body).Decode(&info)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	err = useGoMail(info)
+	if err != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	writer.WriteHeader(http.StatusOK)
+}
+
+func useGoMail(info EmailInfo) error {
+
+	//get an empty mail object
+	message := gomail.NewMessage()
+
+	//set up our empty message with what we want
+	message.SetHeader("From", "reamer.hudson@gmail.com")
+	message.SetHeader("To", info.toEmail)
+	message.SetHeader("Subject", "My Cool New Resume")
+	message.SetBody("text/html", "Check out my cool new resume I created on BoilerCV! :)")
+	message.Attach("./client/build" + info.fileName)
+
+	d := gomail.NewDialer("smtp.gmail.com", 587, "reamer.hudson@gmail.com", "umhl hnws wlmk ruhb")
+
+	// Send the email to Bob, Cora and Dan.
+	if err := d.DialAndSend(message); err != nil {
+		return errors.New("Couldn't send the email :(")
+	}
+
+	return nil
+}
+
 func changePass(writer http.ResponseWriter, request *http.Request) {
 	//Note that the creds struct will be the username and NEW password
 	var creds Credentials
@@ -233,6 +282,7 @@ func main() {
 	http.HandleFunc("/checkLogin", checkLogin)
 	http.HandleFunc("/createAcc", createAcc)
 	http.HandleFunc("/changePassword", changePass)
+	http.HandleFunc("/sendEmail", sendEmail)
 
 	//Start the server on the desired PORT
 	fmt.Println("Sever has started on Port " + port)
