@@ -17,7 +17,6 @@ const EmailInfo = ({ onClose, pdf }) => {
     formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
-
     fetch("http://localhost:3333/sendEmail", {
       method: "POST",
       headers: {
