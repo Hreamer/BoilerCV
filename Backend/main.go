@@ -31,8 +31,6 @@ type Credentials struct {
 // Struct for storing email sending information given by client
 type EmailInfo struct {
 	toEmail  string
-	subject  string
-	body     string
 	fileName string
 }
 
@@ -172,12 +170,17 @@ func sendEmail(writer http.ResponseWriter, request *http.Request) {
 
 	err := json.NewDecoder(request.Body).Decode(&info)
 	if err != nil {
+		fmt.Println("Failed to decode")
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
 
+	fmt.Println(info.fileName)
+	fmt.Println(info.toEmail)
+
 	err = useGoMail(info)
 	if err != nil {
+		fmt.Println("Failed to send email")
 		writer.WriteHeader(http.StatusBadRequest)
 		return
 	}
@@ -192,7 +195,7 @@ func useGoMail(info EmailInfo) error {
 
 	//set up our empty message with what we want
 	message.SetHeader("From", "reamer.hudson@gmail.com")
-	message.SetHeader("To", info.toEmail)
+	message.SetHeader("To", info.fileName)
 	message.SetHeader("Subject", "My Cool New Resume")
 	message.SetBody("text/html", "Check out my cool new resume I created on BoilerCV! :)")
 	message.Attach("./client/build" + info.fileName)
@@ -201,6 +204,7 @@ func useGoMail(info EmailInfo) error {
 
 	// Send the email to Bob, Cora and Dan.
 	if err := d.DialAndSend(message); err != nil {
+		fmt.Println(err)
 		return errors.New("Couldn't send the email :(")
 	}
 

@@ -7,15 +7,16 @@ const EmailInfo = ({ onClose, pdf }) => {
 
   const handleSendEmail = () => {
     const toEmail = document.getElementById("email").value;
-    const subject = "Hello from Abstract!";
-    const body = pdf;
     const fileName= pdf;
+    console.log(pdf)
+    console.log(toEmail)
+    console.log(JSON.stringify({ toEmail, fileName }));
     fetch("http://localhost:3333/sendEmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ toEmail, subject, body, fileName }),
+      body: JSON.stringify({ toEmail, fileName }),
     })
       .then((response) => {
         if (response.ok) {
