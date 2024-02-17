@@ -6,15 +6,31 @@ const Register = ({ onClose }) => {
   const [error, setError] = useState(null);
 
   const handleRegister = () => {
-    const password = "error";
-
-    if (password === "register") {
-      const url = "/#/userhub";
-      window.location = url; // Redirect
-    } else {
-      setError("Error: Refused.");
-    }
-  };
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+  
+    fetch("http://localhost:3333/createAcc", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // If the response is successful, redirect to userhub
+          const url = "/#/userhub";
+          window.location = url;
+        } else {
+          // If there's an error response, set the error state
+          setError("Error: Refused.");
+        }
+      })
+      .catch((error) => {
+        // If there's a network error, set the error state
+        setError("Error: Network error.");
+      });
+  };  
 
   return (
     <div className="register-popup">
