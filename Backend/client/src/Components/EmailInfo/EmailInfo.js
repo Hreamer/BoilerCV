@@ -10,11 +10,14 @@ const EmailInfo = ({ onClose, pdf }) => {
     const subject = encodeURIComponent("Hello from Abstract!");
     const body = encodeURIComponent(pdf);
     const formData = new FormData();
-    formData.append('email', email);
+    formData.append('toEmail', email);
     formData.append('subject', subject);
     formData.append('body', body);
-    formData.append('pdf', pdf);
-    
+    formData.append('fileName', pdf);
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+
     fetch("http://localhost:3333/sendEmail", {
       method: "POST",
       headers: {
