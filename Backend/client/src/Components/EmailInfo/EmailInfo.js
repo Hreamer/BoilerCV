@@ -6,7 +6,7 @@ const EmailInfo = ({ onClose, pdf }) => {
   const [error, setError] = useState(null);
 
   const handleSendEmail = () => {
-    const email = document.getElementById("email").value;
+    const toEmail = document.getElementById("email").value;
     const subject = "Hello from Abstract!";
     const body = pdf;
     const fileName= pdf;
