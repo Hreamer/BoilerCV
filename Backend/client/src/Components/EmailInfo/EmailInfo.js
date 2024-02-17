@@ -7,22 +7,15 @@ const EmailInfo = ({ onClose, pdf }) => {
 
   const handleSendEmail = () => {
     const email = document.getElementById("email").value;
-    const subject = encodeURIComponent("Hello from Abstract!");
-    const body = encodeURIComponent(pdf);
-    const formData = new FormData();
-    formData.append('toEmail', email);
-    formData.append('subject', subject);
-    formData.append('body', body);
-    formData.append('fileName', pdf);
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    const subject = "Hello from Abstract!";
+    const body = pdf;
+    const fileName= pdf;
     fetch("http://localhost:3333/sendEmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: formData,
+      body: JSON.stringify({ toEmail, subject, body, fileName }),
     })
       .then((response) => {
         if (response.ok) {
