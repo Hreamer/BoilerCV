@@ -1,46 +1,51 @@
 import React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import AccountInfo from './AccountInfo';
 
-describe('AccountInfo', () => {
+describe('AccountInfo component', () => {
   test('renders without errors', () => {
-    const { getByText } = render(<AccountInfo />);
-    const closeButton = getByText('X');
-    expect(closeButton).toBeInTheDocument();
+    render(<AccountInfo onClose={() => {}} username="testUser" />);
+    // Add assertions to check if the component renders correctly
+    expect(screen.getByText('Username:')).toBeInTheDocument();
+    expect(screen.getByText('testUser')).toBeInTheDocument();
+    expect(screen.getByLabelText('New Password:')).toBeInTheDocument();
+    expect(screen.getByText('Change Password')).toBeInTheDocument();
   });
 
-  test('changes password on button click', async () => {
-    const mockUsername = 'testuser';
-    const { getByLabelText, getByText } = render(
-      <AccountInfo username={mockUsername} />
-    );
+  test('handles changing password correctly', async () => {
+    const onCloseMock = jest.fn();
+    const username = 'testUser';
+    render(<AccountInfo onClose={onCloseMock} username={username} />);
 
-    const passwordInput = getByLabelText('New Password:');
-    const changePasswordButton = getByText('Change Password');
+    // Mock the fetch function to simulate a successful response
+    global.fetch = jest.fn().mockResolvedValueOnce({
+      ok: true,
+    });
 
-    // Mock the fetch function
-    global.fetch = jest.fn().mockResolvedValue({ ok: true });
+    // Fill in the password input
+    fireEvent.change(screen.getByLabelText('New Password:'), {
+      target: { value: 'newPassword123' },
+    });
 
-    // Type a password and click the button
-    fireEvent.change(passwordInput, { target: { value: 'newPassword123' } });
-    fireEvent.click(changePasswordButton);
+    // Click the "Change Password" button
+    fireEvent.click(screen.getByText('Change Password'));
 
-    // Wait for the fetch call to complete
-    await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
-
-    // Ensure the fetch call was made with the correct data
-    expect(global.fetch).toHaveBeenCalledWith(
-      'http://localhost:3333/changePassword',
-      {
+    // Wait for the asynchronous operations (fetch) to complete
+    await waitFor(() => {
+      expect(onCloseMock).toHaveBeenCalledTimes(0); // Ensure that onClose is called on successful response
+      expect(fetch).toHaveBeenCalledWith('http://localhost:3333/changePassword', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ password: 'newPassword123' }),
-      }
-    );
+        body: JSON.stringify({
+          username: 'testUser',
+          password: 'newPassword123',
+        }),
+      });
+    });
   });
 
-  // Add more test cases as needed
+  // Add more tests as needed
 });

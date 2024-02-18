@@ -44,7 +44,7 @@ const EmailInfo = ({ onClose, pdf }) => {
       )}
       <div className="input-container">
       <div className="input-sub-container2">
-        <label htmlFor="password">Destination Email:</label>
+        <label htmlFor="email">Destination Email:</label>
         <input type="text" id="email" />
       </div>
       </div>
