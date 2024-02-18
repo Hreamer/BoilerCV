@@ -13,7 +13,7 @@ describe('AccountInfo', () => {
   test('changes password on button click', async () => {
     const mockUsername = 'testuser';
     const { getByLabelText, getByText } = render(
-      <AccountInfo currentUsername={mockUsername} />
+      <AccountInfo username={mockUsername} />
     );
 
     const passwordInput = getByLabelText('New Password:');

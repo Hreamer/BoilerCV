@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './AccountInfo.css';
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-const AccountInfo = ({ onClose, currentUsername }) => {
+const AccountInfo = ({ onClose, username }) => {
   const [error, setError] = useState(null);
 
   const handleChangePassword = () => {
@@ -13,7 +13,7 @@ const AccountInfo = ({ onClose, currentUsername }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ currentUsername, password }),
+      body: JSON.stringify({ username, password }),
     })
       .then((response) => {
         if (response.ok) {
@@ -39,7 +39,7 @@ const AccountInfo = ({ onClose, currentUsername }) => {
           <ErrorMessage message={error} onClose={() => setError(null)} />
       )}
       <label htmlFor="username">Username:</label>
-        <span id="username">{currentUsername}</span>
+        <span id="username">{username}</span>
       <div className="input-container">
       <div className="input-sub-container2">
         <label htmlFor="password">New Password:</label>
