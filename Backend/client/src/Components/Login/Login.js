@@ -19,6 +19,7 @@ const Login = ({ onClose }) => {
       .then((response) => {
         if (response.ok) {
           // If the response is successful, redirect to userhub
+          localStorage.setItem("username", username);
           const url = "/#/userhub";
           window.location = url;
         } else {

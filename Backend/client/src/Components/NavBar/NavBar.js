@@ -18,7 +18,7 @@ const NavBar = () => {
       <div className="profilecontainer">
         <div className="profile" onClick={openAccountInfo}></div>
       </div>
-      {isAccountInfoOpen && <AccountInfo onClose={closeAccountInfo} currentUsername="JOHN DOE" />}
+      {isAccountInfoOpen && <AccountInfo onClose={closeAccountInfo} currentUsername={localStorage.getItem("username")} />}
     </div>
   );
 };
