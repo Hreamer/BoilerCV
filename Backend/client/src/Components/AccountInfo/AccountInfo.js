@@ -13,7 +13,7 @@ const AccountInfo = ({ onClose, currentUsername }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ currentUsername, password }),
     })
       .then((response) => {
         if (response.ok) {
