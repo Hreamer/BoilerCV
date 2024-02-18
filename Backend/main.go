@@ -247,7 +247,7 @@ func changePassDB(creds Credentials) error {
 		ctx,
 		tsql,
 		sql.Named("PASSWORD", creds.Password),
-		sql.Named("USERNAME", "test12345"))
+		sql.Named("USERNAME", creds.Username))
 	if err2 != nil {
 		return err2
 	}
