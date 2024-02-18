@@ -7,7 +7,8 @@ const EmailInfo = ({ onClose, pdf }) => {
 
   const handleSendEmail = () => {
     const toEmail = document.getElementById("email").value;
-    const fileName= pdf;
+    const fileName = pdf.split('/').pop();
+    console.log(fileName);
     console.log(pdf)
     console.log(toEmail)
     console.log(JSON.stringify({ toEmail, fileName }));

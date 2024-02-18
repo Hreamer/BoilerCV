@@ -15,7 +15,7 @@ const SendEmail = ({ pdf }) => {
 
   return (
     <div>
-      <button className="email-button" onClick={openEmailInfo}>Download to Email</button>
+      <div className="email-button" onClick={openEmailInfo}>Download to Email</div>
       {isEmailInfoOpen && <EmailInfo pdf={pdf} onClose={closeEmailInfo} />}
     </div>
   );

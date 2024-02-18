@@ -13,14 +13,10 @@
   border-radius: 3%;
 }
 
-.top-button-box {
-  display: flex; 
-  gap: 1px; 
-}
-
-.bottom-button-box {
-  display: flex; 
-  gap: 1px; 
+.button-box {
+  display: flex;
+  gap: 10px; /* Adjust the gap between buttons */
+  margin-top: 1%;
 }
 
 .export-latex {
@@ -44,17 +40,17 @@
 }
 
 .update-button {
-  padding: 20px 20px;
+  padding: 10px 20px;
   background-color: #328CC1;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   color: white;
-  margin-top: 2%;
 }
 
-.send-email {
+.send-email{
   padding: 2px 20px;
   border: none;
   border-radius: 5px;

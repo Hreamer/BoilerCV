@@ -13,7 +13,7 @@ const Preview = ({ openedResume }) => {
     <div className="preview">
       <h1>Preview</h1>
       <iframe src={pdfFile} className="previewWindow" title="PDF Viewer" />
-      <div className="top-button-box">
+      <div className="button-box">
         <div className="export-latex">
           <ExportLatex />
         </div>
@@ -25,13 +25,11 @@ const Preview = ({ openedResume }) => {
             }}/>
         </div>
       </div>
-      <div className="bottom-button-box">
-        <div className="send-email">
+      <div className="button-box">
+        <button className="send-email">
           <SendEmail pdf={pdfFile}/>
-        </div>
-        <div className="update-button-container">
-          <button className="update-button">Update Preview</button>
-        </div>
+        </button>
+        <button className="update-button">Update Preview</button>
       </div>
       
     </div>
