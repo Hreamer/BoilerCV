@@ -30,8 +30,8 @@ type Credentials struct {
 
 // Struct for storing email sending information given by client
 type EmailInfo struct {
-	toEmail  string
-	fileName string
+	ToEmail  string
+	FileName string
 }
 
 // Structure to store resume information for templating library
@@ -175,9 +175,6 @@ func sendEmail(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	fmt.Println(info.fileName)
-	fmt.Println(info.toEmail)
-
 	err = useGoMail(info)
 	if err != nil {
 		fmt.Println("Failed to send email")
@@ -195,10 +192,10 @@ func useGoMail(info EmailInfo) error {
 
 	//set up our empty message with what we want
 	message.SetHeader("From", "reamer.hudson@gmail.com")
-	message.SetHeader("To", info.fileName)
+	message.SetHeader("To", info.ToEmail)
 	message.SetHeader("Subject", "My Cool New Resume")
 	message.SetBody("text/html", "Check out my cool new resume I created on BoilerCV! :)")
-	message.Attach("./client/build" + info.fileName)
+	message.Attach("./client/build" + info.FileName)
 
 	d := gomail.NewDialer("smtp.gmail.com", 587, "reamer.hudson@gmail.com", "")
 
