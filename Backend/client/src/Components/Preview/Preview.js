@@ -2,7 +2,7 @@ import React from "react";
 import "./Preview.css";
 import ExportLatex from "../ExportLatex/ExportLatex";
 import ExportDocx from "../ExportDocx/ExportDocx";
-import SendEmail from "../SendEmail/SendEmail"
+import SendEmail from "../SendEmail/SendEmail";
 import dummyPDF from "./dummy.pdf";
 import dummy2PDF from "./dummy2.pdf";
 
@@ -13,25 +13,26 @@ const Preview = ({ openedResume }) => {
     <div className="preview">
       <h1>Preview</h1>
       <iframe src={pdfFile} className="previewWindow" title="PDF Viewer" />
-      <div className="button-box">
-        <div className="export-latex">
+      <div className="button-grid">
+        <div className="button-item">
           <ExportLatex />
         </div>
-        <div className="export-docx">
-          <ExportDocx suggestedFilename="myDocument.docx"
+        <div className="button-item">
+          <ExportDocx
+            suggestedFilename="myDocument.docx"
             docxContent={{
-              "title": 'Dynamic Document',
-              "paragraph": 'This document is dynamically generated.',
-            }}/>
+              title: "Dynamic Document",
+              paragraph: "This document is dynamically generated.",
+            }}
+          />
+        </div>
+        <div className="button-item">
+          <SendEmail className="email-button" pdf={pdfFile} />
+        </div>
+        <div className="button-item">
+          <button className="update-button">Update Preview</button>
         </div>
       </div>
-      <div className="button-box">
-        <button className="send-email">
-          <SendEmail pdf={pdfFile}/>
-        </button>
-        <button className="update-button">Update Preview</button>
-      </div>
-      
     </div>
   );
 };

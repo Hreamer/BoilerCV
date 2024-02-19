@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./ExportLatex.css";
 
 const ExportLatex = ({ sugestedFilename, latexContent }) => {
@@ -10,15 +10,17 @@ const ExportLatex = ({ sugestedFilename, latexContent }) => {
       \\end{document}
     `;
 
-    const blob = new Blob([latexContent], { type: 'application/x-latex' });
-    const link = document.createElement('a');
+    const blob = new Blob([latexContent], { type: "application/x-latex" });
+    const link = document.createElement("a");
     link.href = window.URL.createObjectURL(blob);
-    link.download = filename || 'document.tex';
+    link.download = filename || "document.tex";
     link.click();
   };
 
   return (
-    <button className="latex-button" onClick={downloadLatexFile}>Download LaTeX File</button>
+    <button className="latex-button" onClick={downloadLatexFile}>
+      Export LaTeX File
+    </button>
   );
 };
 
