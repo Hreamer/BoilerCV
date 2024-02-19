@@ -195,9 +195,9 @@ func useGoMail(info EmailInfo) error {
 	message.SetHeader("To", info.ToEmail)
 	message.SetHeader("Subject", "My Cool New Resume")
 	message.SetBody("text/html", "Check out my cool new resume I created on BoilerCV! :)")
-	message.Attach("./client/build" + info.FileName)
+	message.Attach("./client/build/static/media/" + info.FileName)
 
-	d := gomail.NewDialer("smtp.gmail.com", 587, "reamer.hudson@gmail.com", "")
+	d := gomail.NewDialer("smtp.gmail.com", 587, "reamer.hudson@gmail.com", "ikhn iawr supy owbe")
 
 	// Send the email to Bob, Cora and Dan.
 	if err := d.DialAndSend(message); err != nil {
