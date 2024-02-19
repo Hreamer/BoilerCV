@@ -1,12 +1,11 @@
-/* ExportLatex.css */
+/* SendEmail.css */
 
-.send-email{
-    padding: 10px 20px;
-    background-color: #328CC1;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    color: white;
+.send-email {
+  padding: 10px 20px;
+  background-color: #328cc1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
