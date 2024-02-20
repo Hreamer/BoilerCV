@@ -19,6 +19,7 @@ const CarouselCreator = () => {
     <div className="carousel">
       <h1>Resume Templates</h1>
       <Carousel
+        testId="corousel-container"
         responsive={responsive}
         className="carousel-container"
         partialVisible={false}
