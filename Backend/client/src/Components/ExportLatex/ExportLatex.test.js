@@ -6,13 +6,13 @@ import ExportLatex from './ExportLatex';
 describe('ExportLatex', () => {
   test('renders without errors', () => {
     const { getByText } = render(<ExportLatex />);
-    const downloadButton = getByText('Download LaTeX File');
+    const downloadButton = getByText('Export LaTeX File');
     expect(downloadButton).toBeInTheDocument();
   });
 
   test('downloads LaTeX file on button click', () => {
     const { getByText } = render(<ExportLatex />);
-    const downloadButton = getByText('Download LaTeX File');
+    const downloadButton = getByText('Export LaTeX File');
 
     // Mock the createObjectURL function
     window.URL.createObjectURL = jest.fn();

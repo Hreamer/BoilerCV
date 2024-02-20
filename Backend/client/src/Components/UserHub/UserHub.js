@@ -10,14 +10,14 @@ const UserHub = () => {
 
   return (
     <div className="user-hub">
-      <NavBar />
+      <NavBar data-testid="navbar"/>
       <div className="user-hub-content">
         <div className="column">
           <CreateResume />
           <MyResumes onOpenResume={setOpenedResume} />
         </div>
         <div className="preview-container">
-          <Preview openedResume={openedResume} />
+          <Preview data-testid="preview" openedResume={openedResume} />
         </div>
       </div>
     </div>
