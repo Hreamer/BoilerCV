@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 import './EmailInfo.css';
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import SuccessMessage from '../SuccessMessage/SuccessMessage';
 
 const EmailInfo = ({ onClose, pdf }) => {
   const [error, setError] = useState(null);
+
+  const [success, setSuccess] = useState(null);
 
   const handleSendEmail = () => {
     const toEmail = document.getElementById("email").value;
@@ -22,8 +25,8 @@ const EmailInfo = ({ onClose, pdf }) => {
       .then((response) => {
         if (response.ok) {
           // If the response is successful, redirect to userhub
-          const url = "/#/userhub";
-          window.location = url;
+          
+          setSuccess("Email Sent!");
         } else {
           // If there's an error response, set the error state
           setError("Error: Refused.");
@@ -41,6 +44,9 @@ const EmailInfo = ({ onClose, pdf }) => {
       <button className="exit-button" onClick={onClose}>X</button>
       {error && (
           <ErrorMessage message={error} onClose={() => setError(null)} />
+      )}
+      {success && (
+          <SuccessMessage message={success} onClose={() => setSuccess(null)} />
       )}
       <div className="input-container">
       <div className="input-sub-container2">
