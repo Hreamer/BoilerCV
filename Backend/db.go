@@ -84,9 +84,17 @@ func createAcc(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	err2 := addUserToDB(creds)
+	//enforce that all usernames must be unique
+	err2 := dbCheckUserNameTaken(creds)
 	if err2 != nil {
-		writer.WriteHeader(http.StatusUnauthorized)
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	//if the username is not taken than user credentials
+	err3 := addUserToDB(creds)
+	if err3 != nil {
+		writer.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
@@ -178,4 +186,32 @@ func changePassDB(creds Credentials) error {
 	}
 
 	return nil
+}
+
+func dbCheckUserNameTaken(creds Credentials) error {
+	//database code to check login
+	ctx := context.Background()
+
+	//SQL Query
+	tsql := fmt.Sprintf("SELECT username FROM BoilerCVdb.dbo.users WHERE username=@USERNAME")
+
+	//getting the query ready to be edited via the call
+	stmt, err := db.Prepare(tsql)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	//executing the call
+	row := stmt.QueryRowContext(
+		ctx,
+		sql.Named("USERNAME", creds.Username))
+
+	//depending on the result return all good or error
+	var check string
+	err2 := row.Scan(&check)
+	if err2 == sql.ErrNoRows {
+		return nil
+	}
+	return errors.New("User with that username already exists")
 }
