@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./Landing.css";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import GoogleSignInButton from "../GoogleLogin/GoogleSignIn";
+
+const clientId = "262411179008-aasuqij7f6hamq93qbp7s9umsmtac3m7.apps.googleusercontent.com";
 
 const Landing = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -46,6 +49,8 @@ const Landing = () => {
               Sign Up
             </button>
           </div>
+          <GoogleSignInButton>
+          </GoogleSignInButton>
         </div>
       </div>
       {isLoginOpen && <Login onClose={closeLogin} />}
