@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './AccountInfo.css';
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import SuccessMessage from "../SuccessMessage/SuccessMessage"
 
 const AccountInfo = ({ onClose, username }) => {
   const [error, setError] = useState(null);
