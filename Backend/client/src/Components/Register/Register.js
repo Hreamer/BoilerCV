@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Register.css";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import GoogleSignInButton from "../GoogleLogin/GoogleSignIn";
+import { gapi } from 'gapi-script';
+
+const clientId = "262411179008-aasuqij7f6hamq93qbp7s9umsmtac3m7.apps.googleusercontent.com";
 
 const Register = ({ onClose }) => {
   const [error, setError] = useState(null);
@@ -33,6 +37,16 @@ const Register = ({ onClose }) => {
       });
   };  
 
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    };
+    gapi.load('client:auth2', start);
+  });
+
   return (
     <div className="register-popup">
       <div className="register-content">
@@ -55,6 +69,7 @@ const Register = ({ onClose }) => {
         <button className="register-button" onClick={handleRegister}>
           Register
         </button>
+        <GoogleSignInButton />
       </div>
     </div>
   );
