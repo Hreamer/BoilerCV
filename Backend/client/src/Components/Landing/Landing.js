@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Landing.css";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import GoogleSignInButton from "../GoogleLogin/GoogleSignIn";
+import { gapi } from 'gapi-script';
 
 const clientId = "262411179008-aasuqij7f6hamq93qbp7s9umsmtac3m7.apps.googleusercontent.com";
 
@@ -27,6 +28,16 @@ const Landing = () => {
   const closeRegister = () => {
     setIsRegisterOpen(false);
   };
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    };
+    gapi.load('client:auth2', start);
+  });
 
   return (
     <div className="landing-page">
