@@ -5,6 +5,8 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 const AccountInfo = ({ onClose, username }) => {
   const [error, setError] = useState(null);
 
+  const [success, setSuccess] = useState(null);
+
   const handleChangePassword = () => {
     const password = document.getElementById("password").value;
   
@@ -20,6 +22,7 @@ const AccountInfo = ({ onClose, username }) => {
           // If the response is successful, redirect to userhub
           const url = "/#/userhub";
           window.location = url;
+          setSuccess("Password has been changed");
         } else {
           // If there's an error response, set the error state
           setError("Error: Refused.");
@@ -37,6 +40,9 @@ const AccountInfo = ({ onClose, username }) => {
       <button className="exit-button" onClick={onClose}>X</button>
       {error && (
           <ErrorMessage message={error} onClose={() => setError(null)} />
+      )}
+      {success && (
+          <SuccessMessage message={success} onClose={() => setSuccess(null)} />
       )}
       <label htmlFor="username">Username:</label>
         <span id="username">{username}</span>
