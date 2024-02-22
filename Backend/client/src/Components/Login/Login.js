@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import GoogleSignInButton from "../GoogleLogin/GoogleSignIn";
+import { gapi } from 'gapi-script';
+
+const clientId = "262411179008-aasuqij7f6hamq93qbp7s9umsmtac3m7.apps.googleusercontent.com";
 
 const Login = ({ onClose }) => {
   const [error, setError] = useState(null);
@@ -31,7 +35,17 @@ const Login = ({ onClose }) => {
         // If there's a network error, set the error state
         setError("Error: Network error.");
       });
-  };  
+  }; 
+  
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    };
+    gapi.load('client:auth2', start);
+  });
 
   return (
     <div className="login-popup">
@@ -55,6 +69,7 @@ const Login = ({ onClose }) => {
         <button className="login-button" onClick={handleLogin}>
           Login
         </button>
+        <GoogleSignInButton />
       </div>
     </div>
   );
