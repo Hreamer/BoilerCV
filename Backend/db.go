@@ -154,6 +154,12 @@ func changePass(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	err3 := dbCheckLogin(creds)
+	if err3 == nil {
+		writer.WriteHeader(http.StatusConflict)
+		return
+	}
+
 	err2 := changePassDB(creds)
 	if err2 != nil {
 		writer.WriteHeader(http.StatusBadRequest)
