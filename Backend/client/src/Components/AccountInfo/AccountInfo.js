@@ -24,7 +24,11 @@ const AccountInfo = ({ onClose, username }) => {
           const url = "/#/userhub";
           window.location = url;
           setSuccess("Password has been changed");
-        } else {
+        } 
+        else if (response.status === 409) {
+          setError("Error: Current Password Entered");
+        }
+        else {
           // If there's an error response, set the error state
           setError("Error: Refused.");
         }
