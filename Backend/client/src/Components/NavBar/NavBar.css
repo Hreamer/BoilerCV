@@ -12,6 +12,10 @@
   align-items: center;
 }
 
+.sign-out {
+  margin-top: 5%;
+}
+
 .title-text {
   margin-top: 10%;
   font-size: 2vw;

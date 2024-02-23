@@ -11,12 +11,18 @@ const NavBar = () => {
   const closeAccountInfo = () => {
     setIsAccountInfoOpen(false);
   }
+  const signOut = () => {
+    localStorage.removeItem("username");
+    const url = "/";
+    window.location = url;
+  }
 
   return (
     <div className="navbar">
       <div className="title-text">BoilerCV</div>
       <div className="profilecontainer">
         <div className="profile" onClick={openAccountInfo}></div>
+        <button className="sign-out" onClick={signOut}>Sign Out</button>
       </div>
       {isAccountInfoOpen && <AccountInfo onClose={closeAccountInfo} username={localStorage.getItem("username")} />}
     </div>
