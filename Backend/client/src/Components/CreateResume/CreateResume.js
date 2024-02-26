@@ -2,8 +2,8 @@ import React from "react";
 import "./CreateResume.css";
 import CarouselCreator from "../CarouselCreator/CarouselCreator";
 
-const CreateResume = () => {
-  return <div className="create-resume"><CarouselCreator /></div>;
+const CreateResume = ({ onCreate }) => {
+  return <div className="create-resume"><CarouselCreator onCreate={onCreate}/></div>;
 };
 
 export default CreateResume;

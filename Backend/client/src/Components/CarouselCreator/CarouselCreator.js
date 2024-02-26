@@ -4,7 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Template from "./Template";
 
-const CarouselCreator = () => {
+const CarouselCreator = ({ onCreate }) => {
   const responsive = {
     standard: {
       breakpoint: { max: 4000, min: 1200 },
@@ -31,26 +31,38 @@ const CarouselCreator = () => {
         <Template
           imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
           templateName="Template 1"
+          templateID="1"
+          onCreate={onCreate}
         />
         <Template
           imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
           templateName="Template 2"
+          templateID="2"
+          onCreate={onCreate}
         />
         <Template
           imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
           templateName="Template 3"
+          templateID="3"
+          onCreate={onCreate}
         />
         <Template
           imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
           templateName="Template 4"
+          templateID="4"
+          onCreate={onCreate}
         />
         <Template
           imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
           templateName="Template 5"
+          templateID="5"
+          onCreate={onCreate}
         />
         <Template
           imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
           templateName="Template 6"
+          templateID="6"
+          onCreate={onCreate}
         />
       </Carousel>
     </div>
