@@ -39,7 +39,7 @@ func main() {
 	fmt.Printf("Connected to DB!\n")
 	//END DB CONNECTION CODE
 
-	//Start Template Registration Code
+	//Start Template Parsing Code
 	err = nil
 	tmpl1, err = template.New("Template1.tmpl").ParseFiles("./templates/T1.tmpl")
 	if err != nil {

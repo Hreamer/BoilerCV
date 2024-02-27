@@ -39,6 +39,8 @@ func createTemplate1(writer http.ResponseWriter, request *http.Request) {
 
 	//Take the result and turn to PDF
 
+	//Send to DB
+
 	//Send to the frontend
 
 	writer.WriteHeader(http.StatusOK)
