@@ -1,6 +1,9 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+	"text/template"
+)
 
 type Template1Info struct {
 	Username     string
@@ -24,6 +27,8 @@ type Template1Info struct {
 	Technologies string
 	Concepts     string
 }
+
+var tmpl1 *template.Template
 
 func createTemplate1(writer http.ResponseWriter, request *http.Request) {
 	//Parse the JSON

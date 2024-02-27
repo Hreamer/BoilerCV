@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"path"
+	"text/template"
 
 	_ "github.com/microsoft/go-mssqldb"
 )
@@ -20,7 +21,7 @@ var dbPassword = "Dunsmore@2024"
 var dbName = "BoilerCVdb"
 
 func main() {
-	//START DB CODE
+	//START DB CONNECTION CODE
 	// Build connection string
 	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s;",
 		server, dbUser, dbPassword, dbPort, dbName)
@@ -36,7 +37,15 @@ func main() {
 		log.Fatal(err.Error())
 	}
 	fmt.Printf("Connected to DB!\n")
-	//END DB CODE
+	//END DB CONNECTION CODE
+
+	//Start Template Registration Code
+	err = nil
+	tmpl1, err = template.New("Template1.tmpl").ParseFiles("./templates/T1.tmpl")
+	if err != nil {
+		log.Fatal("Error parsing T1.tmpl: ", err.Error())
+	}
+	fmt.Println("All templates were parsed correctly!")
 
 	//Start Server Code
 	port := ":3333"
