@@ -15,6 +15,14 @@ type Template1Info struct {
 	CompName1    string
 	CompCity     string
 	CompState    string
+	ProjName     string
+	ProjTech     string
+	ProjDesc1    string
+	ProjDesc2    string
+	ProjDesc3    string
+	Languages    string
+	Technologies string
+	Concepts     string
 }
 
 func createTemplate1(writer http.ResponseWriter, request *http.Request) {
