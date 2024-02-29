@@ -20,6 +20,7 @@
   height: 100%;
   max-width: 955px;
   max-height: 690px;
+  display: flex;
 }
 
 .close-button {
@@ -60,4 +61,63 @@
   min-height: 50px;
   padding: 5px; /* Add padding for better appearance */
   box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.sidebar {
+  width: 200px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.section-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0px;
+  margin-bottom: auto;
+}
+
+.section-list li {
+  padding: 10px 50px;
+  margin-bottom: 10px;
+  background-color: #0a78a0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.section-list li:hover {
+  background-color: #0e93c7;
+}
+
+.section-list li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sections-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  pointer-events: auto;
+  margin-right: 2%;
+}
+
+.section-container {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.menu-subtitle {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: xx-large;
 }
