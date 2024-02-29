@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
 import "./CreationWindow.css";
-import Section1 from "./Sections/Section1";
+import EducationInformation from "./Sections/EducationInformation";
+import Section2 from "./Sections/Section2";
 
-const CreationWindow = ({ onClose }) => {
+const CreationWindow = ({ onClose }) => {  
   const lastSectionRef = useRef(null);
 
   const scrollToLastSection = () => {
@@ -26,20 +27,20 @@ const CreationWindow = ({ onClose }) => {
           </ul>
         </div>
         <div className="sections-container">
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 />
-          <Section1 ref={lastSectionRef} />
+          <EducationInformation />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 />
+          <Section2 ref={lastSectionRef} />
         </div>
       </div>
     </div>
