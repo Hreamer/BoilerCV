@@ -33,3 +33,31 @@
   color: white;
   pointer-events: auto;
 }
+
+.education-information {
+  color: white;
+  margin-top: 20px;
+}
+
+.education-information strong {
+  /* Styles for bold text */
+  font-weight: bold;
+  display: block; /* Ensure the label is on a new line */
+  margin-bottom: 10px; /* Add some space below the bold text */
+}
+
+.education-information label {
+  display: block; /* Each label and input on a new line */
+  margin-bottom: 10px; /* Add space between label and input */
+}
+
+.education-information input[type="checkbox"] {
+  padding: 5px; /* Add padding for better appearance */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+.education-information input[type="text"] {
+  width: 300px;
+  min-height: 50px;
+  padding: 5px; /* Add padding for better appearance */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
