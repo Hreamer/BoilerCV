@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import "./CreationWindow.css";
 import EducationInformation from "./Sections/EducationInformation";
 import Section2 from "./Sections/Section2";
+import PersonalInformation from "./Sections/PersonalInformation";
+import WorkInformation from "./Sections/WorkInformation";
 
 const CreationWindow = ({ onClose }) => {  
   const lastSectionRef = useRef(null);
@@ -28,8 +30,8 @@ const CreationWindow = ({ onClose }) => {
         </div>
         <div className="sections-container">
           <EducationInformation />
-          <Section2 />
-          <Section2 />
+          <PersonalInformation />
+          <WorkInformation />
           <Section2 />
           <Section2 />
           <Section2 />

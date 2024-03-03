@@ -1,7 +1,6 @@
 import React, { forwardRef, useState } from "react";
 
 const EducationInformation = forwardRef((props, ref) => {
-  const [showGPA, setShowGPA] = useState(false);
   const [relevantCoursework, setRelevantCoursework] = useState([""]);
   const [honors, setHonors] = useState([""]);
   const [clubs, setClubs] = useState([""]);
@@ -55,15 +54,6 @@ const EducationInformation = forwardRef((props, ref) => {
           GPA:
         </label>
         <input type="text" id="gpa" style={{marginRight: "10px"}} />
-        {/* Show GPA Toggle */}
-        <label style={{ color: "Black" }}>
-          Show GPA
-          <input
-            type="checkbox"
-            checked={showGPA}
-            onChange={() => setShowGPA(!showGPA)}
-          />
-        </label>
       </div>
       <div className="education-information">
         <div style={{ display: "flex", marginBottom: "10px" }}>
@@ -82,8 +72,10 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            <button onClick={() => addTextbox(setRelevantCoursework)}>+</button>
-            {relevantCoursework.length > 0 && (
+            {relevantCoursework.length < 5 && (
+              <button onClick={() => addTextbox(setRelevantCoursework)}>+</button>
+            )}
+            {relevantCoursework.length > 1 && (
               <button onClick={() => removeTextbox(relevantCoursework.length - 1, setRelevantCoursework)}>
                 -
               </button>
@@ -104,8 +96,10 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            <button onClick={() => addTextbox(setHonors)}>+</button>
-            {honors.length > 0 && (
+            {honors.length < 5 && (
+              <button onClick={() => addTextbox(setHonors)}>+</button>
+            )}
+            {honors.length > 1 && (
               <button onClick={() => removeTextbox(honors.length - 1, setHonors)}>
                 -
               </button>
@@ -128,8 +122,10 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            <button onClick={() => addTextbox(setCertifications)}>+</button>
-            {certifications.length > 0 && (
+            {certifications.length < 5 && (
+              <button onClick={() => addTextbox(setCertifications)}>+</button>
+            )}
+            {certifications.length > 1 && (
               <button onClick={() => removeTextbox(certifications.length - 1, setCertifications)}>
                 -
               </button>
@@ -150,8 +146,10 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            <button onClick={() => addTextbox(setClubs)}>+</button>
-            {clubs.length > 0 && (
+            {clubs.length < 5 && (
+              <button onClick={() => addTextbox(setClubs)}>+</button>
+            )}
+            {clubs.length > 1 && (
               <button onClick={() => removeTextbox(clubs.length - 1, setClubs)}>
                 -
               </button>
