@@ -10,6 +10,7 @@ import (
 
 type Template1Info struct {
 	Username     string
+	UUID         string
 	FName        string
 	LName        string
 	Address      string
