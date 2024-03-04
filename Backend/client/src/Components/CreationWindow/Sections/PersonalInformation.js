@@ -32,7 +32,7 @@ const PersonalInformation = forwardRef((props, ref) => {
   return (
     <div className="section-container">
       {/* Personal Information */}
-      <h3 ref={ref}>Personal Information</h3>
+      <h2 ref={ref}>Personal Information</h2>
       <div className="input-group">
         <div className="input-item">
           <label htmlFor="name">Name:</label>

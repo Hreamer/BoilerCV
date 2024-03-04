@@ -77,7 +77,7 @@ const WorkInformation = forwardRef((props, ref) => {
 
   return (
     <div className="section-container">
-      <h3 ref={ref}>Work Information</h3>
+      <h2 ref={ref}>Work Information</h2>
       {workExperiences.map((work, sectionIndex) => (
         <div key={work.id} className="work-experience">
           {/* Company and Role */}
@@ -108,7 +108,7 @@ const WorkInformation = forwardRef((props, ref) => {
                 onChange={(e) =>
                   handleChange(sectionIndex, "role", e.target.value)
                 }
-                style={{ marginRight: "10px" }}
+                style={{ marginRight: "43px" }}
               />
             </div>
             <div className="input-item">
