@@ -6,8 +6,6 @@ const Projects = forwardRef((props, ref) => {
     {
       id: 1,
       name: "",
-      role: "",
-      location: "",
       startDate: "",
       endDate: "",
       description: "",
@@ -21,8 +19,6 @@ const Projects = forwardRef((props, ref) => {
       {
         id: Date.now(),
         name: "",
-        role: "",
-        location: "",
         startDate: "",
         endDate: "",
         description: "",
