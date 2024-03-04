@@ -30,9 +30,9 @@ const PersonalInformation = forwardRef((props, ref) => {
   };
 
   return (
-    <div className="section-container">
+    <div ref={ref} className="section-container">
       {/* Personal Information */}
-      <h2 ref={ref}>Personal Information</h2>
+      <h2>Personal Information</h2>
       <div className="input-group">
         <div className="input-item">
           <label htmlFor="name">Name:</label>

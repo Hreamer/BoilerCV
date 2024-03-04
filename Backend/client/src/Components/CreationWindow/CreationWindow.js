@@ -1,18 +1,32 @@
 import React, { useRef } from "react";
 import "./CreationWindow.css";
 import EducationInformation from "./Sections/EducationInformation";
-import Section2 from "./Sections/Section2";
 import PersonalInformation from "./Sections/PersonalInformation";
 import WorkInformation from "./Sections/WorkInformation";
 
 const CreationWindow = ({ onClose }) => {  
-  const lastSectionRef = useRef(null);
+  const personalRef = useRef(null);
+  const educationRef = useRef(null);
+  const workRef = useRef(null);
 
-  const scrollToLastSection = () => {
-    if (lastSectionRef.current) {
-      lastSectionRef.current.scrollIntoView({ behavior: "smooth" });
+  const scrollToPersonalSection = () => {
+    if (personalRef.current) {
+      personalRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+  
+  const scrollToEducationSection = () => {
+    if (educationRef.current) {
+      educationRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  
+  const scrollToWorkSection = () => {
+    if (workRef.current) {
+      workRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  
 
   return (
     <div className="creation-window-overlay">
@@ -23,26 +37,15 @@ const CreationWindow = ({ onClose }) => {
         <div className="sidebar">
           <h2 className="menu-subtitle">Menu</h2>
           <ul className="section-list">
-            <li onClick={scrollToLastSection}>Section 1</li>
-            <li onClick={scrollToLastSection}>Section 2</li>
-            <li onClick={scrollToLastSection}>Section 3</li>
+            <li onClick={scrollToPersonalSection}>Personal Information</li>
+            <li onClick={scrollToEducationSection}>Education Information</li>
+            <li onClick={scrollToWorkSection}>Work Information</li>
           </ul>
         </div>
         <div className="sections-container">
-          <EducationInformation />
-          <PersonalInformation />
-          <WorkInformation />
-          <Section2 />
-          <Section2 />
-          <Section2 />
-          <Section2 />
-          <Section2 />
-          <Section2 />
-          <Section2 />
-          <Section2 />
-          <Section2 />
-          <Section2 />
-          <Section2 ref={lastSectionRef} />
+          <PersonalInformation ref={personalRef} />
+          <EducationInformation ref={educationRef}/>
+          <WorkInformation ref={workRef} />
         </div>
       </div>
     </div>

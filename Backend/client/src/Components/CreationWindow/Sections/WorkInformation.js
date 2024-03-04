@@ -76,8 +76,8 @@ const WorkInformation = forwardRef((props, ref) => {
   };
 
   return (
-    <div className="section-container">
-      <h2 ref={ref}>Work Information</h2>
+    <div ref={ref} className="section-container">
+      <h2>Work Information</h2>
       {workExperiences.map((work, sectionIndex) => (
         <div key={work.id} className="work-experience">
           {/* Company and Role */}
