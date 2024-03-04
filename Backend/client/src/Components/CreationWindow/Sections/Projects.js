@@ -195,7 +195,7 @@ const Projects = forwardRef((props, ref) => {
                 }}
                 onClick={() => removeSection(project.id)}
               >
-                Remove project Experience
+                Remove Project
               </button>
             )}
           </div>
@@ -215,7 +215,7 @@ const Projects = forwardRef((props, ref) => {
             }}
             onClick={addSection}
           >
-            Add project Experience
+            Add Project
           </button>
         )}
       </div>
