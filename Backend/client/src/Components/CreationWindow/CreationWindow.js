@@ -4,6 +4,7 @@ import EducationInformation from "./Sections/EducationInformation";
 import Section2 from "./Sections/Section2";
 import PersonalInformation from "./Sections/PersonalInformation";
 import WorkInformation from "./Sections/WorkInformation";
+import Projects from "./Sections/Projects";
 
 const CreationWindow = ({ onClose }) => {  
   const lastSectionRef = useRef(null);
@@ -32,7 +33,7 @@ const CreationWindow = ({ onClose }) => {
           <EducationInformation />
           <PersonalInformation />
           <WorkInformation />
-          <Section2 />
+          <Projects />
           <Section2 />
           <Section2 />
           <Section2 />
