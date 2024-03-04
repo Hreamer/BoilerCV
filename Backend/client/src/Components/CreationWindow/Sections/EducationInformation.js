@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from "react";
+import "./EducationInformation.css";
 
 const EducationInformation = forwardRef((props, ref) => {
   const [relevantCoursework, setRelevantCoursework] = useState([""]);
@@ -37,23 +38,27 @@ const EducationInformation = forwardRef((props, ref) => {
       <h3 ref={ref}>
         Education Information
       </h3>
-      <div>
-        <label style={{ color: "black" }}>
-          School Name:
-        </label>
-        <input type="text" id="school-name" />
-      </div>
-      <div>
-        <label style={{ color: "black" }}>
-          Degree:
-        </label>
-        <input type="text" id="degree" />
-      </div>
-      <div>
-        <label style={{ color: "black" }}>
-          GPA:
-        </label>
-        <input type="text" id="gpa" style={{marginRight: "10px"}} />
+      <div className="input-group">
+        {/* School Name */}
+        <div className="input-item">
+          <label htmlFor="school-name">School Name:</label>
+          <input type="text" id="school-name" />
+        </div>
+        {/* Location */}
+        <div className="input-item">
+          <label htmlFor="school-name">Location:</label>
+          <input type="text" id="school-name" />
+        </div>
+        {/* Degree */}
+        <div className="input-item">
+          <label htmlFor="degree">Degree:</label>
+          <input type="text" id="degree" />
+        </div>
+        {/* GPA */}
+        <div className="input-item">
+          <label htmlFor="gpa">GPA:</label>
+          <input type="text" id="gpa" />
+        </div>
       </div>
       <div className="education-information">
         <div style={{ display: "flex", marginBottom: "10px" }}>
@@ -72,11 +77,9 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            {relevantCoursework.length < 5 && (
-              <button onClick={() => addTextbox(setRelevantCoursework)}>+</button>
-            )}
+            <button className="plus-button" onClick={() => addTextbox(setRelevantCoursework)}>+</button>
             {relevantCoursework.length > 1 && (
-              <button onClick={() => removeTextbox(relevantCoursework.length - 1, setRelevantCoursework)}>
+              <button className="minus-button" onClick={() => removeTextbox(relevantCoursework.length - 1, setRelevantCoursework)}>
                 -
               </button>
             )}
@@ -96,11 +99,9 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            {honors.length < 5 && (
-              <button onClick={() => addTextbox(setHonors)}>+</button>
-            )}
+            <button className="plus-button" onClick={() => addTextbox(setHonors)}>+</button>
             {honors.length > 1 && (
-              <button onClick={() => removeTextbox(honors.length - 1, setHonors)}>
+              <button className="minus-button" onClick={() => removeTextbox(honors.length - 1, setHonors)}>
                 -
               </button>
             )}
@@ -122,11 +123,9 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            {certifications.length < 5 && (
-              <button onClick={() => addTextbox(setCertifications)}>+</button>
-            )}
+            <button className="plus-button" onClick={() => addTextbox(setCertifications)}>+</button>
             {certifications.length > 1 && (
-              <button onClick={() => removeTextbox(certifications.length - 1, setCertifications)}>
+              <button className="minus-button" onClick={() => removeTextbox(certifications.length - 1, setCertifications)}>
                 -
               </button>
             )}
@@ -146,11 +145,9 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            {clubs.length < 5 && (
-              <button onClick={() => addTextbox(setClubs)}>+</button>
-            )}
+            <button className="plus-button" onClick={() => addTextbox(setClubs)}>+</button>
             {clubs.length > 1 && (
-              <button onClick={() => removeTextbox(clubs.length - 1, setClubs)}>
+              <button className="minus-button" onClick={() => removeTextbox(clubs.length - 1, setClubs)}>
                 -
               </button>
             )}

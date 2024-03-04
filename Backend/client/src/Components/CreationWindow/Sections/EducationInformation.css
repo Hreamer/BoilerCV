@@ -1,0 +1,32 @@
+.plus-button, .minus-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+  }
+
+.plus-button:hover, .minus-button:hover {
+    background-color: #999;
+  }
+
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .input-item {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .input-item label {
+    display: block;
+    margin-bottom: 5px;
+  }
