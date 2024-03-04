@@ -35,9 +35,7 @@ const EducationInformation = forwardRef((props, ref) => {
   return (
     <div className="section-container">
       {/* Education Information */}
-      <h3 ref={ref}>
-        Education Information
-      </h3>
+      <h3 ref={ref}>Education Information</h3>
       <div className="input-group">
         {/* School Name */}
         <div className="input-item">
@@ -49,6 +47,8 @@ const EducationInformation = forwardRef((props, ref) => {
           <label htmlFor="school-name">Location:</label>
           <input type="text" id="school-name" />
         </div>
+      </div>
+      <div className="input-group">
         {/* Degree */}
         <div className="input-item">
           <label htmlFor="degree">Degree:</label>
@@ -64,44 +64,79 @@ const EducationInformation = forwardRef((props, ref) => {
         <div style={{ display: "flex", marginBottom: "10px" }}>
           {/* Relevant Coursework Textbox */}
           <div>
-            <label style={{ color: "black" }}>
-              Relevant Coursework
-            </label>
+            <label style={{ color: "black" }}>Relevant Coursework</label>
             {relevantCoursework.map((course, index) => (
-              <div key={index} style={{ display: "flex", marginBottom: "10px", marginRight: "10px" }}>
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  marginBottom: "10px",
+                  marginRight: "10px",
+                }}
+              >
                 <input
                   style={{ color: "black" }}
                   type="text"
                   value={course}
-                  onChange={(e) => handleChange(index, e.target.value, setRelevantCoursework)}
+                  onChange={(e) =>
+                    handleChange(index, e.target.value, setRelevantCoursework)
+                  }
                 />
               </div>
             ))}
-            <button className="plus-button" onClick={() => addTextbox(setRelevantCoursework)}>+</button>
+            <button
+              className="plus-button"
+              onClick={() => addTextbox(setRelevantCoursework)}
+            >
+              +
+            </button>
             {relevantCoursework.length > 1 && (
-              <button className="minus-button" onClick={() => removeTextbox(relevantCoursework.length - 1, setRelevantCoursework)}>
+              <button
+                className="minus-button"
+                onClick={() =>
+                  removeTextbox(
+                    relevantCoursework.length - 1,
+                    setRelevantCoursework
+                  )
+                }
+              >
                 -
               </button>
             )}
           </div>
           {/* Honors and Scholarships Textbox */}
           <div>
-            <label style={{ color: "black" }}>
-              Honors and Scholarships
-            </label>
+            <label style={{ color: "black" }}>Honors and Scholarships</label>
             {honors.map((course, index) => (
-              <div key={index} style={{ display: "flex", marginBottom: "10px", marginRight: "10px" }}>
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  marginBottom: "10px",
+                  marginRight: "10px",
+                }}
+              >
                 <input
                   style={{ color: "black" }}
                   type="text"
                   value={course}
-                  onChange={(e) => handleChange(index, e.target.value, setHonors)}
+                  onChange={(e) =>
+                    handleChange(index, e.target.value, setHonors)
+                  }
                 />
               </div>
             ))}
-            <button className="plus-button" onClick={() => addTextbox(setHonors)}>+</button>
+            <button
+              className="plus-button"
+              onClick={() => addTextbox(setHonors)}
+            >
+              +
+            </button>
             {honors.length > 1 && (
-              <button className="minus-button" onClick={() => removeTextbox(honors.length - 1, setHonors)}>
+              <button
+                className="minus-button"
+                onClick={() => removeTextbox(honors.length - 1, setHonors)}
+              >
                 -
               </button>
             )}
@@ -110,22 +145,39 @@ const EducationInformation = forwardRef((props, ref) => {
         <div style={{ display: "flex", marginBottom: "10px" }}>
           {/* Certifications Textbox */}
           <div>
-            <label style={{ color: "black" }}>
-              Certifications
-            </label>
+            <label style={{ color: "black" }}>Certifications</label>
             {certifications.map((course, index) => (
-              <div key={index} style={{ display: "flex", marginBottom: "10px", marginRight: "10px" }}>
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  marginBottom: "10px",
+                  marginRight: "10px",
+                }}
+              >
                 <input
                   style={{ color: "black" }}
                   type="text"
                   value={course}
-                  onChange={(e) => handleChange(index, e.target.value, setCertifications)}
+                  onChange={(e) =>
+                    handleChange(index, e.target.value, setCertifications)
+                  }
                 />
               </div>
             ))}
-            <button className="plus-button" onClick={() => addTextbox(setCertifications)}>+</button>
+            <button
+              className="plus-button"
+              onClick={() => addTextbox(setCertifications)}
+            >
+              +
+            </button>
             {certifications.length > 1 && (
-              <button className="minus-button" onClick={() => removeTextbox(certifications.length - 1, setCertifications)}>
+              <button
+                className="minus-button"
+                onClick={() =>
+                  removeTextbox(certifications.length - 1, setCertifications)
+                }
+              >
                 -
               </button>
             )}
@@ -136,18 +188,35 @@ const EducationInformation = forwardRef((props, ref) => {
               Clubs/Recreational Activities
             </label>
             {clubs.map((course, index) => (
-              <div key={index} style={{ display: "flex", marginBottom: "10px", marginRight: "10px" }}>
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  marginBottom: "10px",
+                  marginRight: "10px",
+                }}
+              >
                 <input
                   style={{ color: "black" }}
                   type="text"
                   value={course}
-                  onChange={(e) => handleChange(index, e.target.value, setClubs)}
+                  onChange={(e) =>
+                    handleChange(index, e.target.value, setClubs)
+                  }
                 />
               </div>
             ))}
-            <button className="plus-button" onClick={() => addTextbox(setClubs)}>+</button>
+            <button
+              className="plus-button"
+              onClick={() => addTextbox(setClubs)}
+            >
+              +
+            </button>
             {clubs.length > 1 && (
-              <button className="minus-button" onClick={() => removeTextbox(clubs.length - 1, setClubs)}>
+              <button
+                className="minus-button"
+                onClick={() => removeTextbox(clubs.length - 1, setClubs)}
+              >
                 -
               </button>
             )}
