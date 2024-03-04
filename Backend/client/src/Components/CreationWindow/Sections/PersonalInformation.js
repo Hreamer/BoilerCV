@@ -57,7 +57,7 @@ const PersonalInformation = forwardRef((props, ref) => {
           <input
             type="text"
             id="address"
-            style={{ width: "374px", marginRight: "8px" }}
+            style={{ width: "374px", marginRight: "13px" }}
           />
         </div>
       </div>
