@@ -9,7 +9,10 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
-  margin-right: 5px;
+}
+
+.minus-button {
+  margin-left: 5px;
 }
 
 .plus-button:hover,
