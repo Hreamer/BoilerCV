@@ -221,3 +221,8 @@ func dbCheckUserNameTaken(creds Credentials) error {
 	}
 	return errors.New("User with that username already exists")
 }
+
+func getResumeList(writer http.ResponseWriter, request *http.Request) {
+
+	writer.WriteHeader(http.StatusOK)
+}

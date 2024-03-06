@@ -122,9 +122,9 @@ func TestTemplate1(t *testing.T) {
 		ProjDesc1:    "",
 		ProjDesc2:    "",
 		ProjDesc3:    "",
-		Languages:    "",
-		Technologies: "",
-		Concepts:     "",
+		Languages:    "Rust, Go, Python, C++, C",
+		Technologies: "Docker, Unix, VSCode",
+		Concepts:     "Compilers, Operating Systems, Cloud Computing",
 	}
 
 	err = tmpl1.Execute(file, tmplInfo)
