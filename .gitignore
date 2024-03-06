@@ -1,3 +1,7 @@
 node_modules
 
 Backend/client/build
+
+.DS_Store
+
+TestTemplate1.txt
