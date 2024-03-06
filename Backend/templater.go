@@ -16,13 +16,21 @@ type Template1Info struct {
 	LName        string
 	Address      string
 	PhoneNum     string
+	Email        string
 	UniName      string
+	UniCity      string
+	UniState     string
 	ExpectedGrad string
 	Gpa          string
 	CourseWork   string
 	CompName1    string
 	CompCity     string
 	CompState    string
+	CompTitle    string
+	CompLength   string
+	Description1 string
+	Description2 string
+	Description3 string
 	ProjName     string
 	ProjTech     string
 	ProjDesc1    string
@@ -35,7 +43,7 @@ type Template1Info struct {
 
 var tmpl1 *template.Template
 
-func createTemplate(writer http.ResponseWriter, request *http.Request) {
+func editTemplate(writer http.ResponseWriter, request *http.Request) {
 	var tmplInfo Template1Info
 
 	//Parse the JSON
@@ -54,6 +62,8 @@ func createTemplate(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	//grab old file by uuid
+
 	//Use struct to fill template
 	//For now we will use Std Out to verify results but this can and should be changed at a later date
 	err = tmpl1.Execute(os.Stdout, tmplInfo)
@@ -65,9 +75,15 @@ func createTemplate(writer http.ResponseWriter, request *http.Request) {
 
 	//Take the result and turn to PDF
 
+	//if the compiler fails for any reason return bad status to the frontend
+
 	//Send to DB
 
-	//Send to the frontend
+	//return status to frontend
+	writer.WriteHeader(http.StatusOK)
+}
+
+func createTemplate(writer http.ResponseWriter, request *http.Request) {
 
 	writer.WriteHeader(http.StatusOK)
 }
