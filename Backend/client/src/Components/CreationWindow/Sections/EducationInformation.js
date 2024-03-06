@@ -33,9 +33,9 @@ const EducationInformation = forwardRef((props, ref) => {
   };
 
   return (
-    <div className="section-container">
+    <div ref={ref} className="section-container">
       {/* Education Information */}
-      <h3 ref={ref}>Education Information</h3>
+      <h2>Education Information</h2>
       <div className="input-group">
         {/* School Name */}
         <div className="input-item">
