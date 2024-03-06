@@ -57,7 +57,7 @@ const EducationInformation = forwardRef((props, ref) => {
         {/* GPA */}
         <div className="input-item">
           <label htmlFor="gpa">GPA:</label>
-          <input type="text" id="gpa" />
+          <input type="text" id="gpa" style={{width: "50px"}} />
         </div>
       </div>
       <div className="education-information">

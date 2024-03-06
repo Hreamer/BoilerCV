@@ -3,11 +3,13 @@ import "./CreationWindow.css";
 import EducationInformation from "./Sections/EducationInformation";
 import PersonalInformation from "./Sections/PersonalInformation";
 import WorkInformation from "./Sections/WorkInformation";
+import Projects from "./Sections/Projects";
 
 const CreationWindow = ({ onClose }) => {  
   const personalRef = useRef(null);
   const educationRef = useRef(null);
   const workRef = useRef(null);
+  const projectRef = useRef(null);
 
   const scrollToPersonalSection = () => {
     if (personalRef.current) {
@@ -27,6 +29,11 @@ const CreationWindow = ({ onClose }) => {
     }
   };
   
+  const scrollToProjectSection = () => {
+    if (projectRef.current) {
+      projectRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="creation-window-overlay">
@@ -40,12 +47,14 @@ const CreationWindow = ({ onClose }) => {
             <li onClick={scrollToPersonalSection}>Personal Information</li>
             <li onClick={scrollToEducationSection}>Education Information</li>
             <li onClick={scrollToWorkSection}>Work Information</li>
+            <li onClick={scrollToProjectSection}>Project Information</li>
           </ul>
         </div>
         <div className="sections-container">
           <PersonalInformation ref={personalRef} />
           <EducationInformation ref={educationRef}/>
           <WorkInformation ref={workRef} />
+          <Projects ref={projectRef} />
         </div>
       </div>
     </div>
