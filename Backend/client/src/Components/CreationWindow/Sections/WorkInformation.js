@@ -80,7 +80,7 @@ const WorkInformation = forwardRef((props, ref) => {
       <h2>Work Information</h2>
       {workExperiences.map((work, sectionIndex) => (
         <div key={work.id} className="work-experience">
-          {/* Company and Role */}
+          {/* Company, Role, Location */}
           <div className="input-group">
             <div className="input-item">
               <label
@@ -108,7 +108,7 @@ const WorkInformation = forwardRef((props, ref) => {
                 onChange={(e) =>
                   handleChange(sectionIndex, "role", e.target.value)
                 }
-                style={{ marginRight: "43px" }}
+                style={{ marginRight: "20px" }}
               />
             </div>
             <div className="input-item">
@@ -124,7 +124,7 @@ const WorkInformation = forwardRef((props, ref) => {
               />
             </div>
           </div>
-          {/* Location, Start Date, End Date */}
+          {/* Start Date, End Date */}
           <div className="input-group">
             <div className="input-item">
               <label htmlFor={`start-date-${work.id}`}>Start Date:</label>
