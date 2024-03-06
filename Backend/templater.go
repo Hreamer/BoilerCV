@@ -9,6 +9,7 @@ import (
 )
 
 type Template1Info struct {
+	TemplateNum  int
 	Username     string
 	UUID         string
 	FName        string
@@ -34,7 +35,7 @@ type Template1Info struct {
 
 var tmpl1 *template.Template
 
-func createTemplate1(writer http.ResponseWriter, request *http.Request) {
+func createTemplate(writer http.ResponseWriter, request *http.Request) {
 	var tmplInfo Template1Info
 
 	//Parse the JSON
