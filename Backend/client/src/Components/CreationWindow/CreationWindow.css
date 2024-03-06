@@ -47,26 +47,25 @@
 .work-information strong,
 .personal-information strong,
 .education-information strong {
-  /* Styles for bold text */
   font-weight: bold;
-  display: block; /* Ensure the label is on a new line */
-  margin-bottom: 10px; /* Add some space below the bold text */
+  display: block; 
+  margin-bottom: 10px; 
 }
 
 .projects label,
 .work-information label,
 .personal-information label,
 .education-information label {
-  display: block; /* Each label and input on a new line */
-  margin-bottom: 10px; /* Add space between label and input */
+  display: block; 
+  margin-bottom: 10px; 
 }
 
 .projects input[type="checkbox"],
 .work-information input[type="checkbox"],
 .personal-information input[type="checkbox"],
 .education-information input[type="checkbox"] {
-  padding: 5px; /* Add padding for better appearance */
-  box-sizing: border-box; /* Include padding in the width calculation */
+  padding: 5px; 
+  box-sizing: border-box; 
 }
 
 .projects input[type="text"],
@@ -75,9 +74,20 @@
 .education-information input[type="text"] {
   width: 300px;
   min-height: 50px;
-  padding: 5px; /* Add padding for better appearance */
-  box-sizing: border-box; /* Include padding in the width calculation */
+  padding: 5px;
+  box-sizing: border-box; 
 }
+
+.section-list li {
+  padding: 10px 50px;
+  margin-bottom: 10px;
+  background-color: #0a78a0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center; /* Center the text */
+}
+
 
 .sidebar {
   width: 200px;

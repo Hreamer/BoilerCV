@@ -5,7 +5,9 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 	"testing"
+	"text/template"
 )
 
 func init() {
@@ -74,6 +76,62 @@ func TestCreateAccDuplicateUsername(t *testing.T) {
 	err := dbCheckUserNameTaken(creds)
 	if err != nil {
 		t.Error("Error occured during duplicate name checking")
+	}
+}
+
+func TestTemplate1(t *testing.T) {
+	tmpl1, err := template.New("T1.tmpl").ParseFiles("./templates/T1.tmpl")
+
+	if err != nil {
+		t.Error("Error parsing template 1")
+		return
+	}
+
+	file, err2 := os.Create("TestTemplate1.txt")
+	defer file.Close()
+	if err2 != nil {
+		t.Error("File creation failed")
+		return
+	}
+
+	tmplInfo := Template1Info{
+		TemplateNum:  0,
+		Username:     "",
+		UUID:         "",
+		FName:        "Hudson",
+		LName:        "Reamer",
+		Address:      "8044 Heyward Dr",
+		PhoneNum:     "317-727-1854",
+		Email:        "thehappyhud@gmail.com",
+		UniName:      "Purdue",
+		UniCity:      "West Lafeyette",
+		UniState:     "Indiana",
+		ExpectedGrad: "May 2025",
+		Gpa:          "3.0",
+		CourseWork:   "Operating Systems, Compilers, 381",
+		CompName1:    "Spaulding Ridge",
+		CompCity:     "Chicago",
+		CompState:    "Illinois",
+		CompTitle:    "Consultant",
+		CompLength:   "2020-2021",
+		Description1: "Fixed things",
+		Description2: "Talked to folks",
+		Description3: "Had a good time :)",
+		ProjName:     "",
+		ProjTech:     "",
+		ProjDesc1:    "",
+		ProjDesc2:    "",
+		ProjDesc3:    "",
+		Languages:    "",
+		Technologies: "",
+		Concepts:     "",
+	}
+
+	err = tmpl1.Execute(file, tmplInfo)
+	if err != nil {
+		t.Error("Error executing template\n")
+		fmt.Println(err)
+		return
 	}
 }
 

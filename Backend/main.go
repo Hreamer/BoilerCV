@@ -41,7 +41,7 @@ func main() {
 
 	//Start Template Parsing Code
 	err = nil
-	tmpl1, err = template.New("Template1.tmpl").ParseFiles("./templates/T1.tmpl")
+	tmpl1, err = template.New("T1.tmpl").ParseFiles("./templates/T1.tmpl")
 	if err != nil {
 		log.Fatal("Error parsing T1.tmpl: ", err.Error())
 	}
@@ -60,7 +60,8 @@ func main() {
 	http.HandleFunc("/createAcc", createAcc)
 	http.HandleFunc("/changePassword", changePass)
 	http.HandleFunc("/sendEmail", sendEmail)
-	http.HandleFunc("/CreateTemplate1", createTemplate1)
+	http.HandleFunc("/createTemplate", createTemplate)
+	http.HandleFunc("/editTemplate", editTemplate)
 
 	//Start the server on the desired PORT
 	fmt.Println("Sever has started on Port " + port)
