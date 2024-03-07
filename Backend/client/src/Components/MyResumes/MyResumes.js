@@ -10,9 +10,7 @@ const onRename = (resumeID) => {
       newName = prompt("Enter a new name:");
     } while (newName === "")
 
-    if (newName === null) {
-      alert("Will not rename.")
-    } else {
+    if (newName !== null) {
       alert("Will rename to " + newName + "!");
     }
   } else {
