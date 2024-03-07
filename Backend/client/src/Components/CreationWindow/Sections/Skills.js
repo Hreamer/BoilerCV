@@ -2,26 +2,16 @@ import React, { forwardRef, useState } from "react";
 import "./Skills.css";
 
 const Skills = forwardRef((props, ref) => {
-  const [title, setTitle] = useState([""]);
-  const [list, setList] = useState([""]);
+  const [skills, setSkills] = useState([{ title: "", list: "" }]);
 
-  const addTextbox = (setState1, setState2) => {
-    setState1((prev) => [...prev, ""]);
-    setState2((prev) => [...prev, ""]);
+  const addTextbox = () => {
+    setSkills([...skills, { title: "", list: "" }]);
   };
 
-  const removeTextbox = (index, setState1, setState2) => {
+  const removeTextbox = (index) => {
     if (index !== null) {
-      setState1((prev) => {
-        if (prev.length > 0) {
-          const updated = [...prev];
-          updated.splice(index, 1);
-          return updated;
-        }
-        return prev;
-      });
-      setState2((prev) => {
-        if (prev.length > 0) {
+      setSkills((prev) => {
+        if (prev.length > 1) {
           const updated = [...prev];
           updated.splice(index, 1);
           return updated;
@@ -31,10 +21,10 @@ const Skills = forwardRef((props, ref) => {
     }
   };
 
-  const handleChange = (index, value, setState) => {
-    setState((prev) => {
+  const handleChange = (index, field, value) => {
+    setSkills((prev) => {
       const updated = [...prev];
-      updated[index] = value;
+      updated[index][field] = value;
       return updated;
     });
   };
@@ -44,72 +34,48 @@ const Skills = forwardRef((props, ref) => {
       {/* Skills Information */}
       <h2>Skills Information</h2>
       <div className="education-information">
-        <div style={{ display: "flex", marginBottom: "10px" }}>
-          {/* Title Textbox */}
-          <div>
-            <label style={{ color: "black" }}>Title:</label>
-            {title.map((course, index) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  marginBottom: "10px",
-                  marginRight: "10px",
-                }}
-              >
+        {skills.map((skill, index) => (
+          <div key={index}>
+            <div style={{ display: "flex", marginBottom: "10px" }}>
+              {/* Title Textbox */}
+              <div>
+                <label style={{ color: "black" }}>Title:</label>
                 <input
                   style={{ color: "black" }}
                   type="text"
-                  value={course}
+                  value={skill.title}
                   onChange={(e) =>
-                    handleChange(index, e.target.value, setTitle)
+                    handleChange(index, "title", e.target.value)
                   }
                 />
               </div>
-            ))}
-            <button
-              className="plus-button"
-              onClick={() => addTextbox(setTitle, setList)}
-            >
-              +
-            </button>
-            {title.length > 1 && (
-              <button
-                className="minus-button"
-                onClick={() =>
-                  removeTextbox(title.length - 1, setTitle, setList)
-                }
-              >
-                -
-              </button>
-            )}
-          </div>
-          {/* List Textbox */}
-          <div>
-            <label style={{ color: "black" }}>
-              List of Skills:
-            </label>
-            {list.map((course, index) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  marginBottom: "10px",
-                  marginRight: "10px",
-                }}
-              >
+              {/* List Textbox */}
+              <div>
+                <label style={{ color: "black" }}>List of Skills:</label>
                 <input
                   style={{ color: "black" }}
                   type="text"
-                  value={course}
+                  value={skill.list}
                   onChange={(e) =>
-                    handleChange(index, e.target.value, setList)
+                    handleChange(index, "list", e.target.value)
                   }
                 />
               </div>
-            ))}
+              {/* Remove button */}
+              {skills.length > 1 && (
+                <button
+                  className="minus-button"
+                  onClick={() => removeTextbox(index)}
+                >
+                  -
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        ))}
+        <button className="plus-button" onClick={addTextbox}>
+          +
+        </button>
       </div>
     </div>
   );
