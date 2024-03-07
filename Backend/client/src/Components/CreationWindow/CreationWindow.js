@@ -4,12 +4,15 @@ import EducationInformation from "./Sections/EducationInformation";
 import PersonalInformation from "./Sections/PersonalInformation";
 import WorkInformation from "./Sections/WorkInformation";
 import Projects from "./Sections/Projects";
+import Skills from "./Sections/Skills";
+
 
 const CreationWindow = ({ onClose }) => {  
   const personalRef = useRef(null);
   const educationRef = useRef(null);
   const workRef = useRef(null);
   const projectRef = useRef(null);
+  const skillsRef = useRef(null);
 
   const scrollToPersonalSection = () => {
     if (personalRef.current) {
@@ -35,6 +38,12 @@ const CreationWindow = ({ onClose }) => {
     }
   };
 
+  const scrollToSkillsSection = () => {
+    if (skillsRef.current) {
+      skillsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="creation-window-overlay">
       <div className="creation-window">
@@ -47,6 +56,7 @@ const CreationWindow = ({ onClose }) => {
             <li onClick={scrollToPersonalSection}>Personal Information</li>
             <li onClick={scrollToEducationSection}>Education Information</li>
             <li onClick={scrollToWorkSection}>Work Information</li>
+            <li onClick={scrollToSkillsSection}>Skills Information</li>
             <li onClick={scrollToProjectSection}>Project Information</li>
           </ul>
         </div>
@@ -54,6 +64,7 @@ const CreationWindow = ({ onClose }) => {
           <PersonalInformation ref={personalRef} />
           <EducationInformation ref={educationRef}/>
           <WorkInformation ref={workRef} />
+          <Skills ref={skillsRef} />
           <Projects ref={projectRef} />
         </div>
       </div>
