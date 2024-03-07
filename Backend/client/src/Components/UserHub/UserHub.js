@@ -17,7 +17,14 @@ const UserHub = () => {
   };
 
   const onCreate = (templateID) => {
-    alert("Creation of " + templateID + " is disabled!");
+    var resumeName = "";
+    do {
+      resumeName = prompt("Enter a resume name:");
+    } while (resumeName === "")
+
+    if (resumeName !== null) {
+      alert("Will name to " + resumeName + "!");
+    }
   };
 
   return (
