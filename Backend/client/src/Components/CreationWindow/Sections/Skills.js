@@ -73,8 +73,14 @@ const Skills = forwardRef((props, ref) => {
             </div>
           </div>
         ))}
-        <button className="plus-button" onClick={addTextbox}>
-          +
+        <button style={{ marginTop: "5px",
+              borderRadius: "5px",
+              padding: "5px 10px",
+              border: "1px solid #0e93c7",
+              backgroundColor: "#0e93c7",
+              width: "80px",
+              color: "white" }} className="plus-button" onClick={addTextbox}>
+          Add Skill
         </button>
       </div>
     </div>
