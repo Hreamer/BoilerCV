@@ -79,6 +79,7 @@ const Skills = forwardRef((props, ref) => {
               border: "1px solid #0e93c7",
               backgroundColor: "#0e93c7",
               width: "100px",
+              marginTop: "-6px",
               color: "white" }} className="plus-button" onClick={addTextbox}>
           Add Section
         </button>
