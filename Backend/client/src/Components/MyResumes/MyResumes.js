@@ -3,11 +3,30 @@ import "./MyResumes.css";
 import ResumeCard from "./ResumeCard";
 
 const onRename = (resumeID) => {
-  alert("Rename!");
+  const confirmation = window.confirm("Rename resume?");
+  if (confirmation) {
+    var newName = "";
+    do {
+      newName = prompt("Enter a new name:");
+    } while (newName === "")
+
+    if (newName === null) {
+      alert("Will not rename.")
+    } else {
+      alert("Will rename to " + newName + "!");
+    }
+  } else {
+    alert("Will not rename.");
+  }
 };
 
 const onDelete = (resumeID) => {
-  alert("Delete!");
+  const confirmation = window.confirm("Delete resume?");
+  if (confirmation) {
+    alert("Will delete.");
+  } else {
+    alert("Will not delete.");
+  }
 };
 
 const MyResumes = ({ onOpenResume }) => {
