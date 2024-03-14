@@ -13,6 +13,18 @@ const UserHub = () => {
   const openCreationWindow = (templateID) => {
     setShowCreationWindow(true);
     localStorage.setItem("templateID", templateID);
+    setOpenedResume(templateID);
+  };
+
+  const onCreate = (templateID) => {
+    var resumeName = "";
+    do {
+      resumeName = prompt("Enter a resume name:");
+    } while (resumeName === "")
+
+    if (resumeName !== null) {
+      alert("Will name to " + resumeName + "!");
+    }
   };
 
   return (
@@ -20,8 +32,8 @@ const UserHub = () => {
       <NavBar data-testid="navbar" />
       <div className="user-hub-content">
         <div className="column">
-          <CreateResume onCreate={openCreationWindow}/>
-          <MyResumes onOpenResume={setOpenedResume} />
+          <CreateResume onCreate={onCreate}/>
+          <MyResumes onOpenResume={openCreationWindow} />
           {showCreationWindow && (
             <CreationWindow onClose={() => setShowCreationWindow(false)} />
           )}

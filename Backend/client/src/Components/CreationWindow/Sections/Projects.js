@@ -1,137 +1,111 @@
 import React, { forwardRef, useState } from "react";
-import "./WorkInformation.css";
+import "./Projects.css";
 
-const WorkInformation = forwardRef((props, ref) => {
-  const [workExperiences, setWorkExperiences] = useState([
+const Projects = forwardRef((props, ref) => {
+  const [projects, setProjects] = useState([
     {
       id: 1,
-      company: "",
-      role: "",
-      location: "",
+      name: "",
       startDate: "",
       endDate: "",
+      description: "",
       bullets: [{ id: 1, text: "" }],
     },
   ]);
 
   const addSection = () => {
-    setWorkExperiences((prevExperiences) => [
-      ...prevExperiences,
+    setProjects((prevProjects) => [
+      ...prevProjects,
       {
         id: Date.now(),
-        company: "",
-        role: "",
-        location: "",
+        name: "",
         startDate: "",
         endDate: "",
+        description: "",
         bullets: [{ id: Date.now(), text: "" }],
       },
     ]);
   };
 
   const removeSection = (id) => {
-    if (workExperiences.length > 1) {
-      setWorkExperiences((prevExperiences) =>
-        prevExperiences.filter((experience) => experience.id !== id)
+    if (projects.length > 1) {
+      setProjects((prevProjects) =>
+        prevProjects.filter((experience) => experience.id !== id)
       );
     }
   };
 
   const handleChange = (sectionIndex, field, value) => {
-    setWorkExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences];
-      updatedExperiences[sectionIndex][field] = value;
-      return updatedExperiences;
+    setProjects((prevProjects) => {
+      const updatedProjects = [...prevProjects];
+      updatedProjects[sectionIndex][field] = value;
+      return updatedProjects;
     });
   };
 
   const addTextbox = (sectionIndex) => {
-    setWorkExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences];
-      updatedExperiences[sectionIndex].bullets.push({
+    setProjects((prevProjects) => {
+      const updatedProjects = [...prevProjects];
+      updatedProjects[sectionIndex].bullets.push({
         id: Date.now(),
         text: "",
       });
-      return updatedExperiences;
+      return updatedProjects;
     });
   };
 
   const removeTextbox = (sectionIndex, bulletId) => {
-    setWorkExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences];
-      const bullets = updatedExperiences[sectionIndex].bullets.filter(
+    setProjects((prevProjects) => {
+      const updatedProjects = [...prevProjects];
+      const bullets = updatedProjects[sectionIndex].bullets.filter(
         (bullet) => bullet.id !== bulletId
       );
-      updatedExperiences[sectionIndex].bullets = bullets;
-      return updatedExperiences;
+      updatedProjects[sectionIndex].bullets = bullets;
+      return updatedProjects;
     });
   };
 
   const handleBulletChange = (sectionIndex, bulletIndex, value) => {
-    setWorkExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences];
-      updatedExperiences[sectionIndex].bullets[bulletIndex].text = value;
-      return updatedExperiences;
+    setProjects((prevProjects) => {
+      const updatedProjects = [...prevProjects];
+      updatedProjects[sectionIndex].bullets[bulletIndex].text = value;
+      return updatedProjects;
     });
   };
 
   return (
-    <div ref={ref} className="section-container">
-      <h2>Work Information</h2>
-      {workExperiences.map((work, sectionIndex) => (
-        <div key={work.id} className="work-experience">
-          {/* Company, Role, Location */}
+    <div className="section-container">
+      <h2 ref={ref}>Projects</h2>
+      {projects.map((project, sectionIndex) => (
+        <div key={project.id} className="project-experience">
+          {/* Project Name */}
           <div className="input-group">
             <div className="input-item">
               <label
                 style={{ marginRight: "0px" }}
-                htmlFor={`company-${work.id}`}
+                htmlFor={`project-${project.id}`}
               >
-                Company:
+                Project Name:
               </label>
               <input
                 type="text"
-                id={`company-${work.id}`}
-                value={work.company}
+                id={`project-${project.id}`}
+                value={project.name}
                 onChange={(e) =>
-                  handleChange(sectionIndex, "company", e.target.value)
+                  handleChange(sectionIndex, "name", e.target.value)
                 }
                 style={{ width: "200px", marginRight: "45px" }}
-              />
-            </div>
-            <div className="input-item">
-              <label htmlFor={`role-${work.id}`}>Role:</label>
-              <input
-                type="text"
-                id={`role-${work.id}`}
-                value={work.role}
-                onChange={(e) =>
-                  handleChange(sectionIndex, "role", e.target.value)
-                }
-                style={{ marginRight: "20px" }}
-              />
-            </div>
-            <div className="input-item">
-              <label htmlFor={`location-${work.id}`}>Location:</label>
-              <input
-                type="text"
-                id={`location-${work.id}`}
-                value={work.location}
-                onChange={(e) =>
-                  handleChange(sectionIndex, "location", e.target.value)
-                }
-                style={{ marginRight: "10px", width: "100px" }}
               />
             </div>
           </div>
           {/* Start Date, End Date */}
           <div className="input-group">
             <div className="input-item">
-              <label htmlFor={`start-date-${work.id}`}>Start Date:</label>
+              <label htmlFor={`start-date-${project.id}`}>Start Date:</label>
               <input
                 type="date"
-                id={`start-date-${work.id}`}
-                value={work.startDate}
+                id={`start-date-${project.id}`}
+                value={project.startDate}
                 onChange={(e) =>
                   handleChange(sectionIndex, "startDate", e.target.value)
                 }
@@ -139,21 +113,36 @@ const WorkInformation = forwardRef((props, ref) => {
               />
             </div>
             <div className="input-item" style={{ marginRight: "400px" }}>
-              <label htmlFor={`end-date-${work.id}`}>End Date:</label>
+              <label htmlFor={`end-date-${project.id}`}>End Date:</label>
               <input
                 type="date"
-                id={`end-date-${work.id}`}
-                value={work.endDate}
+                id={`end-date-${project.id}`}
+                value={project.endDate}
                 onChange={(e) =>
                   handleChange(sectionIndex, "endDate", e.target.value)
                 }
               />
             </div>
           </div>
+          {/* Project Description */}
+          <div className="input-group">
+            <div className="input-item">
+              <label htmlFor={`start-date-${project.id}`}>Description:</label>
+              <input
+                type="text"
+                id={`description-${project.id}`}
+                value={project.description}
+                onChange={(e) =>
+                  handleChange(sectionIndex, "description", e.target.value)
+                }
+                style={{ width: "600px"}}
+              />
+            </div>
+          </div>
           {/* Bullet Points */}
-          <div className="work-information">
+          <div className="projects">
             <label style={{ color: "black" }}>Bullet Points</label>
-            {work.bullets.map((bullet, bulletIndex) => (
+            {project.bullets.map((bullet, bulletIndex) => (
               <div key={bullet.id} className="bullet">
                 <input
                   type="text"
@@ -167,7 +156,7 @@ const WorkInformation = forwardRef((props, ref) => {
                   }
                   style={{marginRight: "5px"}}
                 />
-                {bulletIndex === work.bullets.length - 1 && (
+                {bulletIndex === project.bullets.length - 1 && (
                   <button
                     style={{ marginRight: "5px" }}
                     className="plus-button"
@@ -189,7 +178,7 @@ const WorkInformation = forwardRef((props, ref) => {
           </div>
           {/* Remove Section Button */}
           <div className="remove-section-button">
-            {workExperiences.length > 1 && (
+            {projects.length > 1 && (
               <button
                 style={{
                   marginTop: "5px",
@@ -200,9 +189,9 @@ const WorkInformation = forwardRef((props, ref) => {
                   border: "none",
                   color: "white",
                 }}
-                onClick={() => removeSection(work.id)}
+                onClick={() => removeSection(project.id)}
               >
-                Remove Work Experience
+                Remove Project
               </button>
             )}
           </div>
@@ -210,7 +199,7 @@ const WorkInformation = forwardRef((props, ref) => {
       ))}
       {/* Add Section Button */}
       <div className="add-section-button">
-        {workExperiences.length < 5 && (
+        {projects.length < 5 && (
           <button
             style={{
               marginTop: "5px",
@@ -222,7 +211,7 @@ const WorkInformation = forwardRef((props, ref) => {
             }}
             onClick={addSection}
           >
-            Add Work Experience
+            Add Project
           </button>
         )}
       </div>
@@ -230,4 +219,4 @@ const WorkInformation = forwardRef((props, ref) => {
   );
 });
 
-export default WorkInformation;
+export default Projects;
