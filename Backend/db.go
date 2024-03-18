@@ -236,11 +236,12 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 }
 
 // Takes in a NewResume struct which contains information needed
-// and creates a DB entry for the
+// and creates a DB entry for the resume tied to the user who made it
 func dbCreateResume(template NewResume) {
 
 }
 
+// Takes a resume ID or info and returns the filled in fields for it
 func dbGetResumeInfo(info Template1Info) Template1Info {
 	var targetInfo Template1Info
 
