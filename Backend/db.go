@@ -15,6 +15,14 @@ type Credentials struct {
 	Password string
 }
 
+type NewResume struct {
+	Username string
+	Name     string
+}
+
+type ResumeInfo struct {
+}
+
 func dbCheckLogin(creds Credentials) error {
 
 	//database code to check login
@@ -225,4 +233,16 @@ func dbCheckUserNameTaken(creds Credentials) error {
 func getResumeList(writer http.ResponseWriter, request *http.Request) {
 
 	writer.WriteHeader(http.StatusOK)
+}
+
+// Takes in a NewResume struct which contains information needed
+// and creates a DB entry for the
+func dbCreateResume(template NewResume) {
+
+}
+
+func dbGetResumeInfo(info Template1Info) Template1Info {
+	var targetInfo Template1Info
+
+	return targetInfo
 }

@@ -103,9 +103,9 @@
 
 %----------HEADING----------%
 \begin{center}
-    \textbf{\Huge \scshape First Last} \\ \vspace{1pt}
-    \seticon{faPhone} \ \small XXX-XXX-XXXX \quad
-    \href{mailto:firstlast@gmail.com}{\seticon{faEnvelope} \underline{firstlast@gmail.com}} \quad
+    \textbf{\Huge \scshape {{ .FName }} {{ .LName }} } \\ \vspace{1pt}
+    \seticon{faPhone} \ \small {{ .PhoneNum }} \quad
+    \href{mailto:{{ .Email }} }{\seticon{faEnvelope} \underline{ {{ .Email }} }} \quad
     \href{https://www.linkedin.com/in/}{\seticon{faLinkedin} \underline{linkedin.com/firstlast}} \quad
     \href{https://github.com/}{\seticon{faGithub} \underline{github.com/firstlast}}
 \end{center}
@@ -115,10 +115,10 @@
     \resumeSubHeadingListStart
 
     \resumeSubheading
-    {University Name}{Expected May 20XX}
-    {Bachelor of Science in Computer Science (GPA: 4.00 / 4.00)}{City, State}
+    {{ printf "{%s}" .UniName}}{Expected {{.ExpectedGrad}}}
+    {Bachelor of Science in Computer Science (GPA: {{ .Gpa }} / 4.00)}{{printf "{%s , %s}" .UniCity .UniState}}
     \resumeItemListStart
-        \resumeItem{\textbf{Relevant Coursework:}  Data Structures and Algorithms (C++), Prob \& Stat in CS (Python), Intro to CS II (C++), Linear Algebra w/Computational Applications (Python)}
+        \resumeItem{\textbf{Relevant Coursework:}  {{.CourseWork}}}
     \resumeItemListEnd
 
     \resumeSubHeadingListEnd
@@ -128,12 +128,12 @@
 \resumeSubHeadingListStart
 
     \resumeSubheading
-    {Company Name 1}{Jan 20XX -- May 20XX}
-    {Software Engineer}{City, State}
+    {{printf "{%s}" .CompName1}}{{printf "{%s}" .CompLength}}
+    {{printf "{%s}" .CompTitle}}{{printf "{%s , %s}" .CompCity .CompState}}
     \resumeItemListStart
-        \resumeItem{Implemented microservices architecture using Node.js and Express, improving API response time by 25\% and reducing server load by 30\%.}
-        \resumeItem{Led a cross-functional team in implementing a new feature using React and Redux, resulting in a 20\% increase in user engagement within the first month.}
-        \resumeItem{Optimized MySQL database queries, reducing page load times by 15\% and enhancing overall application performance.}
+        \resumeItem{{printf "{%s}" .Description1}}
+        \resumeItem{{printf "{%s}" .Description2}}
+        \resumeItem{{printf "{%s}" .Description3}}
     \resumeItemListEnd
     
     \resumeSubheading
@@ -179,9 +179,9 @@
 \section{Technical Skills}
     \begin{itemize}[leftmargin=0.15in, label={}]
 	\small{\item{
-		\textbf{Languages}{: Rust, Kotlin, Swift, Go, Scala, TypeScript, R, Perl, Haskell, Groovy, Julia, Dart} \\
-		\textbf{Technologies}{: React.js, Angular, Vue.js, Django, Flask, Ruby on Rails, Spring Boot, Express.js, TensorFlow, PyTorch, jQuery, Bootstrap, Laravel, Flask, ASP.NET, Node.js, Electron, Android SDK, iOS SDK, Symfony} \\
-		\textbf{Concepts}{: Compiler, Operating System, Virtual Memory, Cache Memory, Encryption, Decryption, Artificial Intelligence, Machine Learning, Neural Networks, API, Database Normalization, Agile Methodology, Cloud Computing}
+		\textbf{Languages}{{printf "{: %s}" .Languages}} \\
+		\textbf{Technologies}{{printf "{: %s}" .Technologies}} \\
+		\textbf{Concepts}{{printf "{: %s}" .Concepts}}
 	}}
     \end{itemize}
 
