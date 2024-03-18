@@ -242,8 +242,13 @@ func dbCreateResume(template NewResume) {
 }
 
 // Takes a resume ID or info and returns the filled in fields for it
-func dbGetResumeInfo(info Template1Info) Template1Info {
+func dbGetResumeInfo(info ResumeInfo) Template1Info {
 	var targetInfo Template1Info
 
 	return targetInfo
+}
+
+// updates the template specified by Template1Info with the new information entered
+func dbUpdateResumeInfo(info Template1Info) {
+
 }

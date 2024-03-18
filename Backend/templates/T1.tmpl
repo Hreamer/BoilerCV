@@ -152,11 +152,11 @@
 \resumeSubHeadingListStart
 
     \resumeProjectHeading
-    {\textbf{Project Name 1} $|$ \emph{React.js, Angular, Vue.js, Django, Flask, Ruby on Rails}}    {}
+    {\textbf{{printf "{%s}" .ProjName}} $|$ \emph{{printf "{%s}}" .ProjTech}}    {}
     \resumeItemListStart
-        \resumeItem {Led the development of a microservices-based e-commerce platform using Node.js, resulting in a 40\% increase in daily transactions within the first quarter.}
-        \resumeItem{Designed and deployed a scalable RESTful API using Django and Django REST Framework, achieving a 30\% improvement in data retrieval speed.}
-        \resumeItem{Implemented a real-time chat feature using WebSocket and Socket.io, enhancing user engagement and reducing response time by 20\%.}
+        \resumeItem {{printf "{%s}" .ProjDesc1}}
+        \resumeItem{{printf "{%s}" .ProjDesc2}}
+        \resumeItem{{printf "{%s}" .ProjDesc3}}
     \resumeItemListEnd
 
     \resumeProjectHeading
