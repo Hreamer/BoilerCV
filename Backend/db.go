@@ -237,18 +237,20 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 
 // Takes in a NewResume struct which contains information needed
 // and creates a DB entry for the resume tied to the user who made it
-func dbCreateResume(template NewResume) {
+func dbCreateResume(template NewResume) error {
 
+	return nil
 }
 
 // Takes a resume ID or info and returns the filled in fields for it
-func dbGetResumeInfo(info ResumeInfo) Template1Info {
+func dbGetResumeInfo(info ResumeInfo) (Template1Info, error) {
 	var targetInfo Template1Info
 
-	return targetInfo
+	return targetInfo, nil
 }
 
 // updates the template specified by Template1Info with the new information entered
-func dbUpdateResumeInfo(info Template1Info) {
+func dbUpdateResumeInfo(info Template1Info) error {
 
+	return nil
 }
