@@ -61,8 +61,9 @@ func main() {
 	http.HandleFunc("/changePassword", changePass)
 	http.HandleFunc("/sendEmail", sendEmail)
 	http.HandleFunc("/createTemplate", createTemplate)
-	http.HandleFunc("/editTemplate", editTemplate)
+	http.HandleFunc("/updatePreview", updatePreview)
 	http.HandleFunc("/getResumeList", getResumeList)
+	http.HandleFunc("/getResumeInfo", getResumeInfo)
 
 	//Start the server on the desired PORT
 	fmt.Println("Sever has started on Port " + port)

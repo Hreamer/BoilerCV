@@ -43,7 +43,7 @@ type Template1Info struct {
 
 var tmpl1 *template.Template
 
-func editTemplate(writer http.ResponseWriter, request *http.Request) {
+func updatePreview(writer http.ResponseWriter, request *http.Request) {
 	var tmplInfo Template1Info
 
 	//Parse the JSON
@@ -105,4 +105,34 @@ func createTemplate(writer http.ResponseWriter, request *http.Request) {
 	dbCreateResume(tmplInfo)
 
 	writer.WriteHeader(http.StatusOK)
+}
+
+// This function is for when the client wants to open a users resume and display
+// the info to the user to edit
+func getResumeInfo(writer http.ResponseWriter, request *http.Request) {
+	//grab the new template info(Name, Username)
+	var tmplInfo ResumeInfo
+
+	//Parse the JSON
+	err := json.NewDecoder(request.Body).Decode(&tmplInfo)
+	if err != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	info, err2 := dbGetResumeInfo(tmplInfo)
+	if err2 != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	//marshall JSON into the packet and return
+	payload, err3 := json.Marshal(info)
+	if err3 != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	writer.WriteHeader(http.StatusOK)
+	writer.Write(payload)
 }
