@@ -15,12 +15,9 @@ type Credentials struct {
 	Password string
 }
 
-type NewResume struct {
+type ResumeInfo struct {
 	Username string
 	Name     string
-}
-
-type ResumeInfo struct {
 }
 
 func dbCheckLogin(creds Credentials) error {
@@ -237,7 +234,9 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 
 // Takes in a NewResume struct which contains information needed
 // and creates a DB entry for the resume tied to the user who made it
-func dbCreateResume(template NewResume) error {
+func dbCreateResume(template ResumeInfo) error {
+
+	//Create Resume in Database will all empty fields
 
 	return nil
 }

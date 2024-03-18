@@ -62,11 +62,17 @@ func editTemplate(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	//grab old file by uuid
+	//open/create file with name of UUID + .tex
+	file, err2 := os.Create("./userTempls/" + tmplInfo.UUID + ".tex")
+	if err2 != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		fmt.Println("Could not create file for user")
+		return
+	}
 
 	//Use struct to fill template
 	//For now we will use Std Out to verify results but this can and should be changed at a later date
-	err = tmpl1.Execute(os.Stdout, tmplInfo)
+	err = tmpl1.Execute(file, tmplInfo)
 	if err != nil {
 		writer.WriteHeader(http.StatusBadRequest)
 		fmt.Println("\nError Executing Template 1")
@@ -78,12 +84,25 @@ func editTemplate(writer http.ResponseWriter, request *http.Request) {
 	//if the compiler fails for any reason return bad status to the frontend
 
 	//Send to DB
+	dbUpdateResumeInfo(tmplInfo)
 
 	//return status to frontend
 	writer.WriteHeader(http.StatusOK)
 }
 
 func createTemplate(writer http.ResponseWriter, request *http.Request) {
+	//grab the new template info(Name, Username)
+	var tmplInfo ResumeInfo
+
+	//Parse the JSON
+	err := json.NewDecoder(request.Body).Decode(&tmplInfo)
+	if err != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	//Create a new resume entry
+	dbCreateResume(tmplInfo)
 
 	writer.WriteHeader(http.StatusOK)
 }
