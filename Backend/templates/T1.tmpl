@@ -116,7 +116,7 @@
 
     \resumeSubheading
     {{ printf "{%s}" .UniName}}{Expected {{.ExpectedGrad}}}
-    {Bachelor of Science in Computer Science (GPA: {{ .Gpa }} / 4.00)}{{printf "{%s , %s}" .UniCity .UniState}}
+    {Bachelor of Science in Computer Science {{ if ne .Gpa "" }} (GPA: {{ .Gpa }} / 4.00){{ end }}}{{printf "{%s , %s}" .UniCity .UniState}}
     \resumeItemListStart
         \resumeItem{\textbf{Relevant Coursework:}  {{.CourseWork}}}
     \resumeItemListEnd
@@ -127,23 +127,38 @@
 \section{Experience}
 \resumeSubHeadingListStart
 
+    {{ if ne .CompName1 "" }}
     \resumeSubheading
     {{printf "{%s}" .CompName1}}{{printf "{%s}" .CompLength}}
     {{printf "{%s}" .CompTitle}}{{printf "{%s , %s}" .CompCity .CompState}}
     \resumeItemListStart
-        \resumeItem{{printf "{%s}" .Description1}}
-        \resumeItem{{printf "{%s}" .Description2}}
-        \resumeItem{{printf "{%s}" .Description3}}
+        {{ if ne .Comp1Description1 "" }}\resumeItem{{printf "{%s}" .Comp1Description1}}{{end}}
+        {{ if ne .Comp1Description2 "" }}\resumeItem{{printf "{%s}" .Comp1Description2}}{{end}}
+        {{ if ne .Comp1Description3 "" }}\resumeItem{{printf "{%s}" .Comp1Description3}}{{end}}
     \resumeItemListEnd
+    {{ end }}
     
+    {{ if ne .CompName2 "" }}
     \resumeSubheading
-    {Company Name 2}{May 20XX -- Aug 20XX}
-    {Software Engineer Intern}{City, State}
+    {{printf "{%s}" .CompName2}}{{printf "{%s}" .CompLength2}}
+    {{printf "{%s}" .CompTitle2}}{{printf "{%s , %s}" .CompCity2 .CompState2}}
     \resumeItemListStart
-        \resumeItem{Designed and implemented responsive user interfaces with Angular, leading to a 15\% improvement in user satisfaction scores.}
-        \resumeItem{Introduced automated testing processes with Jest and Enzyme, increasing test coverage by 30\% and reducing post-release defects by 25\%.}
-        \resumeItem{Contributed to the adoption of agile methodologies, utilizing Jira and Confluence, improving team productivity by 15\% through iterative development cycles.}
+        {{ if ne .Comp2Description1 "" }}\resumeItem{{printf "{%s}" .Comp2Description1}}{{end}}
+        {{ if ne .Comp2Description2 "" }}\resumeItem{{printf "{%s}" .Comp2Description2}}{{end}}
+        {{ if ne .Comp2Description3 "" }}\resumeItem{{printf "{%s}" .Comp2Description3}}{{end}}
     \resumeItemListEnd
+    {{ end }}
+
+    {{ if ne .CompName3 "" }}
+    \resumeSubheading
+    {{printf "{%s}" .CompName3}}{{printf "{%s}" .CompLength3}}
+    {{printf "{%s}" .CompTitle3}}{{printf "{%s , %s}" .CompCity3 .CompState3}}
+    \resumeItemListStart
+        {{ if ne .Comp3Description1 "" }}\resumeItem{{printf "{%s}" .Comp3Description1}}{{end}}
+        {{ if ne .Comp3Description2 "" }}\resumeItem{{printf "{%s}" .Comp3Description2}}{{end}}
+        {{ if ne .Comp3Description3 "" }}\resumeItem{{printf "{%s}" .Comp3Description3}}{{end}}
+    \resumeItemListEnd
+    {{ end }}
 
 \resumeSubHeadingListEnd
 

@@ -23,14 +23,34 @@ type Template1Info struct {
 	ExpectedGrad string
 	Gpa          string
 	CourseWork   string
+
 	CompName1    string
 	CompCity     string
 	CompState    string
 	CompTitle    string
 	CompLength   string
-	Description1 string
-	Description2 string
-	Description3 string
+	Comp1Description1 string
+	Comp1Description2 string
+	Comp1Description3 string
+
+	CompName2    string
+	CompCity2     string
+	CompState2    string
+	CompTitle2    string
+	CompLength2   string
+	Comp2Description1 string
+	Comp2Description2 string
+	Comp2Description3 string
+
+	CompName3    string
+	CompCity3     string
+	CompState3    string
+	CompTitle3    string
+	CompLength3   string
+	Comp3Description1 string
+	Comp3Description2 string
+	Comp3Description3 string
+
 	ProjName     string
 	ProjTech     string
 	ProjDesc1    string
