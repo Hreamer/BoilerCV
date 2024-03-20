@@ -12,7 +12,7 @@ const Preview = ({ openedResume }) => {
   return (
     <div className="preview">
       <h1>Preview</h1>
-      <iframe src={pdfFile} className="previewWindow" title="PDF Viewer" />
+      <iframe src="http://localhost:3333/userTempls/plswork.pdf" className="previewWindow" title="PDF Viewer" />
       <div className="button-grid">
         <div className="button-item">
           <ExportLatex />

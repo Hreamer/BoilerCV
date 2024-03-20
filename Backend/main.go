@@ -50,10 +50,13 @@ func main() {
 	//Start Server Code
 	port := ":3333"
 
-	//HTTP server handler functions
+	//HTTP website file server handler functions
 	buildPath := path.Clean("client/build")
 	http.Handle("/", http.FileServer(http.Dir(buildPath)))
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("client/build/static"))))
+
+	//HTTP userTempls file server
+	http.Handle("/userTempls/", http.StripPrefix("/userTempls/", http.FileServer(http.Dir("./userTempls"))))
 
 	//API endpoints
 	http.HandleFunc("/checkLogin", checkLogin)
