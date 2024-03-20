@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"os/exec"
 	"text/template"
 )
 
 type Template1Info struct {
 	TemplateNum  int
+	TemplateName string
 	Username     string
 	UUID         string
 	FName        string
@@ -24,29 +26,29 @@ type Template1Info struct {
 	Gpa          string
 	CourseWork   string
 
-	CompName1    string
-	CompCity     string
-	CompState    string
-	CompTitle    string
-	CompLength   string
+	CompName1         string
+	CompCity          string
+	CompState         string
+	CompTitle         string
+	CompLength        string
 	Comp1Description1 string
 	Comp1Description2 string
 	Comp1Description3 string
 
-	CompName2    string
-	CompCity2     string
-	CompState2    string
-	CompTitle2    string
-	CompLength2   string
+	CompName2         string
+	CompCity2         string
+	CompState2        string
+	CompTitle2        string
+	CompLength2       string
 	Comp2Description1 string
 	Comp2Description2 string
 	Comp2Description3 string
 
-	CompName3    string
-	CompCity3     string
-	CompState3    string
-	CompTitle3    string
-	CompLength3   string
+	CompName3         string
+	CompCity3         string
+	CompState3        string
+	CompTitle3        string
+	CompLength3       string
 	Comp3Description1 string
 	Comp3Description2 string
 	Comp3Description3 string
@@ -83,7 +85,9 @@ func updatePreview(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	//open/create file with name of UUID + .tex
-	file, err2 := os.Create("./userTempls/" + tmplInfo.UUID + ".tex")
+	fileName := fmt.Sprintf("./userTempls/%s-%s.tex", tmplInfo.Username, tmplInfo.TemplateName)
+	file, err2 := os.Create(fileName)
+	defer file.Close()
 	if err2 != nil {
 		writer.WriteHeader(http.StatusBadRequest)
 		fmt.Println("Could not create file for user")
@@ -100,8 +104,15 @@ func updatePreview(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	//Take the result and turn to PDF
-
-	//if the compiler fails for any reason return bad status to the frontend
+	//pdflatex -output-directory="./userTempls" -jobname="username-templname" filename
+	jobName := fmt.Sprintf("-jobname=\"%s-%s\"", tmplInfo.Username, tmplInfo.TemplateName)
+	cmd := exec.Command("pdflatex", "-output-directory=\"./userTempls\"", jobName, fileName)
+	_, err = cmd.Output()
+	if err != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		fmt.Println("\nError Compiling Template")
+		return
+	}
 
 	//Send to DB
 	dbUpdateResumeInfo(tmplInfo)
