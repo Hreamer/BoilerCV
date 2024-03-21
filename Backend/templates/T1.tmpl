@@ -19,8 +19,6 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
-\input{glyphtounicode}
-
 
 
 % Custom font
@@ -131,33 +129,39 @@
     \resumeSubheading
     {{printf "{%s}" .CompName1}}{{printf "{%s}" .CompLength}}
     {{printf "{%s}" .CompTitle}}{{printf "{%s , %s}" .CompCity .CompState}}
+    {{ if or (ne .Comp1Description1 "") (ne .Comp1Description2 "") (ne .Comp1Description3 "") }}
     \resumeItemListStart
         {{ if ne .Comp1Description1 "" }}\resumeItem{{printf "{%s}" .Comp1Description1}}{{end}}
         {{ if ne .Comp1Description2 "" }}\resumeItem{{printf "{%s}" .Comp1Description2}}{{end}}
         {{ if ne .Comp1Description3 "" }}\resumeItem{{printf "{%s}" .Comp1Description3}}{{end}}
     \resumeItemListEnd
     {{ end }}
+    {{ end }}
     
     {{ if ne .CompName2 "" }}
     \resumeSubheading
     {{printf "{%s}" .CompName2}}{{printf "{%s}" .CompLength2}}
     {{printf "{%s}" .CompTitle2}}{{printf "{%s , %s}" .CompCity2 .CompState2}}
+    {{ if or (ne .Comp2Description1 "") (ne .Comp2Description2 "") (ne .Comp2Description3 "") }}
     \resumeItemListStart
         {{ if ne .Comp2Description1 "" }}\resumeItem{{printf "{%s}" .Comp2Description1}}{{end}}
         {{ if ne .Comp2Description2 "" }}\resumeItem{{printf "{%s}" .Comp2Description2}}{{end}}
         {{ if ne .Comp2Description3 "" }}\resumeItem{{printf "{%s}" .Comp2Description3}}{{end}}
     \resumeItemListEnd
     {{ end }}
+    {{ end }}
 
     {{ if ne .CompName3 "" }}
     \resumeSubheading
     {{printf "{%s}" .CompName3}}{{printf "{%s}" .CompLength3}}
     {{printf "{%s}" .CompTitle3}}{{printf "{%s , %s}" .CompCity3 .CompState3}}
+    {{ if or (ne .Comp3Description1 "") (ne .Comp3Description2 "") (ne .Comp3Description3 "") }}
     \resumeItemListStart
         {{ if ne .Comp3Description1 "" }}\resumeItem{{printf "{%s}" .Comp3Description1}}{{end}}
         {{ if ne .Comp3Description2 "" }}\resumeItem{{printf "{%s}" .Comp3Description2}}{{end}}
         {{ if ne .Comp3Description3 "" }}\resumeItem{{printf "{%s}" .Comp3Description3}}{{end}}
     \resumeItemListEnd
+    {{ end }}
     {{ end }}
 
 \resumeSubHeadingListEnd
