@@ -27,25 +27,23 @@ const onDelete = (resumeID) => {
   }
 };
 
+const resumeList = JSON.parse(localStorage.getItem("resumes"));
+
 const MyResumes = ({ onOpenResume }) => {
   return (
     <div className="my-resumes">
       <h1>My Resumes</h1>
       <div className="icon-grid">
-        <ResumeCard
-          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-          resumeName="Resume 1"
-          onOpen={() => onOpenResume("1")}
-          onRename={() => onRename()}
-          onDelete={() => onDelete()}
-        />
-        <ResumeCard
-          imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
-          resumeName="Resume 2"
-          onOpen={() => onOpenResume("2")}
-          onRename={() => onRename()}
-          onDelete={() => onDelete()}
-        />
+        {localStorage.getItem("resumes") !== "{}" && resumeList.map(name => (
+          <ResumeCard
+            imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
+            key={name} // Using name as the key since it's unique
+            resumeName={name}
+            onOpen={() => onOpenResume(name)}
+            onRename={() => onRename()}
+            onDelete={() => onDelete()}
+          />
+        ))}
       </div>
     </div>
   );
