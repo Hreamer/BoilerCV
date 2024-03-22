@@ -151,20 +151,14 @@ func getResumeInfo(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	// info, err2 := dbGetResumeInfo(tmplInfo)
-	// if err2 != nil {
-	// 	writer.WriteHeader(http.StatusBadRequest)
-	// 	return
-	// }
+	info, err2 := dbGetResumeInfo(tmplInfo)
+	if err2 != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
 	//marshall JSON into the packet and return
-	// payload, err3 := json.Marshal(info)
-	// if err3 != nil {
-	// 	writer.WriteHeader(http.StatusBadRequest)
-	// 	return
-	// }
-
-	payload, err3 := json.Marshal([]string{"Test 1", "Test 2", "Pls Work"})
+	payload, err3 := json.Marshal(info)
 	if err3 != nil {
 		writer.WriteHeader(http.StatusBadRequest)
 		return

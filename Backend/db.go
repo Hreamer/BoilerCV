@@ -229,7 +229,14 @@ func dbCheckUserNameTaken(creds Credentials) error {
 
 func getResumeList(writer http.ResponseWriter, request *http.Request) {
 
+	payload, err3 := json.Marshal([]string{"Test 1", "Test 2", "Pls Work"})
+	if err3 != nil {
+		writer.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
 	writer.WriteHeader(http.StatusOK)
+	writer.Write(payload)
 }
 
 // Takes in a NewResume struct which contains information needed
