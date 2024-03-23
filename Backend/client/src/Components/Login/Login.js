@@ -6,7 +6,7 @@ import { gapi } from 'gapi-script';
 
 const clientId = "262411179008-aasuqij7f6hamq93qbp7s9umsmtac3m7.apps.googleusercontent.com";
 
-const resumeList = [];
+
 
 const Login = ({ onClose }) => {
   const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ const Login = ({ onClose }) => {
   const handleLogin = () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-  
+    const resumeList = [];
     fetch("http://localhost:3333/checkLogin", {
       method: "POST",
       headers: {
@@ -26,7 +26,6 @@ const Login = ({ onClose }) => {
         if (response.ok) {
           // If the response is successful, redirect to userhub
           localStorage.setItem("username", username);
-          const url = "/#/userhub";
           fetch("http://localhost:3333/getResumeList", {
             method: "POST",
             headers: {
@@ -44,8 +43,11 @@ const Login = ({ onClose }) => {
               resumeList.push(resumeData[key]);
             }
             localStorage.setItem("resumes", JSON.stringify(resumeList));
+            const url = "/#/userhub";
+            window.location = url;
+            window.location.reload();
           }).catch(error => console.error('Error fetching data:', error));
-          window.location = url;
+          
         } else {
           // If there's an error response, set the error state
           setError("Error: Refused.");

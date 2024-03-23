@@ -15,6 +15,7 @@ const NavBar = () => {
     localStorage.removeItem("username");
     const url = "/";
     window.location = url;
+    localStorage.setItem("resumes", "[]");
   }
 
   return (

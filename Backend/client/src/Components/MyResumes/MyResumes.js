@@ -18,30 +18,32 @@ const onRename = (resumeID) => {
   }
 };
 
-const onDelete = (resumeID) => {
-  const confirmation = window.confirm("Delete resume?");
-  if (confirmation) {
-    alert("Will delete.");
-  } else {
-    alert("Will not delete.");
-  }
-};
-
-const resumeList = JSON.parse(localStorage.getItem("resumes"));
-
 const MyResumes = ({ onOpenResume }) => {
+  const [resumeList, setResumeList] = React.useState(JSON.parse(localStorage.getItem("resumes")) || []);
+
+  const onDelete = (resumeID) => {
+    const confirmation = window.confirm("Delete resume?");
+    if (confirmation) {
+      const updatedResumeList = resumeList.filter(name => name !== resumeID); // Remove the selected resume from the array
+      setResumeList(updatedResumeList); // Update the state with the new resume list
+      localStorage.setItem("resumes", JSON.stringify(updatedResumeList)); // Update localStorage
+    } else {
+      alert("Will not delete.");
+    }
+  };
+
   return (
     <div className="my-resumes">
       <h1>My Resumes</h1>
       <div className="icon-grid">
-        {localStorage.getItem("resumes") !== "{}" && resumeList.map(name => (
+        {resumeList.length > 0 && resumeList.map(name => (
           <ResumeCard
             imageUrl="https://d25zcttzf44i59.cloudfront.net/academic-word-resume-template.png"
             key={name} // Using name as the key since it's unique
             resumeName={name}
             onOpen={() => onOpenResume(name)}
             onRename={() => onRename()}
-            onDelete={() => onDelete()}
+            onDelete={() => onDelete(name)}
           />
         ))}
       </div>
