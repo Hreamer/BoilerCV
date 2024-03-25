@@ -25,9 +25,7 @@ type Template1Info struct {
 	UniState     string
 	ExpectedGrad string
 	Gpa          string
-	CourseWork1  string
-	CourseWork2  string
-	CourseWork3  string
+	CourseWork   string
 	Honors1      string
 	Honors2      string
 	Honors3      string
@@ -75,29 +73,33 @@ type Template1Info struct {
 	SkillDesc3 string
 
 	//Project Information
-	ProjName    string
-	ProjStart   string
-	ProjEnd		string
-	ProjDesc1   string
-	ProjBullet1 string
-	ProjBullet2 string
-	ProjBullet3 string
+	Proj1Name    string
+	Proj1Start   string
+	Proj1End     string
+	Proj1Desc    string
+	Proj1Bullet1 string
+	Proj1Bullet2 string
+	Proj1Bullet3 string
 
 	Proj2Name    string
 	Proj2Start   string
-	Proj2End	 string
-	Proj2Desc1   string
+	Proj2End     string
+	Proj2Desc    string
 	Proj2Bullet1 string
 	Proj2Bullet2 string
 	Proj2Bullet3 string
 
 	Proj3Name    string
 	Proj3Start   string
-	Proj3End	 string
-	Proj3Desc1   string
+	Proj3End     string
+	Proj3Desc    string
 	Proj3Bullet1 string
 	Proj3Bullet2 string
 	Proj3Bullet3 string
+
+	Languages    string
+	Technologies string
+	Concepts     string
 }
 
 var tmpl1 *template.Template
