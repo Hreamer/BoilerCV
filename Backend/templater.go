@@ -14,8 +14,7 @@ type Template1Info struct {
 	TemplateName string
 	Username     string
 	UUID         string
-	FName        string
-	LName        string
+	Name         string
 	Address      string
 	PhoneNum     string
 	Email        string
