@@ -170,27 +170,41 @@
 \section{Projects}
 \resumeSubHeadingListStart
 
+    {{ if ne .Proj1Name "" }}
     \resumeProjectHeading
-    {\textbf{{printf "{%s}"}    {}
+    {\textbf{{printf "{%s}}" .Proj1Name}}    {}
+    {{ if or (ne .Proj1Bullet1 "") (ne .Proj1Bullet2 "") (ne .Proj1Bullet3 "") }}
     \resumeItemListStart
-        \resumeItem {{printf "{%s}" .ProjDesc1}}
-        \resumeItem{{printf "{%s}" .ProjDesc2}}
-        \resumeItem{{printf "{%s}" .ProjDesc3}}
+        \resumeItem {{printf "{%s}" .Proj1Bullet1}}
+        \resumeItem{{printf "{%s}" .Proj1Bullet2}}
+        \resumeItem{{printf "{%s}" .Proj1Bullet3}}
     \resumeItemListEnd
+    {{ end }}
+    {{ end }}
 
+    {{ if ne .Proj2Name "" }}
     \resumeProjectHeading
-    {\textbf{Project Name 2}}{}
+    {\textbf{{printf "{%s}}" .Proj2Name}}    {}
+    {{ if or (ne .Proj2Bullet1 "") (ne .Proj2Bullet2 "") (ne .Proj2Bullet3 "") }}
     \resumeItemListStart
-        \resumeItem{Developed a data visualization dashboard using D3.js, providing stakeholders with real-time insights and improving decision-making processes.}
-        \resumeItem{Built a CI/CD pipeline using Jenkins and Docker, reducing deployment time by 40\% and ensuring consistent and reliable releases.}
+        \resumeItem {{printf "{%s}" .Proj2Bullet1}}
+        \resumeItem{{printf "{%s}" .Proj2Bullet2}}
+        \resumeItem{{printf "{%s}" .Proj2Bullet3}}
     \resumeItemListEnd
+    {{ end }}
+    {{ end }}
 
+    {{ if ne .Proj3Name "" }}
     \resumeProjectHeading
-    {\textbf{Project Name 3}}{}
+    {\textbf{{printf "{%s}}" .Proj3Name}}    {}
+    {{ if or (ne .Proj3Bullet1 "") (ne .Proj3Bullet2 "") (ne .Proj3Bullet3 "") }}
     \resumeItemListStart
-        \resumeItem{Contributed to an open-source project on GitHub, collaborating with a global community and achieving 500+ stars and 50 forks.}
-        \resumeItem{Implemented automated testing for a critical module using Selenium, reducing regression bugs by 30\% and ensuring a more stable release cycle.}
+        \resumeItem {{printf "{%s}" .Proj3Bullet1}}
+        \resumeItem{{printf "{%s}" .Proj3Bullet2}}
+        \resumeItem{{printf "{%s}" .Proj3Bullet3}}
     \resumeItemListEnd
+    {{ end }}
+    {{ end }}
 
 \resumeSubHeadingListEnd
 

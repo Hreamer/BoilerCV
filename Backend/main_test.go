@@ -83,6 +83,7 @@ func TestTemplate1(t *testing.T) {
 	tmpl1, err := template.New("T1.tmpl").ParseFiles("./templates/T1.tmpl")
 
 	if err != nil {
+		fmt.Println(err)
 		t.Error("Error parsing template 1")
 		return
 	}
@@ -137,11 +138,12 @@ func TestTemplate1(t *testing.T) {
 		Comp3Description2: "",
 		Comp3Description3: "",
 
-		ProjName:     "BoilerCV",
-		ProjTech:     "Go, Javascript",
-		ProjDesc1:    "Online Latex Resume Generator",
-		ProjDesc2:    "Go Backend",
-		ProjDesc3:    "Javascript Frontend",
+		Proj1Name:    "BoilerCV",
+		Proj1Desc:    "Online Latex Resume Generator",
+		Proj1Bullet1: "Go Backend",
+		Proj1Bullet2: "Javascript Frontend",
+		Proj1Bullet3: "Great teammates :)",
+
 		Languages:    "Rust, Go, Python, C++, C",
 		Technologies: "Docker, Unix, VSCode",
 		Concepts:     "Compilers, Operating Systems, Cloud Computing",
