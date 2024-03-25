@@ -42,10 +42,15 @@ const EducationInformation = forwardRef((props, ref) => {
           <label htmlFor="school-name">School Name:</label>
           <input type="text" id="school-name" />
         </div>
-        {/* Location */}
+        {/* City */}
         <div className="input-item">
-          <label htmlFor="school-name">Location:</label>
-          <input type="text" id="school-name" />
+          <label htmlFor="school-city">City:</label>
+          <input type="text" id="school-city" />
+        </div>
+        {/* State */}
+        <div className="input-item">
+          <label htmlFor="school-state">State:</label>
+          <input type="text" id="school-state" />
         </div>
       </div>
       <div className="input-group">
