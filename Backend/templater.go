@@ -18,13 +18,27 @@ type Template1Info struct {
 	Address      string
 	PhoneNum     string
 	Email        string
+
+	//Education Info
 	UniName      string
 	UniCity      string
 	UniState     string
 	ExpectedGrad string
 	Gpa          string
-	CourseWork   string
+	CourseWork1  string
+	CourseWork2  string
+	CourseWork3  string
+	Honors1      string
+	Honors2      string
+	Honors3      string
+	Cert1        string
+	Cert2        string
+	Cert3        string
+	Club1        string
+	Club2        string
+	Club3        string
 
+	//Work Information
 	CompName1         string
 	CompCity          string
 	CompState         string
@@ -52,14 +66,38 @@ type Template1Info struct {
 	Comp3Description2 string
 	Comp3Description3 string
 
-	ProjName     string
-	ProjTech     string
-	ProjDesc1    string
-	ProjDesc2    string
-	ProjDesc3    string
-	Languages    string
-	Technologies string
-	Concepts     string
+	//Skills
+	Title1     string
+	SkillDesc1 string
+	Title2     string
+	SkillDesc2 string
+	Title3     string
+	SkillDesc3 string
+
+	//Project Information
+	ProjName    string
+	ProjStart   string
+	ProjEnd		string
+	ProjDesc1   string
+	ProjBullet1 string
+	ProjBullet2 string
+	ProjBullet3 string
+
+	Proj2Name    string
+	Proj2Start   string
+	Proj2End	 string
+	Proj2Desc1   string
+	Proj2Bullet1 string
+	Proj2Bullet2 string
+	Proj2Bullet3 string
+
+	Proj3Name    string
+	Proj3Start   string
+	Proj3End	 string
+	Proj3Desc1   string
+	Proj3Bullet1 string
+	Proj3Bullet2 string
+	Proj3Bullet3 string
 }
 
 var tmpl1 *template.Template
