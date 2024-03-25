@@ -239,7 +239,7 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 	writer.Write(payload)
 }
 
-// Takes in a NewResume struct which contains information needed
+// Takes in a ResumeInfo struct which contains information needed
 // and creates a DB entry for the resume tied to the user who made it
 func dbCreateResume(template ResumeInfo) error {
 
@@ -248,7 +248,7 @@ func dbCreateResume(template ResumeInfo) error {
 	return nil
 }
 
-// Takes a resume ID or info and returns the filled in fields for it
+// Takes a resume name and username and returns the resume from that user with that name's info
 func dbGetResumeInfo(info ResumeInfo) (Template1Info, error) {
 	var targetInfo Template1Info
 
