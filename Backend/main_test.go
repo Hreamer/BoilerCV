@@ -83,6 +83,7 @@ func TestTemplate1(t *testing.T) {
 	tmpl1, err := template.New("T1.tmpl").ParseFiles("./templates/T1.tmpl")
 
 	if err != nil {
+		fmt.Println(err)
 		t.Error("Error parsing template 1")
 		return
 	}
