@@ -2,16 +2,28 @@ import React from "react";
 import "./MyResumes.css";
 import ResumeCard from "./ResumeCard";
 
-const onRename = (resumeID) => {
+const onRename = (oldName) => {
+  let resumeList = localStorage.getItem("resumes");
+  resumeList = resumeList ? JSON.parse(resumeList) : [];
   const confirmation = window.confirm("Rename resume?");
   if (confirmation) {
     var newName = "";
     do {
       newName = prompt("Enter a new name:");
     } while (newName === "")
-
+    const index = resumeList.indexOf(oldName);
+    if (index !== -1) {
+      resumeList[index] = newName;
+      localStorage.setItem("resumes", JSON.stringify(resumeList));
+      if (newName !== null) {
+        alert("Will rename to " + newName + "!");
+      }
+    } else {
+      alert("Resume not found in the list.");
+    }
     if (newName !== null) {
       alert("Will rename to " + newName + "!");
+      window.location.reload();
     }
   } else {
     alert("Will not rename.");
@@ -42,7 +54,7 @@ const MyResumes = ({ onOpenResume }) => {
             key={name} // Using name as the key since it's unique
             resumeName={name}
             onOpen={() => onOpenResume(name)}
-            onRename={() => onRename()}
+            onRename={() => onRename(name)}
             onDelete={() => onDelete(name)}
           />
         ))}
