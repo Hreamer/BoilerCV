@@ -1,17 +1,9 @@
 import React, { useState } from "react";
 import "./PersonalInformation.css";
 
-const PersonalInformation = () => {
+const PersonalInformation = (props) => {
+  const { personalData, setPersonalData } = props;
   const [socialMedia, setSocialMedia] = useState([""]);
-  const [personalData, setPersonalData] = useState({
-    name: "",
-    phoneNumber: "",
-    city: "",
-    state: "",
-    address: "",
-    socialMediaLinks: [""],
-    objectiveStatement: ""
-  });
 
   const addTextbox = (setState) => {
     setState((prev) => [...prev, ""]);
@@ -27,6 +19,14 @@ const PersonalInformation = () => {
         }
         return prev;
       });
+      setPersonalData(prevState => {
+        const updatedSocialMediaLinks = [...prevState.socialMediaLinks];
+        updatedSocialMediaLinks.splice(index, 1);
+        return {
+          ...prevState,
+          socialMediaLinks: updatedSocialMediaLinks
+        };
+      });
     }
   };
 
@@ -36,6 +36,19 @@ const PersonalInformation = () => {
       updated[index] = value;
       return updated;
     });
+    if (setState === setSocialMedia) {
+      setSocialMedia(prevSocialMedia => {
+        const updatedSocialMedia = [...prevSocialMedia];
+        updatedSocialMedia[index] = value;
+  
+        setPersonalData(prevState => ({
+          ...prevState,
+          socialMediaLinks: updatedSocialMedia
+        }));
+  
+        return updatedSocialMedia;
+      });
+    }
   };
 
   const handleInputChange = (e, field) => {
@@ -103,12 +116,14 @@ const PersonalInformation = () => {
                 />
               </div>
             ))}
-            <button
-              className="plus-button"
-              onClick={() => addTextbox(setSocialMedia)}
-            >
-              +
-            </button>
+            {socialMedia.length < 3 && (
+              <button
+                className="plus-button"
+                onClick={() => addTextbox(setSocialMedia)}
+              >
+                +
+              </button>
+            )}
             {socialMedia.length > 1 && (
               <button
                 className="minus-button"

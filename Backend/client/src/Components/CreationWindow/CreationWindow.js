@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./CreationWindow.css";
 import EducationInformation from "./Sections/EducationInformation";
 import PersonalInformation from "./Sections/PersonalInformation";
@@ -7,7 +7,7 @@ import Projects from "./Sections/Projects";
 import Skills from "./Sections/Skills";
 
 
-const CreationWindow = ({ onClose }) => {  
+const CreationWindow = ({ onClose, personalData, setPersonalData }) => {  
   const personalRef = useRef(null);
   const educationRef = useRef(null);
   const workRef = useRef(null);
@@ -61,7 +61,7 @@ const CreationWindow = ({ onClose }) => {
           </ul>
         </div>
         <div className="sections-container">
-          <PersonalInformation ref={personalRef} />
+          <PersonalInformation ref={personalRef} personalData={personalData} setPersonalData={setPersonalData} />
           <EducationInformation ref={educationRef}/>
           <WorkInformation ref={workRef} />
           <Skills ref={skillsRef} />
