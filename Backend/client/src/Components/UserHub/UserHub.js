@@ -31,39 +31,41 @@ const UserHub = () => {
   const onCreate = (templateID) => {
     resumeList = localStorage.getItem("resumes");
     resumeList = resumeList ? JSON.parse(resumeList) : [];
-    console.log(resumeList);
     var Name = "";
     const username = localStorage.getItem("username");
     do {
       Name = prompt("Enter a resume name:");
-    } while (Name === "")
+      if (resumeList.indexOf(Name) !== -1) {
+        alert("Error: Duplicate Resume Detected");
+      }
+    } while (Name === "" || resumeList.indexOf(Name) !== -1)
 
     if (Name !== null) {
       alert("Will name to " + Name + "!");
+      resumeList.push(Name);
+      localStorage.setItem("resumes", JSON.stringify(resumeList));
+      fetch("http://localhost:3333/createTemplate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, Name }),
+      })
+      .then((response) => {
+        if (response.ok) {
+          // If the response is successful
+          
+        } else {
+          // If there's an error response, set the error state
+          
+        }
+      })
+      .catch((error) => {
+        // If there's a network error, set the error state
+        
+      });
+      window.location.reload();
     }
-    resumeList.push(Name);
-    localStorage.setItem("resumes", JSON.stringify(resumeList));
-    fetch("http://localhost:3333/createTemplate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, Name }),
-    })
-    .then((response) => {
-      if (response.ok) {
-        // If the response is successful
-        
-      } else {
-        // If there's an error response, set the error state
-        
-      }
-    })
-    .catch((error) => {
-      // If there's a network error, set the error state
-      
-    });
-    window.location.reload();
   };
 
   return (
