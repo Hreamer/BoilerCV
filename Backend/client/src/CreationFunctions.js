@@ -1,14 +1,14 @@
 
 const handleUpdate = () => {
     const Username = localStorage.getItem("username");
-    const ResumeName = localStorage.getItem("templateID");
+    const Name = localStorage.getItem("templateID");
 
     fetch("http://localhost:3333/updatePreview", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ Username, ResumeName }),
+      body: JSON.stringify({ Username, Name }),
     })
     .then((response) => {
         if (response.ok) {
