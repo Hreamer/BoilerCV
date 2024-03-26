@@ -12,6 +12,15 @@ resumeList = resumeList ? JSON.parse(resumeList) : [];
 const UserHub = () => {
   const [openedResume, setOpenedResume] = useState(null);
   const [showCreationWindow, setShowCreationWindow] = useState(false);
+  const [personalData, setPersonalData] = useState({
+    name: "",
+    phoneNumber: "",
+    city: "",
+    state: "",
+    address: "",
+    socialMediaLinks: [""],
+    objectiveStatement: ""
+  });
 
   const openCreationWindow = (templateID) => {
     setShowCreationWindow(true);
@@ -65,11 +74,13 @@ const UserHub = () => {
           <CreateResume onCreate={onCreate}/>
           <MyResumes onOpenResume={openCreationWindow} />
           {showCreationWindow && (
-            <CreationWindow onClose={() => setShowCreationWindow(false)} />
+            <CreationWindow onClose={() => setShowCreationWindow(false)} 
+            personalData={personalData} setPersonalData={setPersonalData} />
           )}
         </div>
         <div className="preview-container">
-          <Preview data-testid="preview" openedResume={openedResume} />
+          <Preview data-testid="preview" openedResume={openedResume}
+          personalData={personalData} />
         </div>
       </div>
     </div>
