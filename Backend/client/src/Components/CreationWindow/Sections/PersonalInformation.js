@@ -1,8 +1,17 @@
-import React, { forwardRef, useState } from "react";
+import React, { useState } from "react";
 import "./PersonalInformation.css";
 
-const PersonalInformation = forwardRef((props, ref) => {
+const PersonalInformation = () => {
   const [socialMedia, setSocialMedia] = useState([""]);
+  const [personalData, setPersonalData] = useState({
+    name: "",
+    phoneNumber: "",
+    city: "",
+    state: "",
+    address: "",
+    socialMediaLinks: [""],
+    objectiveStatement: ""
+  });
 
   const addTextbox = (setState) => {
     setState((prev) => [...prev, ""]);
@@ -29,28 +38,36 @@ const PersonalInformation = forwardRef((props, ref) => {
     });
   };
 
+  const handleInputChange = (e, field) => {
+    const { value } = e.target;
+    setPersonalData(prevState => ({
+      ...prevState,
+      [field]: value
+    }));
+  };
+
   return (
-    <div ref={ref} className="section-container">
+    <div className="section-container">
       {/* Personal Information */}
       <h2>Personal Information</h2>
       <div className="input-group">
         <div className="input-item">
           <label htmlFor="name">Name:</label>
-          <input type="text" id="name" style={{ marginRight: "10px" }} />
+          <input type="text" id="name" style={{ marginRight: "10px" }} onChange={(e) => handleInputChange(e, 'name')} />
         </div>
         <div className="input-item">
           <label htmlFor="phone-number">Phone #:</label>
-          <input type="text" id="phone-number" />
+          <input type="text" id="phone-number" onChange={(e) => handleInputChange(e, 'phoneNumber')} />
         </div>
         <div className="input-item">
           <label htmlFor="city">City:</label>
-          <input type="text" id="city" style={{ marginRight: "10px" }} />
+          <input type="text" id="city" style={{ marginRight: "10px" }} onChange={(e) => handleInputChange(e, 'city')} />
         </div>
       </div>
       <div className="input-group">
         <div className="input-item">
           <label htmlFor="state">State:</label>
-          <input type="text" id="state" style={{ marginRight: "10px" }} />
+          <input type="text" id="state" style={{ marginRight: "10px" }} onChange={(e) => handleInputChange(e, 'state')} />
         </div>
         <div className="input-item" style={{ marginRight: "65px" }}>
           <label htmlFor="address">Address:</label>
@@ -58,6 +75,7 @@ const PersonalInformation = forwardRef((props, ref) => {
             type="text"
             id="address"
             style={{ width: "373px", marginRight: "9px" }}
+            onChange={(e) => handleInputChange(e, 'address')}
           />
         </div>
       </div>
@@ -116,6 +134,7 @@ const PersonalInformation = forwardRef((props, ref) => {
                 style={{ color: "black" }}
                 type="text"
                 id="obj-statement"
+                onChange={(e) => handleInputChange(e, 'objectiveStatement')}
               />
             </div>
           </div>
@@ -123,6 +142,6 @@ const PersonalInformation = forwardRef((props, ref) => {
       </div>
     </div>
   );
-});
+};
 
 export default PersonalInformation;

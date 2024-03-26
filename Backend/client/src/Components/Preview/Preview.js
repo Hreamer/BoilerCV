@@ -5,12 +5,10 @@ import ExportDocx from "../ExportDocx/ExportDocx";
 import SendEmail from "../SendEmail/SendEmail";
 import dummyPDF from "./dummy.pdf";
 import dummy2PDF from "./dummy2.pdf";
-// import handleUpdate from "../../CreationFunctions.js";
+
 
 const Preview = ({ openedResume }) => {
   const pdfFile = openedResume === "1" ? dummyPDF : dummy2PDF;
-
-
 
   return (
     <div className="preview">

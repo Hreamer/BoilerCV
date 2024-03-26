@@ -89,25 +89,6 @@ const EducationInformation = forwardRef((props, ref) => {
                 />
               </div>
             ))}
-            <button
-              className="plus-button"
-              onClick={() => addTextbox(setRelevantCoursework)}
-            >
-              +
-            </button>
-            {relevantCoursework.length > 1 && (
-              <button
-                className="minus-button"
-                onClick={() =>
-                  removeTextbox(
-                    relevantCoursework.length - 1,
-                    setRelevantCoursework
-                  )
-                }
-              >
-                -
-              </button>
-            )}
           </div>
           {/* Honors and Scholarships Textbox */}
           <div>
