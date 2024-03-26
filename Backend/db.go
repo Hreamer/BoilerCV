@@ -244,6 +244,44 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 func dbCreateResume(template ResumeInfo) error {
 
 	//Create Resume in Database will all empty fields
+	ctx := context.Background()
+	var err error
+
+	//check if database is initialized
+	if db == nil {
+		err = errors.New("dbCreateResume: db is null")
+		return err
+	}
+
+	// Check if database is alive.
+	err = db.PingContext(ctx)
+	if err != nil {
+		return err
+	}
+
+	tsql := `
+		INSERT INTO BoilerCVdb.dbo.resumes (TemplateName, Username, UUID) VALUES (@TEMPLATENAME, @USERNAME, NEWID());
+		select isNull(SCOPE_IDENTITY(), -1);
+		`
+	//getting the query ready to be edited via the call
+	stmt, err := db.Prepare(tsql)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	//executing the call
+	row := stmt.QueryRowContext(
+		ctx,
+		sql.Named("TEMPLATENAME", template.Name),
+		sql.Named("USERNAME", template.Username))
+
+	//Check the returned row for name
+	var test string
+	err = row.Scan(&test)
+	if err != nil {
+		return errors.New("dbCreateResume failed")
+	}
 
 	return nil
 }

@@ -23,23 +23,23 @@ const UserHub = () => {
     resumeList = localStorage.getItem("resumes");
     resumeList = resumeList ? JSON.parse(resumeList) : [];
     console.log(resumeList);
-    var ResumeName = "";
+    var Name = "";
     const username = localStorage.getItem("username");
     do {
-      ResumeName = prompt("Enter a resume name:");
-    } while (ResumeName === "")
+      Name = prompt("Enter a resume name:");
+    } while (Name === "")
 
-    if (ResumeName !== null) {
-      alert("Will name to " + ResumeName + "!");
+    if (Name !== null) {
+      alert("Will name to " + Name + "!");
     }
-    resumeList.push(ResumeName);
+    resumeList.push(Name);
     localStorage.setItem("resumes", JSON.stringify(resumeList));
     fetch("http://localhost:3333/createTemplate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, ResumeName }),
+      body: JSON.stringify({ username, Name }),
     })
     .then((response) => {
       if (response.ok) {
