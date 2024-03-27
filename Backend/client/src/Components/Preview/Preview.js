@@ -7,7 +7,7 @@ import dummyPDF from "./dummy.pdf";
 import dummy2PDF from "./dummy2.pdf";
 
 
-const Preview = ({ openedResume, personalData, educationData, skillsData  }) => {
+const Preview = ({ openedResume, personalData, educationData, skillsData, projectData, workData  }) => {
   const pdfFile = openedResume === "1" ? dummyPDF : dummy2PDF;
 
   const handleUpdate = () => {
@@ -38,10 +38,10 @@ const Preview = ({ openedResume, personalData, educationData, skillsData  }) => 
       const Club3         = "";
     
       //Work Information
-      const CompName1          = "";
-      const CompCity           = "";
+      const CompName1          = workData.company;
+      const CompCity           = workData.location;
       const CompState          = "";
-      const CompTitle          = "";
+      const CompTitle          = workData.role;
       const CompLength         = "";
       const Comp1Description1  = "";
       const Comp1Description2  = "";
@@ -74,10 +74,10 @@ const Preview = ({ openedResume, personalData, educationData, skillsData  }) => 
       const SkillDesc3  = "";
     
       //Project Information
-      const Proj1Name     = "";
+      const Proj1Name     = projectData.name;
       const Proj1Start    = "";
       const Proj1End      = "";
-      const Proj1Desc     = "";
+      const Proj1Desc     = projectData.description;
       const Proj1Bullet1  = "";
       const Proj1Bullet2  = "";
       const Proj1Bullet3  = "";

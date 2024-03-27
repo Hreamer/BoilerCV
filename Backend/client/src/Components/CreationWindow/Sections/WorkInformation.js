@@ -2,6 +2,7 @@ import React, { forwardRef, useState } from "react";
 import "./WorkInformation.css";
 
 const WorkInformation = forwardRef((props, ref) => {
+  const { workData, setWorkData } = props;
   const [workExperiences, setWorkExperiences] = useState([
     {
       id: 1,

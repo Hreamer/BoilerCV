@@ -39,6 +39,27 @@ const UserHub = () => {
     listOfSkills: [""]
   });
 
+  const [workData, setWorkData] = useState([
+    {
+      company: "",
+      role: "",
+      location: "",
+      startDate: null,
+      endDate: null,
+      bullets: [""]
+    }
+  ]);
+
+  const [projectData, setProjectData] = useState([
+    {
+      name: "",
+      startDate: null,
+      endDate: null,
+      description: "",
+      bullets: [""]
+    }
+  ]);
+  
   const openCreationWindow = (templateID) => {
     setShowCreationWindow(true);
     localStorage.setItem("templateID", templateID);
@@ -96,13 +117,15 @@ const UserHub = () => {
             <CreationWindow onClose={() => setShowCreationWindow(false)} 
             personalData={personalData} setPersonalData={setPersonalData} 
             educationData={educationData} setEducationData={setEducationData}
-            skillsData={skillsData} setSkillsData={setSkillsData} />
+            skillsData={skillsData} setSkillsData={setSkillsData}
+            workData={workData} setWorkData={setWorkData}
+            projectData={projectData} setProjectData={setProjectData} />
           )}
         </div>
         <div className="preview-container">
           <Preview data-testid="preview" openedResume={openedResume}
           personalData={personalData} educationData={educationData}
-          skillsData={skillsData} />
+          skillsData={skillsData} projectData={projectData} workData={workData}/>
         </div>
       </div>
     </div>
