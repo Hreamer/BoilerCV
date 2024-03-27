@@ -7,7 +7,7 @@ import dummyPDF from "./dummy.pdf";
 import dummy2PDF from "./dummy2.pdf";
 
 
-const Preview = ({ openedResume, personalData  }) => {
+const Preview = ({ openedResume, personalData, educationData  }) => {
   const pdfFile = openedResume === "1" ? dummyPDF : dummy2PDF;
 
   const handleUpdate = () => {
@@ -21,11 +21,11 @@ const Preview = ({ openedResume, personalData  }) => {
       const Email         = "";
     
       //Education Info
-      const UniName       = "";
-      const UniCity       = "";
-      const UniState      = "";
+      const UniName       = educationData.schoolName;
+      const UniCity       = educationData.city;
+      const UniState      = educationData.state;
       const ExpectedGrad  = "";
-      const Gpa           = "";
+      const Gpa           = educationData.gpa;
       const CourseWork    = "";
       const Honors1       = "";
       const Honors2       = "";
