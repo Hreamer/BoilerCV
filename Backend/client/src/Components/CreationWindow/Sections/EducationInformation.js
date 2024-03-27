@@ -92,7 +92,7 @@ const EducationInformation = forwardRef((props, ref) => {
       });
     }
     if (setState === setClubs) {
-      setCertifications(prevClubs => {
+      setClubs(prevClubs => {
         const updatedClubs = [...prevClubs];
         updatedClubs[index] = value;
   
@@ -105,7 +105,7 @@ const EducationInformation = forwardRef((props, ref) => {
       });
     }
     if (setState === setHonors) {
-      setCertifications(prevHonors => {
+      setHonors(prevHonors => {
         const updatedHonors = [...prevHonors];
         updatedHonors[index] = value;
   
