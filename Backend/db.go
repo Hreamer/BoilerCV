@@ -227,7 +227,7 @@ func dbCheckUserNameTaken(creds Credentials) error {
 	return errors.New("User with that username already exists")
 }
 
-func getResumeList(writer http.ResponseWriter, request *http.Request) error {
+func getResumeList(writer http.ResponseWriter, request *http.Request) {
 
 	//Current User
 	var info ResumeInfo
@@ -235,15 +235,12 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) error {
 	err := json.NewDecoder(request.Body).Decode(&info)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
-		return err
 	}
 
 	//Query
 	//executing the call
 	rows, err := db.Query("SELECT TemplateName FROM BoilerCVdb.dbo.resume WHERE Username = ?", info.Username)
-	if err != nil {
-		return err
-	}
+
 	defer rows.Close()
 
 	//depending on the result return all good or error
@@ -252,21 +249,16 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) error {
 	for rows.Next() {
 		var r string
 		err = rows.Scan(&r)
-		if err != nil {
-			return err
-		}
 		names = append(names, r)
 	}
 
 	payload, err3 := json.Marshal(names)
 	if err3 != nil {
 		writer.WriteHeader(http.StatusBadRequest)
-		return err
-	}
 
+	}
 	writer.WriteHeader(http.StatusOK)
 	writer.Write(payload)
-	return nil
 }
 
 // Takes in a ResumeInfo struct which contains information needed
