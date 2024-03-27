@@ -230,16 +230,17 @@ func dbCheckUserNameTaken(creds Credentials) error {
 func getResumeList(writer http.ResponseWriter, request *http.Request) {
 
 	//Current User
-	var info ResumeInfo
+	//var info ResumeInfo
+	var username string
 
-	err := json.NewDecoder(request.Body).Decode(&info)
+	err := json.NewDecoder(request.Body).Decode(&username)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 	}
 
 	//Query
 	//executing the call
-	rows, err := db.Query("SELECT TemplateName FROM BoilerCVdb.dbo.resume WHERE Username = ?", info.Username)
+	rows, err := db.Query("SELECT TemplateName FROM BoilerCVdb.dbo.resume WHERE Username = ?", username)
 
 	defer rows.Close()
 
