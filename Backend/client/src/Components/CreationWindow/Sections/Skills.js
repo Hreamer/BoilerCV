@@ -81,9 +81,9 @@ const Skills = forwardRef((props, ref) => {
               </div>
               {/* List Textbox */}
               <div>
-                <label style={{ color: "black" }}>List of Skills:</label>
+                <label style={{ color: "black", marginLeft: "10px" }}>List of Skills:</label>
                 <input
-                  style={{ color: "black" }}
+                  style={{ color: "black", marginLeft: "10px" }}
                   type="text"
                   value={skill.list}
                   onChange={(e) =>
@@ -103,13 +103,12 @@ const Skills = forwardRef((props, ref) => {
             </div>
           </div>
         ))}
-        <button style={{ marginTop: "5px",
+        <button style={{ marginTop: "-1px",
               borderRadius: "5px",
               padding: "5px 10px",
               border: "1px solid #0e93c7",
               backgroundColor: "#0e93c7",
               width: "100px",
-              marginTop: "-6px",
               color: "white" }} className="plus-button" onClick={addTextbox}>
           Add Section
         </button>

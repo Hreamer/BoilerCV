@@ -39,42 +39,41 @@ const WorkInformation = forwardRef((props, ref) => {
   };
 
   const handleChange = (sectionIndex, field, value) => {
-    setWorkExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences];
-      updatedExperiences[sectionIndex][field] = value;
-      return updatedExperiences;
-    });
-  };
+  setWorkExperiences((prevExperiences) => {
+    const updatedExperiences = [...prevExperiences];
+    updatedExperiences[sectionIndex][field] = value;
+    setWorkData(updatedExperiences); // Update workData with the latest experiences
+    return updatedExperiences;
+  });
+};
 
-  const addTextbox = (sectionIndex) => {
-    setWorkExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences];
-      updatedExperiences[sectionIndex].bullets.push({
-        id: Date.now(),
-        text: "",
-      });
-      return updatedExperiences;
-    });
-  };
+const addTextbox = (sectionIndex) => {
+  setWorkExperiences((prevExperiences) => {
+    const updatedExperiences = [...prevExperiences];
+    updatedExperiences[sectionIndex].bullets.push(""); // Push an empty string as bullet
+    setWorkData(updatedExperiences); // Update workData with the latest experiences
+    return updatedExperiences;
+  });
+};
 
-  const removeTextbox = (sectionIndex, bulletId) => {
-    setWorkExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences];
-      const bullets = updatedExperiences[sectionIndex].bullets.filter(
-        (bullet) => bullet.id !== bulletId
-      );
-      updatedExperiences[sectionIndex].bullets = bullets;
-      return updatedExperiences;
-    });
-  };
+const removeTextbox = (sectionIndex, bulletIndex) => {
+  setWorkExperiences((prevExperiences) => {
+    const updatedExperiences = [...prevExperiences];
+    updatedExperiences[sectionIndex].bullets.splice(bulletIndex, 1); 
+    setWorkData(updatedExperiences); 
+    return updatedExperiences;
+  });
+};
 
-  const handleBulletChange = (sectionIndex, bulletIndex, value) => {
-    setWorkExperiences((prevExperiences) => {
-      const updatedExperiences = [...prevExperiences];
-      updatedExperiences[sectionIndex].bullets[bulletIndex].text = value;
-      return updatedExperiences;
-    });
-  };
+const handleBulletChange = (sectionIndex, bulletIndex, value) => {
+  setWorkExperiences((prevExperiences) => {
+    const updatedExperiences = [...prevExperiences];
+    updatedExperiences[sectionIndex].bullets[bulletIndex] = value;
+    setWorkData(updatedExperiences); 
+    return updatedExperiences;
+  });
+};
+
 
   return (
     <div ref={ref} className="section-container">
