@@ -205,7 +205,7 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     .then((response) => {
         if (response.ok) {
           // If the response is successful
-          
+          console.log("Update Preview Returned OK");
         } else {
           // If there's an error response, set the error state
           
