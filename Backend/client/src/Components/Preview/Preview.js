@@ -16,9 +16,9 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     setTemplateID(localStorage.getItem("templateID"));
     setUsername(localStorage.getItem("username"));
     const TemplateNum   = 1;
-    const TemplateName  = "";
+    const TemplateName  = localStorage.getItem("templateID");
     const Username      = localStorage.getItem("username");
-    const UUID          = localStorage.getItem("templateID");
+    const UUID          = "";
     const Name          = personalData.name;
     const Address       = personalData.city + personalData.state + personalData.address;
     const PhoneNum      = personalData.phoneNumber;
