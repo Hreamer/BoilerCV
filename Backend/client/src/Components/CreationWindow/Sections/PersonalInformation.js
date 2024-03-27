@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import "./PersonalInformation.css";
 
-const PersonalInformation = (props) => {
+const PersonalInformation = forwardRef((props, ref) => {
   const { personalData, setPersonalData } = props;
   const [socialMedia, setSocialMedia] = useState([""]);
 
@@ -60,7 +60,7 @@ const PersonalInformation = (props) => {
   };
 
   return (
-    <div className="section-container">
+    <div ref={ref} className="section-container">
       {/* Personal Information */}
       <h2>Personal Information</h2>
       <div className="input-group">
@@ -157,6 +157,6 @@ const PersonalInformation = (props) => {
       </div>
     </div>
   );
-};
+});
 
 export default PersonalInformation;
