@@ -52,23 +52,23 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     const Comp1Description2  = workData[0].bullets && workData[0].bullets[1] ? workData[0].bullets[1] : "";
     const Comp1Description3  = workData[0].bullets && workData[0].bullets[2] ? workData[0].bullets[2] : "";
   
-    const CompName2          = workData && workData[1].company ? workData[1].company : "";
-    const CompCity2          = workData && workData[1].location ? workData[1].location : "";
+    const CompName2          = "";
+    const CompCity2          = "";
     const CompState2         = "";
-    const CompTitle2         = workData && workData[1].role ? workData[1].role : "";
+    const CompTitle2         = "";
     const CompLength2        = "";
-    const Comp2Description1  = workData[1].bullets && workData[1].bullets[0] ? workData[1].bullets[0] : "";
-    const Comp2Description2  = workData[1].bullets && workData[1].bullets[1] ? workData[1].bullets[1] : "";
-    const Comp2Description3  = workData[1].bullets && workData[1].bullets[2] ? workData[1].bullets[2] : "";
+    const Comp2Description1  = "";
+    const Comp2Description2  = "";
+    const Comp2Description3  = "";
   
-    const CompName3          = workData && workData[2].company ? workData[2].company : "";
-    const CompCity3          = workData && workData[2].location ? workData[2].location : "";
+    const CompName3          = "";
+    const CompCity3          = "";
     const CompState3         = "";
-    const CompTitle3         = workData && workData[2].role ? workData[2].role : "";
+    const CompTitle3         = "";
     const CompLength3        = "";
-    const Comp3Description1  = workData[2].bullets && workData[2].bullets[0] ? workData[2].bullets[0] : "";
-    const Comp3Description2  = workData[2].bullets && workData[2].bullets[1] ? workData[2].bullets[1] : "";
-    const Comp3Description3  = workData[2].bullets && workData[2].bullets[2] ? workData[2].bullets[2] : "";
+    const Comp3Description1  = "";
+    const Comp3Description2  = "";
+    const Comp3Description3  = "";
   
     //Skills
     const Title1 = skillsData.title && skillsData.title[0] ? skillsData.title[0] : "";
@@ -79,29 +79,29 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     const SkillDesc3 = skillsData.listOfSkills && skillsData.listOfSkills[2] ? skillsData.listOfSkills[2] : "";    
   
     //Project Information
-    const Proj1Name     = projectData && projectData[0].name ? projectData[0].name : "";
+    const Proj1Name     = "";
     const Proj1Start    = "";
     const Proj1End      = "";
-    const Proj1Desc     = projectData && projectData[0].description ? projectData[0].description : "";
-    const Proj1Bullet1  = projectData && projectData[0].bullets && projectData[0].bullets[0] ? projectData[0].bullets[0] : "";
-    const Proj1Bullet2  = projectData && projectData[0].bullets && projectData[0].bullets[1] ? projectData[0].bullets[1] : "";
-    const Proj1Bullet3  = projectData && projectData[0].bullets && projectData[0].bullets[2] ? projectData[0].bullets[2] : "";
+    const Proj1Desc     = "";
+    const Proj1Bullet1  = "";
+    const Proj1Bullet2  = "";
+    const Proj1Bullet3  = "";
   
-    const Proj2Name     = projectData && projectData[1].name ? projectData[1].name : "";
+    const Proj2Name     = "";
     const Proj2Start    = "";
     const Proj2End      = "";
-    const Proj2Desc     = projectData && projectData[1].description ? projectData[1].description : "";
-    const Proj2Bullet1  = projectData && projectData[1].bullets && projectData[1].bullets[0] ? projectData[1].bullets[0] : "";
-    const Proj2Bullet2  = projectData && projectData[1].bullets && projectData[1].bullets[1] ? projectData[1].bullets[1] : "";
-    const Proj2Bullet3  = projectData && projectData[1].bullets && projectData[1].bullets[2] ? projectData[1].bullets[2] : "";
+    const Proj2Desc     = "";
+    const Proj2Bullet1  = "";
+    const Proj2Bullet2  = "";
+    const Proj2Bullet3  = "";
   
-    const Proj3Name     = projectData && projectData[2].name ? projectData[2].name : "";
+    const Proj3Name     = "";
     const Proj3Start    = "";
     const Proj3End      = "";
-    const Proj3Desc     = projectData && projectData[2].description ? projectData[2].description : "";
-    const Proj3Bullet1  = projectData && projectData[2].bullets && projectData[2].bullets[0] ? projectData[2].bullets[0] : "";
-    const Proj3Bullet2  = projectData && projectData[2].bullets && projectData[2].bullets[1] ? projectData[2].bullets[1] : "";
-    const Proj3Bullet3  = projectData && projectData[2].bullets && projectData[2].bullets[2] ? projectData[2].bullets[2] : "";
+    const Proj3Desc     = "";
+    const Proj3Bullet1  = "";
+    const Proj3Bullet2  = "";
+    const Proj3Bullet3  = "";
   
     const Languages = "";
     const Technologies = "";

@@ -239,7 +239,7 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 	ctx := context.Background()
 
 	//SQL Query
-	tsql := fmt.Sprintf("SELECT TemplateName FROM BoilerCVdb.dbo.users WHERE username=@USERNAME")
+	tsql := fmt.Sprintf("SELECT TemplateName FROM BoilerCVdb.dbo.resume WHERE username=@USERNAME")
 
 	//getting the query ready to be edited via the call
 	stmt, err := db.Prepare(tsql)
@@ -251,6 +251,7 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 		sql.Named("USERNAME", creds.Username))
 	if err != nil {
 		fmt.Println("Failed to get resume list")
+		fmt.Println(err);
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
