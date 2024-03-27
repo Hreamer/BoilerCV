@@ -235,11 +235,16 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 	err := json.NewDecoder(request.Body).Decode(&creds)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
 	}
 	//Query
 	//executing the call
 	rows, err := db.Query("SELECT TemplateName FROM BoilerCVdb.dbo.resume WHERE Username = ?", creds.Username)
-
+	if err != nil {
+		fmt.Println("Failed to get resume list")
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
 	defer rows.Close()
 
 	//depending on the result return all good or error
@@ -254,8 +259,9 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 
 	payload, err3 := json.Marshal(names)
 	if err3 != nil {
+		fmt.Println("Failed to marshall the resume list")
 		writer.WriteHeader(http.StatusBadRequest)
-
+		return
 	}
 	fmt.Println(payload)
 	writer.WriteHeader(http.StatusOK)
