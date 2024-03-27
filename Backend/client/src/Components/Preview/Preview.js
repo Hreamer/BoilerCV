@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Preview.css";
 import ExportLatex from "../ExportLatex/ExportLatex";
 import ExportDocx from "../ExportDocx/ExportDocx";
