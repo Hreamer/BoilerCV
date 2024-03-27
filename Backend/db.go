@@ -228,19 +228,17 @@ func dbCheckUserNameTaken(creds Credentials) error {
 }
 
 func getResumeList(writer http.ResponseWriter, request *http.Request) {
-
 	//Current User
 	//var info ResumeInfo
-	var username string
+	var creds Credentials
 
-	err := json.NewDecoder(request.Body).Decode(&username)
+	err := json.NewDecoder(request.Body).Decode(&creds)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 	}
-
 	//Query
 	//executing the call
-	rows, err := db.Query("SELECT TemplateName FROM BoilerCVdb.dbo.resume WHERE Username = ?", username)
+	rows, err := db.Query("SELECT TemplateName FROM BoilerCVdb.dbo.resume WHERE Username = ?", creds.Username)
 
 	defer rows.Close()
 
@@ -249,6 +247,7 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 	names := []string{}
 	for rows.Next() {
 		var r string
+		fmt.Printf("\nr = %s\n", r)
 		err = rows.Scan(&r)
 		names = append(names, r)
 	}
@@ -258,6 +257,7 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusBadRequest)
 
 	}
+	fmt.Println(payload)
 	writer.WriteHeader(http.StatusOK)
 	writer.Write(payload)
 }

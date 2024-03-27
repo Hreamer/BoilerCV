@@ -32,9 +32,10 @@ const Login = ({ onClose }) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username }),
+            body: JSON.stringify({ username, password }),
           }
           ).then(response => {
+            console.log(response);
             if (!response.ok) {
               throw new Error('Network response was not ok');
             }
@@ -55,8 +56,8 @@ const Login = ({ onClose }) => {
           }).catch((error) => {
             console.error('Error fetching data:', error);
             const url = "/#/userhub";
-            window.location = url;
-            window.location.reload();
+            // window.location = url;
+            // window.location.reload();
           });
           
         } else {
