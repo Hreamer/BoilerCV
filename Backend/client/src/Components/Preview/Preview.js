@@ -30,77 +30,78 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     const UniState      = educationData.state;
     const ExpectedGrad  = "";
     const Gpa           = educationData.gpa;
-    const CourseWork    = "";
-    const Honors1       = "";
-    const Honors2       = "";
-    const Honors3       = "";
-    const Cert1         = "";
-    const Cert2         = "";
-    const Cert3         = "";
-    const Club1         = "";
-    const Club2         = "";
-    const Club3         = "";
+    const CourseWork    = educationData.relevantCoursework && educationData.relevantCoursework[0] ? educationData.relevantCoursework[0] : "";
+    const Honors1 = educationData.honors && educationData.honors[0] ? educationData.honors[0] : "";
+    const Honors2 = educationData.honors && educationData.honors[1] ? educationData.honors[1] : "";
+    const Honors3 = educationData.honors && educationData.honors[2] ? educationData.honors[2] : "";
+    const Cert1 = educationData.certifications && educationData.certifications[0] ? educationData.certifications[0] : "";
+    const Cert2 = educationData.certifications && educationData.certifications[1] ? educationData.certifications[1] : "";
+    const Cert3 = educationData.certifications && educationData.certifications[2] ? educationData.certifications[2] : "";
+    const Club1 = educationData.clubs && educationData.clubs[0] ? educationData.clubs[0] : "";
+    const Club2 = educationData.clubs && educationData.clubs[1] ? educationData.clubs[1] : "";
+    const Club3 = educationData.clubs && educationData.clubs[2] ? educationData.clubs[2] : "";
+    
   
     //Work Information
-    const CompName1          = workData.company;
-    const CompCity           = workData.location;
+    const CompName1          = workData && workData[0].company ? workData[0].company : "";
+    const CompCity           = workData && workData[0].location ? workData[0].location : "";
     const CompState          = "";
-    const CompTitle          = workData.role;
+    const CompTitle          = workData && workData[0].role ? workData[0].role : "";
     const CompLength         = "";
-    const Comp1Description1  = "";
-    const Comp1Description2  = "";
-    const Comp1Description3  = "";
+    const Comp1Description1  = workData[0].bullets && workData[0].bullets[0] ? workData[0].bullets[0] : "";
+    const Comp1Description2  = workData[0].bullets && workData[0].bullets[1] ? workData[0].bullets[1] : "";
+    const Comp1Description3  = workData[0].bullets && workData[0].bullets[2] ? workData[0].bullets[2] : "";
   
-    const CompName2          = "";
-    const CompCity2          = "";
+    const CompName2          = workData && workData[1].company ? workData[1].company : "";
+    const CompCity2          = workData && workData[1].location ? workData[1].location : "";
     const CompState2         = "";
-    const CompTitle2         = "";
+    const CompTitle2         = workData && workData[1].role ? workData[1].role : "";
     const CompLength2        = "";
-    const Comp2Description1  = "";
-    const Comp2Description2  = "";
-    const Comp2Description3  = "";
+    const Comp2Description1  = workData[1].bullets && workData[1].bullets[0] ? workData[1].bullets[0] : "";
+    const Comp2Description2  = workData[1].bullets && workData[1].bullets[1] ? workData[1].bullets[1] : "";
+    const Comp2Description3  = workData[1].bullets && workData[1].bullets[2] ? workData[1].bullets[2] : "";
   
-    const CompName3          = "";
-    const CompCity3          = "";
+    const CompName3          = workData && workData[2].company ? workData[2].company : "";
+    const CompCity3          = workData && workData[2].location ? workData[2].location : "";
     const CompState3         = "";
-    const CompTitle3         = "";
+    const CompTitle3         = workData && workData[2].role ? workData[2].role : "";
     const CompLength3        = "";
-    const Comp3Description1  = "";
-    const Comp3Description2  = "";
-    const Comp3Description3  = "";
+    const Comp3Description1  = workData[2].bullets && workData[2].bullets[0] ? workData[2].bullets[0] : "";
+    const Comp3Description2  = workData[2].bullets && workData[2].bullets[1] ? workData[2].bullets[1] : "";
+    const Comp3Description3  = workData[2].bullets && workData[2].bullets[2] ? workData[2].bullets[2] : "";
   
     //Skills
-    const Title1      = "";
-    const SkillDesc1  = "";
-    const Title2      = "";
-    const SkillDesc2  = "";
-    const Title3      = "";
-    const SkillDesc3  = "";
+    const Title1 = skillsData.title && skillsData.title[0] ? skillsData.title[0] : "";
+    const SkillDesc1 = skillsData.listOfSkills && skillsData.listOfSkills[0] ? skillsData.listOfSkills[0] : "";
+    const Title2 = skillsData.title && skillsData.title[1] ? skillsData.title[1] : "";
+    const SkillDesc2 = skillsData.listOfSkills && skillsData.listOfSkills[1] ? skillsData.listOfSkills[1] : "";
+    const Title3 = skillsData.title && skillsData.title[2] ? skillsData.title[2] : "";
+    const SkillDesc3 = skillsData.listOfSkills && skillsData.listOfSkills[2] ? skillsData.listOfSkills[2] : "";    
   
     //Project Information
-    const Proj1Name     = projectData.name;
+    const Proj1Name     = projectData && projectData[0].name ? projectData[0].name : "";
     const Proj1Start    = "";
     const Proj1End      = "";
-    const Proj1Desc     = projectData.description;
-    const Proj1Bullet1  = "";
-    const Proj1Bullet2  = "";
-    const Proj1Bullet3  = "";
+    const Proj1Desc     = projectData && projectData[0].description ? projectData[0].description : "";
+    const Proj1Bullet1  = projectData && projectData[0].bullets && projectData[0].bullets[0] ? projectData[0].bullets[0] : "";
+    const Proj1Bullet2  = projectData && projectData[0].bullets && projectData[0].bullets[1] ? projectData[0].bullets[1] : "";
+    const Proj1Bullet3  = projectData && projectData[0].bullets && projectData[0].bullets[2] ? projectData[0].bullets[2] : "";
   
-    const Proj2Name     = "";
+    const Proj2Name     = projectData && projectData[1].name ? projectData[1].name : "";
     const Proj2Start    = "";
     const Proj2End      = "";
-    const Proj2Desc     = "";
-    const Proj2Bullet1  = "";
-    const Proj2Bullet2  = "";
-    const Proj2Bullet3  = "";
+    const Proj2Desc     = projectData && projectData[1].description ? projectData[1].description : "";
+    const Proj2Bullet1  = projectData && projectData[1].bullets && projectData[1].bullets[0] ? projectData[1].bullets[0] : "";
+    const Proj2Bullet2  = projectData && projectData[1].bullets && projectData[1].bullets[1] ? projectData[1].bullets[1] : "";
+    const Proj2Bullet3  = projectData && projectData[1].bullets && projectData[1].bullets[2] ? projectData[1].bullets[2] : "";
   
-    const Proj3Name     = "";
+    const Proj3Name     = projectData && projectData[2].name ? projectData[2].name : "";
     const Proj3Start    = "";
     const Proj3End      = "";
-    const Proj3Desc     = "";
-    const Proj3Bullet1  = "";
-    const Proj3Bullet2 = "";
-    const Proj3Bullet3 = "";
+    const Proj3Desc     = projectData && projectData[2].description ? projectData[2].description : "";
+    const Proj3Bullet1  = projectData && projectData[2].bullets && projectData[2].bullets[0] ? projectData[2].bullets[0] : "";
+    const Proj3Bullet2  = projectData && projectData[2].bullets && projectData[2].bullets[1] ? projectData[2].bullets[1] : "";
+    const Proj3Bullet3  = projectData && projectData[2].bullets && projectData[2].bullets[2] ? projectData[2].bullets[2] : "";
   
     const Languages = "";
     const Technologies = "";
