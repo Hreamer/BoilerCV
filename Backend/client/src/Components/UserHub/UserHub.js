@@ -21,6 +21,17 @@ const UserHub = () => {
     socialMediaLinks: [""],
     objectiveStatement: ""
   });
+  const [educationData, setEducationData] = useState({
+    schoolName: "",
+    city: "",
+    state: "",
+    degree: "",
+    gpa: "",
+    relevantCoursework: [""],
+    honors: [""],
+    certifications: [""],
+    clubs: [""]
+  });
 
   const openCreationWindow = (templateID) => {
     setShowCreationWindow(true);
@@ -77,12 +88,13 @@ const UserHub = () => {
           <MyResumes onOpenResume={openCreationWindow} />
           {showCreationWindow && (
             <CreationWindow onClose={() => setShowCreationWindow(false)} 
-            personalData={personalData} setPersonalData={setPersonalData} />
+            personalData={personalData} setPersonalData={setPersonalData} 
+            educationData={educationData} setEducationData={setEducationData} />
           )}
         </div>
         <div className="preview-container">
           <Preview data-testid="preview" openedResume={openedResume}
-          personalData={personalData} />
+          personalData={personalData} educationData={educationData} />
         </div>
       </div>
     </div>

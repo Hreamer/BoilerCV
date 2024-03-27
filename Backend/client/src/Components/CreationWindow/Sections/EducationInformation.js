@@ -2,6 +2,7 @@ import React, { forwardRef, useState } from "react";
 import "./EducationInformation.css";
 
 const EducationInformation = forwardRef((props, ref) => {
+  const { educationData, setEducationData } = props;
   const [relevantCoursework, setRelevantCoursework] = useState([""]);
   const [honors, setHonors] = useState([""]);
   const [clubs, setClubs] = useState([""]);
@@ -21,6 +22,23 @@ const EducationInformation = forwardRef((props, ref) => {
         }
         return prev;
       });
+      setEducationData(prevState => {
+        const updatedRelevantCoursework = [...prevState.relevantCoursework];
+        updatedRelevantCoursework.splice(index, 1);
+        const updatedHonors = [...prevState.honors];
+        updatedHonors.splice(index, 1);
+        const updatedCertifications = [...prevState.certifications];
+        updatedCertifications.splice(index, 1);
+        const updatedClubs = [...prevState.clubs];
+        updatedClubs.splice(index, 1);
+        return {
+          ...prevState,
+          relevantCoursework: updatedRelevantCoursework,
+          honors: updatedHonors,
+          certifications: updatedCertifications,
+          clubs: updatedClubs,
+        };
+      });
     }
   };
 
@@ -30,6 +48,66 @@ const EducationInformation = forwardRef((props, ref) => {
       updated[index] = value;
       return updated;
     });
+    if (setState === setRelevantCoursework) {
+      setRelevantCoursework(prevRCW => {
+        const updatedRelevantCoursework = [...prevRCW];
+        updatedRelevantCoursework[index] = value;
+  
+        setEducationData(prevState => ({
+          ...prevState,
+          relevantCoursework: updatedRelevantCoursework
+        }));
+  
+        return updatedRelevantCoursework;
+      });
+    }
+    if (setState === setCertifications) {
+      setCertifications(prevCerts => {
+        const updatedCertifications = [...prevCerts];
+        updatedCertifications[index] = value;
+  
+        setEducationData(prevState => ({
+          ...prevState,
+          certifications: updatedCertifications
+        }));
+  
+        return updatedCertifications;
+      });
+    }
+    if (setState === setClubs) {
+      setCertifications(prevClubs => {
+        const updatedClubs = [...prevClubs];
+        updatedClubs[index] = value;
+  
+        setEducationData(prevState => ({
+          ...prevState,
+          clubs: updatedClubs
+        }));
+  
+        return updatedClubs;
+      });
+    }
+    if (setState === setHonors) {
+      setCertifications(prevHonors => {
+        const updatedHonors = [...prevHonors];
+        updatedHonors[index] = value;
+  
+        setEducationData(prevState => ({
+          ...prevState,
+          honors: updatedHonors
+        }));
+  
+        return updatedHonors;
+      });
+    }
+  };
+
+  const handleInputChange = (e, field) => {
+    const { value } = e.target;
+    setEducationData(prevState => ({
+      ...prevState,
+      [field]: value
+    }));
   };
 
   return (
@@ -40,29 +118,29 @@ const EducationInformation = forwardRef((props, ref) => {
         {/* School Name */}
         <div className="input-item">
           <label htmlFor="school-name">School Name:</label>
-          <input type="text" id="school-name" />
+          <input type="text" id="school-name" onChange={(e) => handleInputChange(e, 'schoolName')}/>
         </div>
         {/* City */}
         <div className="input-item">
           <label htmlFor="school-city">City:</label>
-          <input type="text" id="school-city" />
+          <input type="text" id="school-city" onChange={(e) => handleInputChange(e, 'city')}/>
         </div>
         {/* State */}
         <div className="input-item">
           <label htmlFor="school-state">State:</label>
-          <input type="text" id="school-state" />
+          <input type="text" id="school-state" onChange={(e) => handleInputChange(e, 'state')}/>
         </div>
       </div>
       <div className="input-group">
         {/* Degree */}
         <div className="input-item">
           <label htmlFor="degree">Degree:</label>
-          <input type="text" id="degree" />
+          <input type="text" id="degree" onChange={(e) => handleInputChange(e, 'degree')}/>
         </div>
         {/* GPA */}
         <div className="input-item">
           <label htmlFor="gpa">GPA:</label>
-          <input type="text" id="gpa" style={{ width: "50px" }} />
+          <input type="text" id="gpa" style={{ width: "50px" }} onChange={(e) => handleInputChange(e, 'gpa')}/>
         </div>
       </div>
       <div className="education-information">
