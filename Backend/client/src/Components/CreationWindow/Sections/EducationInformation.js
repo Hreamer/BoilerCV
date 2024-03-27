@@ -23,21 +23,38 @@ const EducationInformation = forwardRef((props, ref) => {
         return prev;
       });
       setEducationData(prevState => {
-        const updatedRelevantCoursework = [...prevState.relevantCoursework];
-        updatedRelevantCoursework.splice(index, 1);
-        const updatedHonors = [...prevState.honors];
-        updatedHonors.splice(index, 1);
-        const updatedCertifications = [...prevState.certifications];
-        updatedCertifications.splice(index, 1);
-        const updatedClubs = [...prevState.clubs];
-        updatedClubs.splice(index, 1);
-        return {
-          ...prevState,
-          relevantCoursework: updatedRelevantCoursework,
-          honors: updatedHonors,
-          certifications: updatedCertifications,
-          clubs: updatedClubs,
-        };
+        if (setState === setRelevantCoursework) {
+          const updatedRelevantCoursework = [...prevState.relevantCoursework];
+          updatedRelevantCoursework.splice(index, 1);
+          return {
+            ...prevState,
+            relevantCoursework: updatedRelevantCoursework,
+          };
+        }
+        if (setState === setHonors) {
+          const updatedHonors = [...prevState.honors];
+          updatedHonors.splice(index, 1);
+          return {
+            ...prevState,
+            honors: updatedHonors,
+          };
+        }
+        if (setState === setCertifications) {
+          const updatedCertifications = [...prevState.certifications];
+          updatedCertifications.splice(index, 1);
+          return {
+            ...prevState,
+            certifications: updatedCertifications,
+          };
+        }
+        if (setState === setClubs) {
+          const updatedClubs = [...prevState.clubs];
+          updatedClubs.splice(index, 1);
+          return {
+            ...prevState,
+            clubs: updatedClubs,
+          };
+        }
       });
     }
   };
