@@ -228,31 +228,38 @@ func dbCheckUserNameTaken(creds Credentials) error {
 }
 
 func getResumeList(writer http.ResponseWriter, request *http.Request) {
-	//Current User
-	//var info ResumeInfo
+
 	var creds Credentials
 
 	err := json.NewDecoder(request.Body).Decode(&creds)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
-		return
 	}
-	//Query
+	//database code to check login
+	ctx := context.Background()
+
+	//SQL Query
+	tsql := fmt.Sprintf("SELECT TemplateName FROM BoilerCVdb.dbo.users WHERE username=@USERNAME")
+
+	//getting the query ready to be edited via the call
+	stmt, err := db.Prepare(tsql)
+	defer stmt.Close()
+
 	//executing the call
-	rows, err := db.Query("SELECT TemplateName FROM BoilerCVdb.dbo.resume WHERE Username = ?", creds.Username)
+	rows, err := stmt.QueryContext(
+		ctx,
+		sql.Named("USERNAME", creds.Username))
 	if err != nil {
 		fmt.Println("Failed to get resume list")
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
-	defer rows.Close()
 
 	//depending on the result return all good or error
 
 	names := []string{}
 	for rows.Next() {
 		var r string
-		fmt.Printf("\nr = %s\n", r)
 		err = rows.Scan(&r)
 		names = append(names, r)
 	}
