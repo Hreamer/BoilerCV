@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from "react";
 import "./Projects.css";
 
 const Projects = forwardRef((props, ref) => {
-  const { workData, setWorkData } = props;
+  const { projectData, setProjectData } = props;
   const [projects, setProjects] = useState([
     {
       id: 1,
@@ -40,37 +40,35 @@ const Projects = forwardRef((props, ref) => {
     setProjects((prevProjects) => {
       const updatedProjects = [...prevProjects];
       updatedProjects[sectionIndex][field] = value;
+      setProjectData(updatedProjects);
       return updatedProjects;
     });
   };
 
   const addTextbox = (sectionIndex) => {
-    setProjects((prevProjects) => {
-      const updatedProjects = [...prevProjects];
-      updatedProjects[sectionIndex].bullets.push({
-        id: Date.now(),
-        text: "",
-      });
-      return updatedProjects;
+    setProjects((prevExperiences) => {
+      const updatedExperiences = [...prevExperiences];
+      updatedExperiences[sectionIndex].bullets.push("");
+      setProjectData(updatedExperiences);
+      return updatedExperiences;
     });
   };
 
-  const removeTextbox = (sectionIndex, bulletId) => {
-    setProjects((prevProjects) => {
-      const updatedProjects = [...prevProjects];
-      const bullets = updatedProjects[sectionIndex].bullets.filter(
-        (bullet) => bullet.id !== bulletId
-      );
-      updatedProjects[sectionIndex].bullets = bullets;
-      return updatedProjects;
+  const removeTextbox = (sectionIndex, bulletIndex) => {
+    setProjects((prevExperiences) => {
+      const updatedExperiences = [...prevExperiences];
+      updatedExperiences[sectionIndex].bullets.splice(bulletIndex, 1);
+      setProjectData(updatedExperiences);
+      return updatedExperiences;
     });
   };
 
   const handleBulletChange = (sectionIndex, bulletIndex, value) => {
-    setProjects((prevProjects) => {
-      const updatedProjects = [...prevProjects];
-      updatedProjects[sectionIndex].bullets[bulletIndex].text = value;
-      return updatedProjects;
+    setProjects((prevExperiences) => {
+      const updatedExperiences = [...prevExperiences];
+      updatedExperiences[sectionIndex].bullets[bulletIndex] = value;
+      setProjectData(updatedExperiences);
+      return updatedExperiences;
     });
   };
 
@@ -136,7 +134,7 @@ const Projects = forwardRef((props, ref) => {
                 onChange={(e) =>
                   handleChange(sectionIndex, "description", e.target.value)
                 }
-                style={{ width: "600px"}}
+                style={{ width: "600px" }}
               />
             </div>
           </div>
@@ -155,7 +153,7 @@ const Projects = forwardRef((props, ref) => {
                       e.target.value
                     )
                   }
-                  style={{marginRight: "5px"}}
+                  style={{ marginRight: "5px" }}
                 />
                 {bulletIndex === project.bullets.length - 1 && (
                   <button
