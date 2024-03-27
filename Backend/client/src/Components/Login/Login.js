@@ -15,6 +15,7 @@ const Login = ({ onClose }) => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const resumeList = [];
+    localStorage.setItem("resumes", JSON.stringify(resumeList));
     fetch("http://localhost:3333/checkLogin", {
       method: "POST",
       headers: {
@@ -39,14 +40,24 @@ const Login = ({ onClose }) => {
             }
             return response.json(); // Parse the JSON response
           }).then((resumeData) => {
-            for (const key in resumeData) {
-              resumeList.push(resumeData[key]);
+            if (Object.keys(resumeData).length === 0 && resumeData.constructor === Object) {
+              // Handle empty response
+              console.log("No resumes found.");
+            } else {
+              for (const key in resumeData) {
+                resumeList.push(resumeData[key]);
+              }
             }
             localStorage.setItem("resumes", JSON.stringify(resumeList));
             const url = "/#/userhub";
             window.location = url;
             window.location.reload();
-          }).catch(error => console.error('Error fetching data:', error));
+          }).catch((error) => {
+            console.error('Error fetching data:', error);
+            const url = "/#/userhub";
+            window.location = url;
+            window.location.reload();
+          });
           
         } else {
           // If there's an error response, set the error state
