@@ -7,10 +7,11 @@ import dummyPDF from "./dummy.pdf";
 import dummy2PDF from "./dummy2.pdf";
 
 
-const Preview = ({ openedResume, personalData, educationData  }) => {
+const Preview = ({ openedResume, personalData, educationData, skillsData  }) => {
   const pdfFile = openedResume === "1" ? dummyPDF : dummy2PDF;
 
   const handleUpdate = () => {
+    console.log(skillsData);
       const TemplateNum   = 1;
       const TemplateName  = "";
       const Username      = localStorage.getItem("username");

@@ -21,6 +21,7 @@ const UserHub = () => {
     socialMediaLinks: [""],
     objectiveStatement: ""
   });
+
   const [educationData, setEducationData] = useState({
     schoolName: "",
     city: "",
@@ -31,6 +32,11 @@ const UserHub = () => {
     honors: [""],
     certifications: [""],
     clubs: [""]
+  });
+
+  const [skillsData, setSkillsData] = useState({
+    titles: [""],
+    listOfSkills: [""]
   });
 
   const openCreationWindow = (templateID) => {
@@ -89,12 +95,14 @@ const UserHub = () => {
           {showCreationWindow && (
             <CreationWindow onClose={() => setShowCreationWindow(false)} 
             personalData={personalData} setPersonalData={setPersonalData} 
-            educationData={educationData} setEducationData={setEducationData} />
+            educationData={educationData} setEducationData={setEducationData}
+            skillsData={skillsData} setSkillsData={setSkillsData} />
           )}
         </div>
         <div className="preview-container">
           <Preview data-testid="preview" openedResume={openedResume}
-          personalData={personalData} educationData={educationData} />
+          personalData={personalData} educationData={educationData}
+          skillsData={skillsData} />
         </div>
       </div>
     </div>

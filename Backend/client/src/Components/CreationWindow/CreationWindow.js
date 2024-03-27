@@ -7,7 +7,8 @@ import Projects from "./Sections/Projects";
 import Skills from "./Sections/Skills";
 
 
-const CreationWindow = ({ onClose, personalData, setPersonalData, educationData, setEducationData }) => {  
+const CreationWindow = ({ onClose, personalData, setPersonalData,
+    educationData, setEducationData, skillsData, setSkillsData }) => {  
   const personalRef = useRef(null);
   const educationRef = useRef(null);
   const workRef = useRef(null);
@@ -64,7 +65,7 @@ const CreationWindow = ({ onClose, personalData, setPersonalData, educationData,
           <PersonalInformation ref={personalRef} personalData={personalData} setPersonalData={setPersonalData} />
           <EducationInformation ref={educationRef} educationData={educationData} setEducationData={setEducationData}/>
           <WorkInformation ref={workRef} />
-          <Skills ref={skillsRef} />
+          <Skills ref={skillsRef} skillsData={skillsData} setSkillsData={setSkillsData}/>
           <Projects ref={projectRef} />
         </div>
       </div>
