@@ -2,6 +2,7 @@ import React, { forwardRef, useState } from "react";
 import "./WorkInformation.css";
 
 const WorkInformation = forwardRef((props, ref) => {
+  const { workData, setWorkData } = props;
   const [workExperiences, setWorkExperiences] = useState([
     {
       id: 1,
@@ -41,6 +42,7 @@ const WorkInformation = forwardRef((props, ref) => {
     setWorkExperiences((prevExperiences) => {
       const updatedExperiences = [...prevExperiences];
       updatedExperiences[sectionIndex][field] = value;
+      setWorkData(updatedExperiences);
       return updatedExperiences;
     });
   };
@@ -48,21 +50,17 @@ const WorkInformation = forwardRef((props, ref) => {
   const addTextbox = (sectionIndex) => {
     setWorkExperiences((prevExperiences) => {
       const updatedExperiences = [...prevExperiences];
-      updatedExperiences[sectionIndex].bullets.push({
-        id: Date.now(),
-        text: "",
-      });
+      updatedExperiences[sectionIndex].bullets.push("");
+      setWorkData(updatedExperiences);
       return updatedExperiences;
     });
   };
 
-  const removeTextbox = (sectionIndex, bulletId) => {
+  const removeTextbox = (sectionIndex, bulletIndex) => {
     setWorkExperiences((prevExperiences) => {
       const updatedExperiences = [...prevExperiences];
-      const bullets = updatedExperiences[sectionIndex].bullets.filter(
-        (bullet) => bullet.id !== bulletId
-      );
-      updatedExperiences[sectionIndex].bullets = bullets;
+      updatedExperiences[sectionIndex].bullets.splice(bulletIndex, 1);
+      setWorkData(updatedExperiences);
       return updatedExperiences;
     });
   };
@@ -70,7 +68,8 @@ const WorkInformation = forwardRef((props, ref) => {
   const handleBulletChange = (sectionIndex, bulletIndex, value) => {
     setWorkExperiences((prevExperiences) => {
       const updatedExperiences = [...prevExperiences];
-      updatedExperiences[sectionIndex].bullets[bulletIndex].text = value;
+      updatedExperiences[sectionIndex].bullets[bulletIndex] = value;
+      setWorkData(updatedExperiences);
       return updatedExperiences;
     });
   };
@@ -165,7 +164,7 @@ const WorkInformation = forwardRef((props, ref) => {
                       e.target.value
                     )
                   }
-                  style={{marginRight: "5px"}}
+                  style={{ marginRight: "5px" }}
                 />
                 {bulletIndex === work.bullets.length - 1 && (
                   <button

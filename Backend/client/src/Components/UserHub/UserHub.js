@@ -21,6 +21,7 @@ const UserHub = () => {
     socialMediaLinks: [""],
     objectiveStatement: ""
   });
+
   const [educationData, setEducationData] = useState({
     schoolName: "",
     city: "",
@@ -33,6 +34,32 @@ const UserHub = () => {
     clubs: [""]
   });
 
+  const [skillsData, setSkillsData] = useState({
+    titles: [""],
+    listOfSkills: [""]
+  });
+
+  const [workData, setWorkData] = useState([
+    {
+      company: "",
+      role: "",
+      location: "",
+      startDate: null,
+      endDate: null,
+      bullets: [""]
+    }
+  ]);
+
+  const [projectData, setProjectData] = useState([
+    {
+      name: "",
+      startDate: null,
+      endDate: null,
+      description: "",
+      bullets: [""]
+    }
+  ]);
+  
   const openCreationWindow = (templateID) => {
     setShowCreationWindow(true);
     localStorage.setItem("templateID", templateID);
@@ -89,12 +116,16 @@ const UserHub = () => {
           {showCreationWindow && (
             <CreationWindow onClose={() => setShowCreationWindow(false)} 
             personalData={personalData} setPersonalData={setPersonalData} 
-            educationData={educationData} setEducationData={setEducationData} />
+            educationData={educationData} setEducationData={setEducationData}
+            skillsData={skillsData} setSkillsData={setSkillsData}
+            workData={workData} setWorkData={setWorkData}
+            projectData={projectData} setProjectData={setProjectData} />
           )}
         </div>
         <div className="preview-container">
           <Preview data-testid="preview" openedResume={openedResume}
-          personalData={personalData} educationData={educationData} />
+          personalData={personalData} educationData={educationData}
+          skillsData={skillsData} projectData={projectData} workData={workData}/>
         </div>
       </div>
     </div>

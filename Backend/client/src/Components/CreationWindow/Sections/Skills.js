@@ -2,6 +2,7 @@ import React, { forwardRef, useState } from "react";
 import "./Skills.css";
 
 const Skills = forwardRef((props, ref) => {
+  const { skillsData, setSkillsData } = props;
   const [skills, setSkills] = useState([{ title: "", list: "" }]);
 
   const addTextbox = () => {
@@ -18,6 +19,17 @@ const Skills = forwardRef((props, ref) => {
         }
         return prev;
       });
+      setSkillsData(prevState => {
+        const updatedTitles = [...prevState.titles];
+        updatedTitles.splice(index, 1);
+        const updatedSkills = [...prevState.listOfSkills];
+        updatedSkills.splice(index, 1);
+        return {
+          ...prevState,
+          titles: updatedTitles,
+          listOfSkills: updatedSkills
+        };
+      });
     }
   };
 
@@ -27,7 +39,25 @@ const Skills = forwardRef((props, ref) => {
       updated[index][field] = value;
       return updated;
     });
-  };
+  
+    setSkillsData((prevState) => {
+      const updatedTitles = [...prevState.titles];
+      const updatedSkills = [...prevState.listOfSkills];
+  
+      // Update the arrays based on the field
+      if (field === "title") {
+        updatedTitles[index] = value; // Update title at index
+      } else if (field === "list") {
+        updatedSkills[index] = value; // Update list at index
+      }
+  
+      return {
+        ...prevState,
+        titles: updatedTitles,
+        listOfSkills: updatedSkills,
+      };
+    });
+  };  
 
   return (
     <div ref={ref} className="section-container">
@@ -51,9 +81,9 @@ const Skills = forwardRef((props, ref) => {
               </div>
               {/* List Textbox */}
               <div>
-                <label style={{ color: "black" }}>List of Skills:</label>
+                <label style={{ color: "black", marginLeft: "10px" }}>List of Skills:</label>
                 <input
-                  style={{ color: "black" }}
+                  style={{ color: "black", marginLeft: "10px" }}
                   type="text"
                   value={skill.list}
                   onChange={(e) =>
@@ -73,13 +103,12 @@ const Skills = forwardRef((props, ref) => {
             </div>
           </div>
         ))}
-        <button style={{ marginTop: "5px",
+        <button style={{ marginTop: "-1px",
               borderRadius: "5px",
               padding: "5px 10px",
               border: "1px solid #0e93c7",
               backgroundColor: "#0e93c7",
               width: "100px",
-              marginTop: "-6px",
               color: "white" }} className="plus-button" onClick={addTextbox}>
           Add Section
         </button>
