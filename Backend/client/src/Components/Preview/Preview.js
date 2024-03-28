@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Preview.css";
 import ExportLatex from "../ExportLatex/ExportLatex";
 import ExportDocx from "../ExportDocx/ExportDocx";
@@ -11,8 +11,11 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
   const pdfFile = openedResume === "1" ? dummyPDF : dummy2PDF;
   const [username, setUsername] = useState();
   const [templateID, setTemplateID] = useState();
+  const [pdfUrl, setPdfUrl] = useState("");
 
-  let pdfUrl = `http://localhost:3333/userTempls/${username}-${templateID}.pdf`;
+  useEffect(() => {
+    setPdfUrl(`http://localhost:3333/userTempls/${username}-${templateID}.pdf`);
+  }, [username, templateID]);
 
   const handleUpdate = () => {
     setTemplateID(localStorage.getItem("templateID"));
@@ -208,7 +211,6 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
         if (response.ok) {
           // If the response is successful
           console.log("Update Preview Returned OK");
-          pdfUrl = `http://localhost:3333/userTempls/${username}-${templateID}.pdf`;
         } else {
           // If there's an error response, set the error state
           

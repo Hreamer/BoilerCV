@@ -536,7 +536,9 @@ func deleteResumeDB(writer http.ResponseWriter, request *http.Request) {
 func renameResumeDB(writer http.ResponseWriter, request *http.Request) {
 
 	var info RenameInfo
-
+	fmt.Println(info.Username);
+	fmt.Println(info.OldName);
+	fmt.Println(info.NewName);
 	err := json.NewDecoder(request.Body).Decode(&info)
 	if err != nil {
 		http.Error(writer, err.Error(), http.StatusBadRequest)
