@@ -145,9 +145,9 @@ func updatePreview(writer http.ResponseWriter, request *http.Request) {
 	//Take the result and turn to PDF
 	//pdflatex -output-directory="./userTempls" -jobname="username-templname" filename
 	jobName := fmt.Sprintf("-jobname=%s-%s", tmplInfo.Username, tmplInfo.TemplateName)
-	fmt.Println(fmt.Sprintf("-output-directory=./userTempls"))
-	fmt.Println(fileName)
-	fmt.Println(jobName)
+	// fmt.Println(fmt.Sprintf("-output-directory=./userTempls"))
+	// fmt.Println(fileName)
+	// fmt.Println(jobName)
 	cmd := exec.Command("pdflatex", "-output-directory=./userTempls", jobName, fileName)
 	_, err = cmd.Output()
 	if err != nil {
