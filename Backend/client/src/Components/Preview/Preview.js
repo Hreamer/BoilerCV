@@ -12,6 +12,8 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
   const [username, setUsername] = useState();
   const [templateID, setTemplateID] = useState();
 
+  let pdfUrl = `http://localhost:3333/userTempls/${username}-${templateID}.pdf`;
+
   const handleUpdate = () => {
     setTemplateID(localStorage.getItem("templateID"));
     setUsername(localStorage.getItem("username"));
@@ -52,23 +54,23 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     const Comp1Description2  = workData[0].bullets && workData[0].bullets[1] ? workData[0].bullets[1] : "";
     const Comp1Description3  = workData[0].bullets && workData[0].bullets[2] ? workData[0].bullets[2] : "";
   
-    const CompName2          = "";
-    const CompCity2          = "";
+    const CompName2          = workData[1] ? workData[1].company : "";
+    const CompCity2          = workData[1] ? workData[1].location : "";
     const CompState2         = "";
-    const CompTitle2         = "";
+    const CompTitle2         = workData[1] ? workData[1].role : "";
     const CompLength2        = "";
-    const Comp2Description1  = "";
-    const Comp2Description2  = "";
-    const Comp2Description3  = "";
+    const Comp2Description1  = workData[1] ? workData[1].bullets[0] : "";
+    const Comp2Description2  = workData[1] && workData[1].bullets[1] ? workData[1].bullets[1] : "";
+    const Comp2Description3  = workData[1] && workData[1].bullets[2] ? workData[1].bullets[2] : "";
   
-    const CompName3          = "";
-    const CompCity3          = "";
+    const CompName3          = workData[2] ? workData[2].company : "";
+    const CompCity3          = workData[2] ? workData[2].location : "";
     const CompState3         = "";
-    const CompTitle3         = "";
+    const CompTitle3         = workData[2] ? workData[2].role : "";
     const CompLength3        = "";
-    const Comp3Description1  = "";
-    const Comp3Description2  = "";
-    const Comp3Description3  = "";
+    const Comp3Description1  = workData[2] ? workData[1].bullets[0] : "";
+    const Comp3Description2  = workData[2] && workData[2].bullets[1] ? workData[2].bullets[1] : "";
+    const Comp3Description3  = workData[2] && workData[2].bullets[2] ? workData[2].bullets[2] : "";
   
     //Skills
     const Title1 = skillsData.title && skillsData.title[0] ? skillsData.title[0] : "";
@@ -94,17 +96,14 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     const Proj2Bullet1  = projectData[1] ? projectData[1].bullets[0] : "";
     const Proj2Bullet2  = projectData[1] && projectData[1].bullets[1] ? projectData[1].bullets[1] : "";
     const Proj2Bullet3  = projectData[1] && projectData[1].bullets[2] ? projectData[1].bullets[2] : "";
-    // console.log("bullet 1=" + Proj2Bullet1);
-    // console.log("bullet 2=" + Proj2Bullet2);
-    // console.log("bullet 3=" + Proj2Bullet3);
   
-    const Proj3Name     = "";
+    const Proj3Name     = projectData[2] ? projectData[2].name : "";
     const Proj3Start    = "";
     const Proj3End      = "";
-    const Proj3Desc     = "";
-    const Proj3Bullet1  = "";
-    const Proj3Bullet2  = "";
-    const Proj3Bullet3  = "";
+    const Proj3Desc     = projectData[2] ? projectData[2].description : "";
+    const Proj3Bullet1  = projectData[2] ? projectData[2].bullets[0] : "";
+    const Proj3Bullet2  = projectData[2] && projectData[2].bullets[1] ? projectData[2].bullets[1] : "";
+    const Proj3Bullet3  = projectData[2] && projectData[2].bullets[2] ? projectData[2].bullets[2] : "";
   
     const Languages = "";
     const Technologies = "";
@@ -209,6 +208,7 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
         if (response.ok) {
           // If the response is successful
           console.log("Update Preview Returned OK");
+          pdfUrl = `http://localhost:3333/userTempls/${username}-${templateID}.pdf`;
         } else {
           // If there's an error response, set the error state
           
@@ -220,7 +220,7 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     });
   };
 
-  const pdfUrl = `http://localhost:3333/userTempls/${username}-${templateID}.pdf`;
+  
 
   return (
     <div className="preview">

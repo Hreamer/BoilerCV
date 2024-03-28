@@ -8,23 +8,40 @@ const onRename = (oldName) => {
   const confirmation = window.confirm("Rename resume?");
   if (confirmation) {
     var newName = "";
+    let index = -1;
     do {
       newName = prompt("Enter a new name:");
-    } while (newName === "")
-    const index = resumeList.indexOf(oldName);
-    if (index !== -1) {
-      resumeList[index] = newName;
-      localStorage.setItem("resumes", JSON.stringify(resumeList));
-      if (newName !== null) {
-        alert("Will rename to " + newName + "!");
+      index = resumeList.indexOf(newName);
+      if (index !== -1) {
+        alert("There is already a Resume with that name!");
       }
-    } else {
-      alert("Resume not found in the list.");
-    }
+    } while (newName === "" || index !== -1)
+    index = resumeList.indexOf(oldName);
+    resumeList[index] = newName;
+    localStorage.setItem("resumes", JSON.stringify(resumeList));
     if (newName !== null) {
       alert("Will rename to " + newName + "!");
-      window.location.reload();
     }
+    const username = localStorage.getItem("username");
+    fetch("http://localhost:3333/renameResume", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, oldName, newName }),
+    }).then((response) => {
+      if (response.ok) {
+        // If the response is successful
+        console.log("Rename was sucessfull in the DB");
+      } else {
+        // If there's an error response, set the error state
+        throw new Error('Network response was not ok');
+      }
+      //window.location.reload();
+    }).catch((error) => {
+      // If there's a network error, set the error state
+      console.error('Error Renaming Resume:', error);
+    });
   } else {
     alert("Will not rename.");
   }
@@ -39,6 +56,26 @@ const MyResumes = ({ onOpenResume }) => {
       const updatedResumeList = resumeList.filter(name => name !== resumeID); // Remove the selected resume from the array
       setResumeList(updatedResumeList); // Update the state with the new resume list
       localStorage.setItem("resumes", JSON.stringify(updatedResumeList)); // Update localStorage
+      const username = localStorage.getItem("username");
+      const name = resumeID;
+      fetch("http://localhost:3333/deleteResume", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, name }),
+      }).then((response) => {
+        if (response.ok) {
+          // If the response is successful
+          console.log("Deletion was sucessfull in the DB");
+        } else {
+          // If there's an error response, set the error state
+          throw new Error('Network response was not ok');
+        }
+      }).catch((error) => {
+        // If there's a network error, set the error state
+        console.error('Error Deleting Resume:', error);
+      });
     } else {
       alert("Will not delete.");
     }
