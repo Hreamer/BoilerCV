@@ -123,6 +123,7 @@
 
 %-----------EXPERIENCE-----------%
 \section{Experience}
+{{ if and (ne .CompName1 "") (ne .CompName2 "") (ne .Compname3 "") }}
 \resumeSubHeadingListStart
 
     {{ if ne .CompName1 "" }}
@@ -165,9 +166,11 @@
     {{ end }}
 
 \resumeSubHeadingListEnd
+{{ end }}
 
 %-----------PROJECTS-----------%
 \section{Projects}
+{{ if and (ne .Proj1Name "") (ne .Proj2Name "") (ne .Proj3Name "") }}
 \resumeSubHeadingListStart
 
     {{ if ne .Proj1Name "" }}
@@ -207,6 +210,7 @@
     {{ end }}
 
 \resumeSubHeadingListEnd
+{{ end }}
 
 %-----------SKILLS-----------%
 \section{Technical Skills}
