@@ -12,6 +12,7 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
   const [username, setUsername] = useState();
   const [templateID, setTemplateID] = useState();
   const [pdfUrl, setPdfUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setPdfUrl(`http://localhost:3333/userTempls/${username}-${templateID}.pdf`);
@@ -211,15 +212,17 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
         if (response.ok) {
           // If the response is successful
           console.log("Update Preview Returned OK");
+          setPdfUrl(`http://localhost:3333/userTempls/${username}-${templateID}.pdf`);
         } else {
           // If there's an error response, set the error state
           
         }
       })
       .catch((error) => {
-        // If there's a network error, set the error state
-        
-    });
+        // If there's a network error, set the error state 
+      }).finally(() => {
+        setLoading(false);
+      });
   };
 
   
@@ -227,7 +230,11 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
   return (
     <div className="preview">
       <h1>Preview</h1>
-      <iframe src={pdfUrl} className="previewWindow" title="PDF Viewer" />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <iframe src={pdfUrl} className="previewWindow" title="PDF Viewer" />
+      )}
       <div className="button-grid">
         <div className="button-item">
           <ExportLatex />
