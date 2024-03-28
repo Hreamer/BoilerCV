@@ -20,6 +20,12 @@ type ResumeInfo struct {
 	Name     string
 }
 
+type RenameInfo struct {
+	Username string
+	OldName  string
+	NewName  string
+}
+
 func dbCheckLogin(creds Credentials) error {
 
 	//database code to check login
@@ -251,7 +257,7 @@ func getResumeList(writer http.ResponseWriter, request *http.Request) {
 		sql.Named("USERNAME", creds.Username))
 	if err != nil {
 		fmt.Println("Failed to get resume list")
-		fmt.Println(err);
+		fmt.Println(err)
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}
@@ -480,4 +486,93 @@ func dbUpdateResumeInfo(info Template1Info) error {
 	}
 
 	return nil
+}
+
+// Deletes the resume given the information passed
+func deleteResumeDB(writer http.ResponseWriter, request *http.Request) {
+
+	var info ResumeInfo
+
+	err := json.NewDecoder(request.Body).Decode(&info)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+	//database code to delete resume
+	ctx := context.Background()
+	err2 := db.PingContext(ctx)
+	if err2 != nil {
+		return
+	}
+
+	//SQL Query
+	tsql := fmt.Sprintf("DELETE FROM BoilerCVdb.dbo.resume WHERE Username=@USERNAME AND TemplateName=@TEMPLATENAME;")
+
+	//getting the query ready to be edited via the call
+	stmt, err := db.Prepare(tsql)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer stmt.Close()
+
+	//executing the call
+	_, err3 := stmt.ExecContext(
+		ctx,
+		sql.Named("USERNAME", info.Username),
+		sql.Named("TEMPLATENAME", info.Name))
+	if err3 != nil {
+		fmt.Println("Failed to delete resume")
+		fmt.Println(err)
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	//depending on the result return all good or error
+	writer.WriteHeader(http.StatusOK)
+}
+
+// Renames the resume passed with the new name passed
+func renameResumeDB(writer http.ResponseWriter, request *http.Request) {
+
+	var info RenameInfo
+
+	err := json.NewDecoder(request.Body).Decode(&info)
+	if err != nil {
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+	//database code to rename resume
+	ctx := context.Background()
+	err2 := db.PingContext(ctx)
+	if err2 != nil {
+		return
+	}
+
+	//SQL Query
+	tsql := fmt.Sprintf("UPDATE FROM BoilerCVdb.dbo.resume SET TemplateName=@NEWTEMPLATENAME WHERE Username=@USERNAME AND TemplateName=@OLDTEMPLATENAME;")
+
+	//getting the query ready to be edited via the call
+	stmt, err := db.Prepare(tsql)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer stmt.Close()
+
+	//executing the call
+	_, err3 := stmt.ExecContext(
+		ctx,
+		sql.Named("USERNAME", info.Username),
+		sql.Named("NEWTEMPLATENAME", info.NewName),
+		sql.Named("OLDTEMPLATENAME", info.OldName))
+	if err3 != nil {
+		fmt.Println("Failed to rename resume")
+		fmt.Println(err)
+		http.Error(writer, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	//return all good if rename correct
+	writer.WriteHeader(http.StatusOK)
 }
