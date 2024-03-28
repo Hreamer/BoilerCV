@@ -77,23 +77,26 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     const SkillDesc2 = skillsData.listOfSkills && skillsData.listOfSkills[1] ? skillsData.listOfSkills[1] : "";
     const Title3 = skillsData.title && skillsData.title[2] ? skillsData.title[2] : "";
     const SkillDesc3 = skillsData.listOfSkills && skillsData.listOfSkills[2] ? skillsData.listOfSkills[2] : "";    
-  
+    
     //Project Information
-    const Proj1Name     = "";
+    const Proj1Name     = projectData[0].name;
     const Proj1Start    = "";
     const Proj1End      = "";
-    const Proj1Desc     = "";
-    const Proj1Bullet1  = "";
-    const Proj1Bullet2  = "";
-    const Proj1Bullet3  = "";
-  
-    const Proj2Name     = "";
+    const Proj1Desc     = projectData[0].description;
+    const Proj1Bullet1  = projectData[0].bullets[0];
+    const Proj1Bullet2  = projectData[0].bullets[1] ? projectData[0].bullets[1] : "";
+    const Proj1Bullet3  = projectData[0].bullets[2] ? projectData[0].bullets[2] : "";
+
+    const Proj2Name     = projectData[1] ? projectData[1].name : "";
     const Proj2Start    = "";
     const Proj2End      = "";
-    const Proj2Desc     = "";
-    const Proj2Bullet1  = "";
-    const Proj2Bullet2  = "";
-    const Proj2Bullet3  = "";
+    const Proj2Desc     = projectData[1] ? projectData[1].description : "";
+    const Proj2Bullet1  = projectData[1] ? projectData[1].bullets[0] : "";
+    const Proj2Bullet2  = projectData[1] && projectData[1].bullets[1] ? projectData[1].bullets[1] : "";
+    const Proj2Bullet3  = projectData[1] && projectData[1].bullets[2] ? projectData[1].bullets[2] : "";
+    // console.log("bullet 1=" + Proj2Bullet1);
+    // console.log("bullet 2=" + Proj2Bullet2);
+    // console.log("bullet 3=" + Proj2Bullet3);
   
     const Proj3Name     = "";
     const Proj3Start    = "";
@@ -217,10 +220,12 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
     });
   };
 
+  const pdfUrl = `http://localhost:3333/userTempls/${username}-${templateID}.pdf`;
+
   return (
     <div className="preview">
       <h1>Preview</h1>
-      <iframe src="http://localhost:3333/userTempls/${username}-${templateID}.pdf" className="previewWindow" title="PDF Viewer" />
+      <iframe src={pdfUrl} className="previewWindow" title="PDF Viewer" />
       <div className="button-grid">
         <div className="button-item">
           <ExportLatex />
@@ -235,7 +240,7 @@ const Preview = ({ openedResume, personalData, educationData, skillsData, projec
           />
         </div>
         <div className="button-item">
-          <SendEmail className="email-button" pdf={pdfFile} />
+          <SendEmail className="email-button" pdf={pdfUrl} />
         </div>
         <div className="button-item">
           <button className="update-button" onClick={handleUpdate}>Update Preview</button>
